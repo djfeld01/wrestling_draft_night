@@ -4,12 +4,14 @@ import { magicLink } from "better-auth/plugins/magic-link";
 import { nextCookies } from "better-auth/next-js";
 import { Resend } from "resend";
 import { db } from "../db";
+import * as authSchema from "../db/auth-schema";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
+    schema: authSchema,
   }),
   plugins: [
     magicLink({
