@@ -3,6 +3,8 @@ import { draftSessions, players } from "../../../../db/schema";
 import { desc, asc } from "drizzle-orm";
 import { CreateSessionForm, SessionCard } from "./session-manager";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminSessionsPage() {
   const sessions = await db
     .select()
