@@ -6,6 +6,7 @@ import {
   startSession,
   setDraftOrder,
   updatePlayerName,
+  updatePlayerEmail,
 } from "../../../../actions/session";
 
 type Session = {
@@ -22,6 +23,7 @@ type Player = {
   id: string;
   sessionId: string;
   name: string;
+  email: string | null;
   authCode: string;
   draftOrder: number;
 };
@@ -130,12 +132,21 @@ function PlayerRow({
   onDraftOrderChange: (val: number) => void;
 }) {
   const [playerName, setPlayerName] = useState(player.name);
+  const [playerEmail, setPlayerEmail] = useState(player.email || "");
   const [isSaving, startSaving] = useTransition();
 
   function handleNameBlur() {
     if (playerName.trim() !== player.name) {
       startSaving(async () => {
         await updatePlayerName(player.id, playerName);
+      });
+    }
+  }
+
+  function handleEmailBlur() {
+    if (playerEmail.trim().toLowerCase() !== (player.email || "")) {
+      startSaving(async () => {
+        await updatePlayerEmail(player.id, playerEmail);
       });
     }
   }
@@ -172,9 +183,21 @@ function PlayerRow({
         )}
       </td>
       <td className="py-2 px-3">
-        <code className="font-mono text-xs bg-muted px-1.5 py-0.5 rounded text-foreground">
-          {player.authCode}
-        </code>
+        {isSetup ? (
+          <input
+            type="email"
+            value={playerEmail}
+            onChange={(e) => setPlayerEmail(e.target.value)}
+            onBlur={handleEmailBlur}
+            disabled={isSaving}
+            placeholder="email@example.com"
+            className="w-full px-2 py-1 border border-border rounded text-sm bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent disabled:opacity-50"
+          />
+        ) : (
+          <span className="text-sm text-muted-foreground">
+            {player.email || "—"}
+          </span>
+        )}
       </td>
     </tr>
   );
@@ -258,8 +281,8 @@ export function SessionCard({
               <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3">
                 Name
               </th>
-              <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3 w-28">
-                Auth Code
+              <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3">
+                Email
               </th>
             </tr>
           </thead>

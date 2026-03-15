@@ -36,12 +36,12 @@ export async function requestMagicLink(
     await auth.api.signInMagicLink({
       body: {
         email: normalizedEmail,
-        callbackURL: `/draft/${player.sessionId}`,
+        callbackURL: `/draft/${player.sessionId}?playerId=${player.id}`,
       },
       headers: await headers(),
     });
-  } catch {
-    console.error(`[Magic Link] Failed to send for ${normalizedEmail}`);
+  } catch (err) {
+    console.error(`[Magic Link] Failed to send for ${normalizedEmail}`, err);
   }
 
   return { success: true };
