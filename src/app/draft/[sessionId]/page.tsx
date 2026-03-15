@@ -1,29 +1,39 @@
+import { headers } from "next/headers";
+import { auth } from "../../../../lib/auth";
+import { db } from "../../../../db";
+import { players } from "../../../../db/schema";
+import { eq, and } from "drizzle-orm";
 import { PlayerDraftClient } from "./draft-client";
+import { redirect } from "next/navigation";
 
 export default async function PlayerDraftPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ sessionId: string }>;
-  searchParams: Promise<{ playerId?: string }>;
 }) {
   const { sessionId } = await params;
-  const { playerId } = await searchParams;
 
-  if (!playerId) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-sm text-foreground mb-1">Missing player ID</p>
-          <p className="text-xs text-muted-foreground">
-            Add{" "}
-            <code className="bg-muted px-1 py-0.5 rounded">?playerId=xxx</code>{" "}
-            to the URL
-          </p>
-        </div>
-      </div>
-    );
+  // Get the authenticated user from better-auth
+  const session = await auth.api.getSession({ headers: await headers() });
+
+  if (!session?.user?.email) {
+    redirect(`/join/${sessionId}`);
   }
 
-  return <PlayerDraftClient sessionId={sessionId} playerId={playerId} />;
+  // Look up the player by email + session
+  const [player] = await db
+    .select()
+    .from(players)
+    .where(
+      and(
+        eq(players.sessionId, sessionId),
+        eq(players.email, session.user.email),
+      ),
+    );
+
+  if (!player) {
+    redirect(`/join/${sessionId}`);
+  }
+
+  return <PlayerDraftClient sessionId={sessionId} playerId={player.id} />;
 }

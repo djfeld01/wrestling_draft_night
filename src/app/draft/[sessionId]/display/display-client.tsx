@@ -8,6 +8,7 @@ import {
   type DraftStateWrestler,
   type ConnectionStatus,
 } from "../../../../../hooks/use-draft-events";
+import { JoinQRCode } from "../../../../components/JoinQRCode";
 
 const WEIGHT_CLASSES = [125, 133, 141, 149, 157, 165, 174, 184, 197, 285];
 
@@ -368,6 +369,14 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
 
         {/* Side panel */}
         <div className="w-80 shrink-0 flex flex-col gap-4 overflow-auto">
+          {state.session.status === "setup" && (
+            <div className="border border-border rounded-lg p-4 bg-muted">
+              <h3 className="text-sm font-medium text-foreground mb-3">
+                Scan to Join
+              </h3>
+              <JoinQRCode sessionId={sessionId} size={200} />
+            </div>
+          )}
           <CurrentTurnBanner state={state} />
           <RecentPicks picks={state.picks} />
           <AvailableWrestlers wrestlers={state.wrestlers} />

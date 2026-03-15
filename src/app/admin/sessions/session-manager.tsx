@@ -8,6 +8,7 @@ import {
   updatePlayerName,
   updatePlayerEmail,
 } from "../../../../actions/session";
+import { JoinQRCode } from "../../../components/JoinQRCode";
 
 type Session = {
   id: string;
@@ -203,6 +204,38 @@ function PlayerRow({
   );
 }
 
+function CopyJoinLink({ sessionId }: { sessionId: string }) {
+  const [copied, setCopied] = useState(false);
+  const joinUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/join/${sessionId}`
+      : `/join/${sessionId}`;
+
+  function handleCopy() {
+    navigator.clipboard.writeText(joinUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <input
+        type="text"
+        readOnly
+        value={joinUrl}
+        className="flex-1 px-2 py-1 border border-border rounded text-xs bg-background text-foreground font-mono focus:outline-none"
+      />
+      <button
+        onClick={handleCopy}
+        className="px-2 py-1 border border-border rounded text-xs text-foreground hover:bg-muted transition-colors"
+      >
+        {copied ? "Copied" : "Copy"}
+      </button>
+    </div>
+  );
+}
+
 export function SessionCard({
   session,
   sessionPlayers,
@@ -279,7 +312,7 @@ export function SessionCard({
                 Order
               </th>
               <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3">
-                Name
+                Team Name
               </th>
               <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3">
                 Email
@@ -301,6 +334,21 @@ export function SessionCard({
           </tbody>
         </table>
       </div>
+
+      {/* Join Link & QR Code */}
+      {isSetup && (
+        <div className="p-4 border-t border-border">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <JoinQRCode sessionId={session.id} size={140} />
+            <div className="flex-1 space-y-2">
+              <p className="text-sm text-muted-foreground">
+                Share this link or QR code so players can join:
+              </p>
+              <CopyJoinLink sessionId={session.id} />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Actions */}
       <div className="p-4 border-t border-border">
