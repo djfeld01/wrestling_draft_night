@@ -77,15 +77,19 @@ export async function joinSession(
 
   // Send magic link
   try {
-    await auth.api.signInMagicLink({
+    console.log(
+      `[Join] Calling auth.api.signInMagicLink for ${normalizedEmail}`,
+    );
+    const result = await auth.api.signInMagicLink({
       body: {
         email: normalizedEmail,
         callbackURL: `/draft/${sessionId}`,
       },
       headers: await headers(),
     });
+    console.log(`[Join] signInMagicLink result:`, JSON.stringify(result));
   } catch (err) {
-    console.error(`[Magic Link] Failed to send for ${normalizedEmail}`, err);
+    console.error(`[Join] signInMagicLink error:`, err);
     return {
       success: false,
       error: "Failed to send login email. Please try again.",
