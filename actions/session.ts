@@ -334,32 +334,3 @@ export async function updatePlayerName(
 
   return { success: true };
 }
-
-export type UpdatePlayerEmailResult =
-  | { success: true }
-  | { success: false; error: string };
-
-export async function updatePlayerEmail(
-  playerId: string,
-  email: string,
-): Promise<UpdatePlayerEmailResult> {
-  if (!email || email.trim().length === 0) {
-    return { success: false, error: "Email is required." };
-  }
-
-  const [player] = await db
-    .select()
-    .from(players)
-    .where(eq(players.id, playerId));
-
-  if (!player) {
-    return { success: false, error: "Player not found." };
-  }
-
-  await db
-    .update(players)
-    .set({ email: email.trim().toLowerCase() })
-    .where(eq(players.id, playerId));
-
-  return { success: true };
-}
