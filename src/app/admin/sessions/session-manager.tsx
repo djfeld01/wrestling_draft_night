@@ -31,7 +31,6 @@ type Player = {
 
 export function CreateSessionForm() {
   const [name, setName] = useState("");
-  const [playerCount, setPlayerCount] = useState(10);
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
 
@@ -39,12 +38,11 @@ export function CreateSessionForm() {
     e.preventDefault();
     setError("");
     startTransition(async () => {
-      const result = await createSession(name, playerCount);
+      const result = await createSession(name, 0);
       if (!result.success) {
         setError(result.error);
       } else {
         setName("");
-        setPlayerCount(10);
         window.location.reload();
       }
     });
@@ -73,23 +71,6 @@ export function CreateSessionForm() {
             onChange={(e) => setName(e.target.value)}
             placeholder="e.g. 2026 NCAA Draft"
             required
-            className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-accent"
-          />
-        </div>
-        <div className="w-32">
-          <label
-            htmlFor="player-count"
-            className="block text-sm text-muted-foreground mb-1"
-          >
-            Players
-          </label>
-          <input
-            id="player-count"
-            type="number"
-            min={2}
-            max={16}
-            value={playerCount}
-            onChange={(e) => setPlayerCount(Number(e.target.value))}
             className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-accent"
           />
         </div>
@@ -296,7 +277,7 @@ export function SessionCard({
             {session.name}
           </h3>
           <p className="text-xs text-muted-foreground mt-0.5">
-            {session.playerCount} players · Created{" "}
+            {sessionPlayers.length} players joined · Created{" "}
             {session.createdAt.toLocaleDateString()}
           </p>
         </div>

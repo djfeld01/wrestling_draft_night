@@ -40,21 +40,13 @@ export type CreateSessionResult =
   | {
       success: true;
       session: typeof draftSessions.$inferSelect;
-      players: (typeof players.$inferSelect)[];
     }
   | { success: false; error: string };
 
 export async function createSession(
   name: string,
-  playerCount: number,
+  _playerCount?: number,
 ): Promise<CreateSessionResult> {
-  if (!Number.isInteger(playerCount) || playerCount < 2 || playerCount > 16) {
-    return {
-      success: false,
-      error: "Player count must be an integer between 2 and 16.",
-    };
-  }
-
   if (!name || name.trim().length === 0) {
     return {
       success: false,
@@ -62,30 +54,14 @@ export async function createSession(
     };
   }
 
-  // Create the draft session
+  // Create the draft session with 0 players (they self-join)
   const [session] = await db
     .insert(draftSessions)
     .values({
       name: name.trim(),
-      playerCount,
+      playerCount: 0,
       status: "setup",
     })
-    .returning();
-
-  // Generate unique auth codes for all players
-  const authCodes = await generateUniqueAuthCodes(playerCount);
-
-  // Create players
-  const playerValues = Array.from({ length: playerCount }, (_, i) => ({
-    sessionId: session.id,
-    name: `Player ${i + 1}`,
-    authCode: authCodes[i],
-    draftOrder: i + 1,
-  }));
-
-  const createdPlayers = await db
-    .insert(players)
-    .values(playerValues)
     .returning();
 
   // Copy all wrestlers into sessionWrestlers for this session
@@ -104,7 +80,6 @@ export async function createSession(
   return {
     success: true,
     session,
-    players: createdPlayers,
   };
 }
 
