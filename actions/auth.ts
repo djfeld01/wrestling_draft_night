@@ -77,17 +77,13 @@ export async function joinSession(
 
   // Send magic link
   try {
-    console.log(
-      `[Join] Calling auth.api.signInMagicLink for ${normalizedEmail}`,
-    );
-    const result = await auth.api.signInMagicLink({
+    await auth.api.signInMagicLink({
       body: {
         email: normalizedEmail,
         callbackURL: `/draft/${sessionId}`,
       },
       headers: await headers(),
     });
-    console.log(`[Join] signInMagicLink result:`, JSON.stringify(result));
   } catch (err) {
     console.error(`[Join] signInMagicLink error:`, err);
     return {
