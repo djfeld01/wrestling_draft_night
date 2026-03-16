@@ -516,6 +516,14 @@ export function SessionCard({
             >
               {isPending ? "Starting..." : "Start Draft"}
             </button>
+            <a
+              href={`/draft/${session.id}/display`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted transition-colors"
+            >
+              Display View ↗
+            </a>
           </div>
         )}
 
