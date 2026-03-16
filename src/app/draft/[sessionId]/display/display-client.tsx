@@ -115,7 +115,7 @@ function WeightClassBoard({
     return map;
   }, [state.picks]);
 
-  // Group wrestlers by weight class, sorted by seed, top 10
+  // Group wrestlers by weight class, sorted by seed (all wrestlers, scrollable)
   const columns = useMemo(() => {
     const groups = new Map<number, DraftStateWrestler[]>();
     for (const wc of WEIGHT_CLASSES) {
@@ -125,24 +125,23 @@ function WeightClassBoard({
       const list = groups.get(w.weightClass);
       if (list) list.push(w);
     }
-    // Sort each group by seed and take top 10
     for (const [wc, list] of groups) {
       list.sort((a, b) => a.seed - b.seed);
-      groups.set(wc, list.slice(0, 10));
+      groups.set(wc, list);
     }
     return groups;
   }, [state.wrestlers]);
 
   return (
-    <div className="grid grid-cols-10 gap-1 flex-1 min-h-0 overflow-auto">
+    <div className="grid grid-cols-10 gap-1 flex-1 min-h-0">
       {WEIGHT_CLASSES.map((wc) => {
         const wrestlers = columns.get(wc) ?? [];
         return (
-          <div key={wc} className="flex flex-col min-w-0">
-            <div className="text-center text-xs font-semibold text-foreground py-1.5 bg-muted border-b border-border sticky top-0 z-10">
+          <div key={wc} className="flex flex-col min-w-0 min-h-0">
+            <div className="text-center text-xs font-semibold text-foreground py-1.5 bg-muted border-b border-border shrink-0">
               {wc}
             </div>
-            <div className="flex flex-col gap-0.5 p-0.5">
+            <div className="flex flex-col gap-0.5 p-0.5 overflow-y-auto flex-1">
               {wrestlers.map((w) => {
                 const pick = pickByWrestler.get(w.sessionWrestlerId);
                 if (pick) {
@@ -263,42 +262,40 @@ function RecentPicks({
   teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
 }) {
   const recent = useMemo(
-    () => [...picks].sort((a, b) => b.pickNumber - a.pickNumber).slice(0, 8),
+    () => [...picks].sort((a, b) => b.pickNumber - a.pickNumber).slice(0, 20),
     [picks],
   );
 
-  return (
-    <div className="border border-border rounded bg-background overflow-hidden">
-      <div className="px-2 py-1.5 border-b border-border bg-muted/50">
-        <h2 className="text-xs font-medium text-foreground">Recent Picks</h2>
+  if (recent.length === 0) {
+    return (
+      <div className="px-4 py-1.5 border-b border-border">
+        <p className="text-xs text-muted-foreground text-center">
+          No picks yet
+        </p>
       </div>
-      <div className="divide-y divide-border">
-        {recent.length === 0 ? (
-          <p className="text-xs text-muted-foreground text-center py-3">
-            No picks yet
-          </p>
-        ) : (
-          recent.map((pick) => {
-            const color = teamColorMap.get(pick.playerId);
-            return (
-              <div key={pick.id} className="px-2 py-1">
-                <div className="flex items-baseline justify-between">
-                  <span
-                    className={`text-xs font-medium ${color?.text ?? "text-foreground"}`}
-                  >
-                    {pick.playerName}
-                  </span>
-                  <span className="text-[10px] text-muted-foreground">
-                    #{pick.pickNumber}
-                  </span>
-                </div>
-                <div className="text-[10px] text-muted-foreground">
-                  {pick.wrestlerName} · {pick.weightClass}
-                </div>
-              </div>
-            );
-          })
-        )}
+    );
+  }
+
+  return (
+    <div className="border-b border-border">
+      <div className="flex items-center gap-2 overflow-x-auto px-3 py-1.5 scrollbar-thin">
+        <span className="text-[10px] text-muted-foreground shrink-0 font-medium">
+          Recent:
+        </span>
+        {recent.map((pick) => {
+          const color = teamColorMap.get(pick.playerId);
+          return (
+            <div
+              key={pick.id}
+              className={`shrink-0 flex items-center gap-1.5 px-2 py-0.5 rounded ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"}`}
+            >
+              <span className="text-[10px] font-medium">{pick.playerName}</span>
+              <span className="text-[10px] opacity-70">
+                {pick.wrestlerName} · {pick.weightClass}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -332,23 +329,22 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
         <TeamLegend state={state} teamColorMap={teamColorMap} />
       </div>
 
-      {/* Main content */}
-      <div className="flex-1 flex gap-2 p-2 min-h-0 overflow-hidden">
-        {/* Weight class board — takes most of the space */}
-        <WeightClassBoard state={state} teamColorMap={teamColorMap} />
+      {/* Recent picks — horizontal scrolling strip */}
+      <RecentPicks picks={state.picks} teamColorMap={teamColorMap} />
 
-        {/* Sidebar */}
-        <div className="w-56 shrink-0 flex flex-col gap-2 overflow-auto">
-          {state.session.status === "setup" && (
-            <div className="border border-border rounded p-2 bg-muted">
-              <p className="text-xs font-medium text-foreground mb-2">
-                Scan to Join
-              </p>
-              <JoinQRCode sessionId={sessionId} size={180} />
-            </div>
-          )}
-          <RecentPicks picks={state.picks} teamColorMap={teamColorMap} />
+      {/* QR code during setup */}
+      {state.session.status === "setup" && (
+        <div className="flex items-center gap-3 px-4 py-2 border-b border-border">
+          <JoinQRCode sessionId={sessionId} size={80} />
+          <p className="text-xs text-muted-foreground">
+            Scan to join this draft
+          </p>
         </div>
+      )}
+
+      {/* Weight class board — fills remaining space */}
+      <div className="flex-1 min-h-0 p-2">
+        <WeightClassBoard state={state} teamColorMap={teamColorMap} />
       </div>
     </div>
   );
