@@ -12,27 +12,22 @@ export type JoinTeamResult =
 
 /**
  * Join an existing team as a teammate.
- * The user provides the team owner's email and the session ID.
+ * The user provides the player ID (team) and the session ID.
  * A magic link is sent to the joining user's email.
  */
 export async function joinTeam(
   sessionId: string,
   email: string,
-  ownerEmail: string,
+  playerId: string,
 ): Promise<JoinTeamResult> {
   if (!email || email.trim().length === 0) {
     return { success: false, error: "Your email is required." };
   }
-  if (!ownerEmail || ownerEmail.trim().length === 0) {
-    return { success: false, error: "Team owner email is required." };
+  if (!playerId || playerId.trim().length === 0) {
+    return { success: false, error: "Please select a team." };
   }
 
   const normalizedEmail = email.trim().toLowerCase();
-  const normalizedOwnerEmail = ownerEmail.trim().toLowerCase();
-
-  if (normalizedEmail === normalizedOwnerEmail) {
-    return { success: false, error: "You can't join your own team." };
-  }
 
   // Verify session exists
   const [session] = await db
@@ -52,18 +47,18 @@ export async function joinTeam(
   const [ownerPlayer] = await db
     .select()
     .from(players)
-    .where(
-      and(
-        eq(players.sessionId, sessionId),
-        eq(players.email, normalizedOwnerEmail),
-      ),
-    );
+    .where(and(eq(players.id, playerId), eq(players.sessionId, sessionId)));
 
   if (!ownerPlayer) {
     return {
       success: false,
-      error: "No team found with that owner email in this session.",
+      error: "Team not found in this session.",
     };
+  }
+
+  // Check if the joining email matches the team owner
+  if (ownerPlayer.email === normalizedEmail) {
+    return { success: false, error: "You can't join your own team." };
   }
 
   // Check if this email is already the primary player in this session
@@ -92,10 +87,7 @@ export async function joinTeam(
       ),
     );
 
-  if (existingMembers.length > 0) {
-    // Already a teammate — just send the magic link
-  } else {
-    // Add as team member
+  if (existingMembers.length === 0) {
     await db.insert(teamMembers).values({
       playerId: ownerPlayer.id,
       email: normalizedEmail,
