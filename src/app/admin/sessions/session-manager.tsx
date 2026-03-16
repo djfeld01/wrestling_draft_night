@@ -8,6 +8,7 @@ import {
   updatePlayerName,
   updatePlayerEmail,
   addPlayerToSession,
+  deleteSession,
 } from "../../../../actions/session";
 import { JoinQRCode } from "../../../components/JoinQRCode";
 
@@ -278,9 +279,11 @@ function CopyJoinLink({ sessionId }: { sessionId: string }) {
 export function SessionCard({
   session,
   sessionPlayers,
+  organizerEmail,
 }: {
   session: Session;
   sessionPlayers: Player[];
+  organizerEmail: string;
 }) {
   const isSetup = session.status === "setup";
   const [draftOrders, setDraftOrders] = useState<Record<string, number>>(
@@ -288,6 +291,7 @@ export function SessionCard({
   );
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   function handleDraftOrderChange(playerId: string, val: number) {
     setDraftOrders((prev) => ({ ...prev, [playerId]: val }));
@@ -315,6 +319,18 @@ export function SessionCard({
     setError("");
     startTransition(async () => {
       const result = await startSession(session.id);
+      if (!result.success) {
+        setError(result.error);
+      } else {
+        window.location.reload();
+      }
+    });
+  }
+
+  function handleDelete() {
+    setError("");
+    startTransition(async () => {
+      const result = await deleteSession(session.id, organizerEmail);
       if (!result.success) {
         setError(result.error);
       } else {
@@ -455,6 +471,37 @@ export function SessionCard({
             </a>
           </div>
         )}
+
+        {/* Delete */}
+        <div className="mt-3 pt-3 border-t border-border">
+          {!showDeleteConfirm ? (
+            <button
+              onClick={() => setShowDeleteConfirm(true)}
+              className="text-xs text-destructive hover:underline"
+            >
+              Delete Draft
+            </button>
+          ) : (
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-destructive">
+                This will permanently delete this draft and all its data.
+              </span>
+              <button
+                onClick={handleDelete}
+                disabled={isPending}
+                className="px-2 py-1 bg-destructive text-destructive-foreground rounded text-xs font-medium hover:opacity-90 disabled:opacity-50 transition-opacity"
+              >
+                {isPending ? "Deleting..." : "Confirm"}
+              </button>
+              <button
+                onClick={() => setShowDeleteConfirm(false)}
+                className="px-2 py-1 border border-border rounded text-xs text-foreground hover:bg-muted transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

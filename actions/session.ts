@@ -6,6 +6,7 @@ import {
   players,
   wrestlers,
   sessionWrestlers,
+  picks,
 } from "../db/schema";
 import { eq, and, inArray } from "drizzle-orm";
 import { generateAuthCode } from "../lib/auth-code";
@@ -377,6 +378,41 @@ export async function addPlayerToSession(
     .update(draftSessions)
     .set({ playerCount: nextOrder, updatedAt: new Date() })
     .where(eq(draftSessions.id, sessionId));
+
+  return { success: true };
+}
+
+export type DeleteSessionResult =
+  | { success: true }
+  | { success: false; error: string };
+
+export async function deleteSession(
+  sessionId: string,
+  organizerEmail: string,
+): Promise<DeleteSessionResult> {
+  const [session] = await db
+    .select()
+    .from(draftSessions)
+    .where(eq(draftSessions.id, sessionId));
+
+  if (!session) {
+    return { success: false, error: "Draft session not found." };
+  }
+
+  if (session.organizerEmail !== organizerEmail) {
+    return {
+      success: false,
+      error: "Only the organizer can delete this draft.",
+    };
+  }
+
+  // Delete in FK order: picks → players → sessionWrestlers → session
+  await db.delete(picks).where(eq(picks.sessionId, sessionId));
+  await db.delete(players).where(eq(players.sessionId, sessionId));
+  await db
+    .delete(sessionWrestlers)
+    .where(eq(sessionWrestlers.sessionId, sessionId));
+  await db.delete(draftSessions).where(eq(draftSessions.id, sessionId));
 
   return { success: true };
 }

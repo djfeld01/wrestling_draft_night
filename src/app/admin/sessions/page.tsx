@@ -64,6 +64,7 @@ export default async function AdminSessionsPage() {
               key={s.id}
               session={s}
               sessionPlayers={playersBySession.get(s.id) || []}
+              organizerEmail={userEmail}
             />
           ))}
         </div>
