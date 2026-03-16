@@ -158,12 +158,12 @@ function SessionRow({
             Manage
           </Link>
         )}
-        {!isOrganizer && session.status === "active" && (
+        {!isOrganizer && (
           <Link
             href={`/draft/${session.id}`}
             className="text-xs text-accent hover:underline"
           >
-            Draft
+            My Draft
           </Link>
         )}
         {session.status === "active" && (
