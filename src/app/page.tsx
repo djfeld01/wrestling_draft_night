@@ -1,5 +1,5 @@
 import { db } from "../../db";
-import { draftSessions, players } from "../../db/schema";
+import { draftSessions, players, teamMembers } from "../../db/schema";
 import { desc, eq, inArray } from "drizzle-orm";
 import { headers } from "next/headers";
 import { auth } from "../../lib/auth";
@@ -48,7 +48,28 @@ export default async function Home() {
     .from(players)
     .where(eq(players.email, userEmail));
 
-  const playerSessionIds = playerRecords.map((p) => p.sessionId);
+  // Also check team_members for sessions where user is a teammate
+  const teamMemberRecords = await db
+    .select({ playerId: teamMembers.playerId })
+    .from(teamMembers)
+    .where(eq(teamMembers.email, userEmail));
+
+  const teamMemberPlayerIds = teamMemberRecords.map((r) => r.playerId);
+  let teamMemberSessionIds: string[] = [];
+  if (teamMemberPlayerIds.length > 0) {
+    const tmPlayers = await db
+      .select({ sessionId: players.sessionId })
+      .from(players)
+      .where(inArray(players.id, teamMemberPlayerIds));
+    teamMemberSessionIds = tmPlayers.map((p) => p.sessionId);
+  }
+
+  const playerSessionIds = [
+    ...new Set([
+      ...playerRecords.map((p) => p.sessionId),
+      ...teamMemberSessionIds,
+    ]),
+  ];
   const organizedIds = new Set(organizedSessions.map((s) => s.id));
 
   let playingSessions: (typeof draftSessions.$inferSelect)[] = [];
