@@ -52,9 +52,11 @@ function ConnectionDot({ status }: { status: ConnectionStatus }) {
 function Header({
   state,
   connectionStatus,
+  sessionId,
 }: {
   state: DraftState;
   connectionStatus: ConnectionStatus;
+  sessionId: string;
 }) {
   const totalPicks = state.session.playerCount * 10;
   const picksMade = state.picks.length;
@@ -70,6 +72,13 @@ function Header({
         </p>
       </div>
       <div className="flex items-center gap-3">
+        <a
+          href={`/draft/${sessionId}/display`}
+          target="_blank"
+          className="text-xs text-accent hover:underline"
+        >
+          Display View
+        </a>
         <StatusBadge status={state.session.status} />
         <ConnectionDot status={connectionStatus} />
       </div>
@@ -635,7 +644,11 @@ export function AdminDraftClient({ sessionId }: { sessionId: string }) {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 py-6">
-        <Header state={state} connectionStatus={connectionStatus} />
+        <Header
+          state={state}
+          connectionStatus={connectionStatus}
+          sessionId={sessionId}
+        />
 
         {state.session.status === "completed" && (
           <div className="mt-4 flex gap-2">
