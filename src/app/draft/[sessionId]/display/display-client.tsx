@@ -97,14 +97,19 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
+// --- Picked Wrestler View Modes ---
+type PickedView = "compact" | "expanded" | "hidden";
+
 // --- Weight Class Board (main content) ---
 
 function WeightClassBoard({
   state,
   teamColorMap,
+  pickedView,
 }: {
   state: DraftState;
   teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
+  pickedView: PickedView;
 }) {
   // Build a lookup: sessionWrestlerId -> pick (for drafted wrestlers)
   const pickByWrestler = useMemo(() => {
@@ -148,8 +153,30 @@ function WeightClassBoard({
                 return wrestlers.map((w) => {
                   const pick = pickByWrestler.get(w.sessionWrestlerId);
                   if (pick) {
-                    // Drafted — compact card with team color
+                    // Hidden mode — skip drafted wrestlers entirely
+                    if (pickedView === "hidden") return null;
+
                     const color = teamColorMap.get(pick.playerId);
+
+                    // Expanded mode — wider bar with wrestler name
+                    if (pickedView === "expanded") {
+                      return (
+                        <div
+                          key={w.sessionWrestlerId}
+                          className={`px-1.5 py-1 rounded text-center ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"}`}
+                          title={`${w.name} — picked by ${pick.playerName}`}
+                        >
+                          <div className="text-[10px] font-medium leading-tight truncate">
+                            {w.name}
+                          </div>
+                          <div className="text-[8px] opacity-70 leading-tight truncate">
+                            {pick.playerName}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Compact mode (default) — thin colored bar
                     return (
                       <div
                         key={w.sessionWrestlerId}
@@ -387,6 +414,7 @@ function RecentPicks({
 
 export function DisplayClient({ sessionId }: { sessionId: string }) {
   const { state, connectionStatus } = useDraftEvents(sessionId);
+  const [pickedView, setPickedView] = useState<PickedView>("compact");
 
   const teamColorMap = useMemo(
     () => (state ? buildTeamColorMap(state.players) : new Map()),
@@ -414,6 +442,28 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
       {/* Recent picks — horizontal scrolling strip */}
       <RecentPicks picks={state.picks} teamColorMap={teamColorMap} />
 
+      {/* Picked wrestler view toggle */}
+      <div className="flex items-center justify-center gap-1 px-3 py-1 border-b border-border">
+        <span className="text-[10px] text-muted-foreground mr-1">Picked:</span>
+        {(["compact", "expanded", "hidden"] as const).map((mode) => (
+          <button
+            key={mode}
+            onClick={() => setPickedView(mode)}
+            className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${
+              pickedView === mode
+                ? "bg-accent text-accent-foreground"
+                : "text-muted-foreground hover:bg-muted"
+            }`}
+          >
+            {mode === "compact"
+              ? "Compact"
+              : mode === "expanded"
+                ? "Expanded"
+                : "Hidden"}
+          </button>
+        ))}
+      </div>
+
       {/* QR code during setup */}
       {state.session.status === "setup" && (
         <div className="flex items-center gap-3 px-4 py-2 border-b border-border">
@@ -426,7 +476,11 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
 
       {/* Weight class board — fills remaining space */}
       <div className="flex-1 min-h-0 p-2">
-        <WeightClassBoard state={state} teamColorMap={teamColorMap} />
+        <WeightClassBoard
+          state={state}
+          teamColorMap={teamColorMap}
+          pickedView={pickedView}
+        />
       </div>
     </div>
   );
