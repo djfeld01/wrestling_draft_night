@@ -138,7 +138,7 @@ function WeightClassBoard({
         const wrestlers = columns.get(wc) ?? [];
         return (
           <div key={wc} className="flex flex-col min-w-0 overflow-hidden">
-            <div className="text-center text-xs font-semibold text-foreground py-1.5 bg-muted border-b border-border shrink-0">
+            <div className="text-center text-sm font-bold text-foreground py-2 bg-muted border-b-2 border-border shrink-0">
               {wc}
             </div>
             <div className="flex flex-col gap-0.5 p-0.5 overflow-y-auto hide-scrollbar">
