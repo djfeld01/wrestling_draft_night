@@ -175,16 +175,23 @@ function WeightClassBoard({
                     return (
                       <div
                         key={w.sessionWrestlerId}
-                        className={`px-1 py-1.5 border border-border rounded ${rowBg}`}
+                        className={`flex items-center border border-border rounded ${rowBg}`}
                       >
-                        <div className="text-[10px] text-muted-foreground truncate leading-tight">
-                          ({w.seed}) {firstName}
+                        <div className="w-1/4 flex items-center justify-center shrink-0 py-1.5">
+                          <span className="text-sm font-bold text-muted-foreground leading-none">
+                            {w.seed}
+                          </span>
                         </div>
-                        <div className="text-xs font-semibold text-foreground truncate leading-tight">
-                          {lastName}
-                        </div>
-                        <div className="text-[9px] text-muted-foreground truncate leading-tight">
-                          {w.team}
+                        <div className="w-3/4 flex flex-col items-center justify-center py-1 pr-1 min-w-0">
+                          <div className="text-[10px] text-muted-foreground truncate leading-tight w-full text-center">
+                            {firstName}
+                          </div>
+                          <div className="text-xs font-semibold text-foreground truncate leading-tight w-full text-center">
+                            {lastName}
+                          </div>
+                          <div className="text-[9px] text-muted-foreground truncate leading-tight w-full text-center">
+                            {w.team}
+                          </div>
                         </div>
                       </div>
                     );
