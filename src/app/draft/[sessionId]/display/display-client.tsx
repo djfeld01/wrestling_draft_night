@@ -155,7 +155,7 @@ function WeightClassBoard({
             className={`flex flex-col min-w-0 overflow-hidden ${isDimmed ? "opacity-50" : ""}`}
           >
             <div
-              className={`text-center text-sm font-bold py-2 border-b-2 border-border shrink-0 ${isDimmed ? "bg-gray-400 text-gray-600" : "bg-gray-200 text-black"}`}
+              className={`text-center text-sm font-bold py-2 border-b-2 border-border shrink-0 ${isDimmed ? "bg-muted text-muted-foreground" : "bg-muted/80 text-foreground"}`}
             >
               {wc}
             </div>
@@ -210,7 +210,7 @@ function WeightClassBoard({
                   // Available wrestler
                   const isTop10 = availableIndex < 10;
                   const rowBg =
-                    availableIndex % 2 === 0 ? "bg-background" : "bg-gray-800";
+                    availableIndex % 2 === 0 ? "bg-background" : "bg-muted";
                   availableIndex++;
                   const nameParts = w.name.split(" ");
                   const firstName = nameParts[0] || "";
