@@ -7,6 +7,7 @@ import {
   setDraftOrder,
   updatePlayerName,
   updatePlayerEmail,
+  addPlayerToSession,
 } from "../../../../actions/session";
 import { JoinQRCode } from "../../../components/JoinQRCode";
 
@@ -189,6 +190,59 @@ function PlayerRow({
   );
 }
 
+function AddPlayerForm({ sessionId }: { sessionId: string }) {
+  const [teamName, setTeamName] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [isPending, startTransition] = useTransition();
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+    startTransition(async () => {
+      const result = await addPlayerToSession(sessionId, teamName, email);
+      if (!result.success) {
+        setError(result.error);
+      } else {
+        setTeamName("");
+        setEmail("");
+        window.location.reload();
+      }
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+      <div className="flex flex-col sm:flex-row gap-2">
+        <input
+          type="text"
+          value={teamName}
+          onChange={(e) => setTeamName(e.target.value)}
+          placeholder="Team name"
+          required
+          className="flex-1 px-2 py-1.5 border border-border rounded text-sm bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent"
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email@example.com"
+          required
+          className="flex-1 px-2 py-1.5 border border-border rounded text-sm bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent"
+        />
+        <button
+          type="submit"
+          disabled={isPending}
+          className="px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted disabled:opacity-50 transition-colors"
+        >
+          {isPending ? "Adding..." : "Add Player"}
+        </button>
+      </div>
+      {error && <p className="text-xs text-destructive">{error}</p>}
+    </form>
+  );
+}
+
 function CopyJoinLink({ sessionId }: { sessionId: string }) {
   const [copied, setCopied] = useState(false);
   const joinUrl =
@@ -319,6 +373,16 @@ export function SessionCard({
           </tbody>
         </table>
       </div>
+
+      {/* Add Player */}
+      {isSetup && (
+        <div className="px-4 pb-4">
+          <p className="text-xs text-muted-foreground mb-2">
+            Add a player manually:
+          </p>
+          <AddPlayerForm sessionId={session.id} />
+        </div>
+      )}
 
       {/* Join Link & QR Code */}
       {isSetup && (
