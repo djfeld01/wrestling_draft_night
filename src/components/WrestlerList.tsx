@@ -14,6 +14,7 @@ interface WrestlerListProps {
   searchQuery?: string;
   sortMode?: SortMode;
   hidePicked?: boolean;
+  hideLocked?: boolean;
 }
 
 export function WrestlerList({
@@ -25,11 +26,13 @@ export function WrestlerList({
   searchQuery = "",
   sortMode = "weight",
   hidePicked = false,
+  hideLocked = false,
 }: WrestlerListProps) {
   const filtered = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
     return wrestlers
       .filter((w) => !hidePicked || w.isAvailable)
+      .filter((w) => !hideLocked || !lockedWeightClasses?.has(w.weightClass))
       .filter(
         (w) =>
           weightClassFilter === "all" || w.weightClass === weightClassFilter,
@@ -49,7 +52,15 @@ export function WrestlerList({
           ? a.weightClass - b.weightClass
           : a.seed - b.seed;
       });
-  }, [wrestlers, weightClassFilter, searchQuery, sortMode]);
+  }, [
+    wrestlers,
+    weightClassFilter,
+    searchQuery,
+    sortMode,
+    hidePicked,
+    hideLocked,
+    lockedWeightClasses,
+  ]);
 
   return (
     <div className="border border-border rounded-lg bg-background overflow-hidden">
@@ -112,7 +123,16 @@ export function WrestlerList({
                   <td className="py-1.5 px-3 text-muted-foreground">
                     {w.seed}
                   </td>
-                  <td className="py-1.5 px-3 text-foreground">{w.name}</td>
+                  <td className="py-1.5 px-3 text-foreground">
+                    <span className={isUnavailable ? "line-through" : ""}>
+                      {w.name}
+                    </span>
+                    {isUnavailable && (
+                      <span className="ml-1.5 inline-block px-1 py-0.5 rounded text-[10px] bg-muted text-muted-foreground leading-none">
+                        Picked
+                      </span>
+                    )}
+                  </td>
                   <td className="py-1.5 px-3 text-muted-foreground">
                     {w.team}
                   </td>

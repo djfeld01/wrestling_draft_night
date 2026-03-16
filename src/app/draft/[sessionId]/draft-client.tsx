@@ -45,6 +45,7 @@ export function PlayerDraftClient({
   const [searchQuery, setSearchQuery] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>("weight");
   const [hidePicked, setHidePicked] = useState(true);
+  const [hideLocked, setHideLocked] = useState(false);
   const [selectedWrestlerId, setSelectedWrestlerId] = useState<string | null>(
     null,
   );
@@ -198,6 +199,18 @@ export function PlayerDraftClient({
               Hide picked wrestlers
             </label>
 
+            {weightClassFilter === "all" && (
+              <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={hideLocked}
+                  onChange={(e) => setHideLocked(e.target.checked)}
+                  className="rounded border-border"
+                />
+                Hide locked weight classes
+              </label>
+            )}
+
             <WrestlerList
               wrestlers={state.wrestlers}
               weightClassFilter={weightClassFilter}
@@ -211,6 +224,7 @@ export function PlayerDraftClient({
               searchQuery={searchQuery}
               sortMode={sortMode}
               hidePicked={hidePicked}
+              hideLocked={hideLocked}
             />
 
             {isMyTurn ? (
