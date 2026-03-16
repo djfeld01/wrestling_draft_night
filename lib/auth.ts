@@ -16,7 +16,8 @@ export const auth = betterAuth({
   plugins: [
     magicLink({
       sendMagicLink: async ({ email, url }) => {
-        await resend.emails.send({
+        console.log(`[MagicLink] Sending to ${email}, URL: ${url}`);
+        const result = await resend.emails.send({
           from:
             process.env.EMAIL_FROM || "Wrestling Draft <noreply@resend.dev>",
           to: email,
@@ -30,6 +31,7 @@ export const auth = betterAuth({
             </div>
           `,
         });
+        console.log(`[MagicLink] Resend response:`, JSON.stringify(result));
       },
       expiresIn: 60 * 10, // 10 minutes
     }),
