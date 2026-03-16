@@ -201,7 +201,11 @@ function AddPlayerForm({ sessionId }: { sessionId: string }) {
     e.preventDefault();
     setError("");
     startTransition(async () => {
-      const result = await addPlayerToSession(sessionId, teamName, email);
+      const result = await addPlayerToSession(
+        sessionId,
+        teamName,
+        email || undefined,
+      );
       if (!result.success) {
         setError(result.error);
       } else {
@@ -227,8 +231,7 @@ function AddPlayerForm({ sessionId }: { sessionId: string }) {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="email@example.com"
-          required
+          placeholder="email (optional)"
           className="flex-1 px-2 py-1.5 border border-border rounded text-sm bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent"
         />
         <button

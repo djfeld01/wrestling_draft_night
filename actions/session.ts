@@ -320,16 +320,13 @@ export type AddPlayerResult =
 export async function addPlayerToSession(
   sessionId: string,
   teamName: string,
-  email: string,
+  email?: string,
 ): Promise<AddPlayerResult> {
   if (!teamName || teamName.trim().length === 0) {
     return { success: false, error: "Team name is required." };
   }
-  if (!email || email.trim().length === 0) {
-    return { success: false, error: "Email is required." };
-  }
 
-  const normalizedEmail = email.trim().toLowerCase();
+  const normalizedEmail = email?.trim().toLowerCase() || null;
 
   const [session] = await db
     .select()
@@ -344,19 +341,24 @@ export async function addPlayerToSession(
     return { success: false, error: "Can only add players during setup." };
   }
 
-  // Check for duplicate email in this session
-  const [existing] = await db
-    .select()
-    .from(players)
-    .where(
-      and(eq(players.sessionId, sessionId), eq(players.email, normalizedEmail)),
-    );
+  // Check for duplicate email in this session (only if email provided)
+  if (normalizedEmail) {
+    const [existing] = await db
+      .select()
+      .from(players)
+      .where(
+        and(
+          eq(players.sessionId, sessionId),
+          eq(players.email, normalizedEmail),
+        ),
+      );
 
-  if (existing) {
-    return {
-      success: false,
-      error: "A player with that email already exists in this session.",
-    };
+    if (existing) {
+      return {
+        success: false,
+        error: "A player with that email already exists in this session.",
+      };
+    }
   }
 
   const sessionPlayers = await db
