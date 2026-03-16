@@ -182,9 +182,12 @@ function WeightClassBoard({
                           title={`${w.name} — picked by ${pick.playerName}`}
                         >
                           <div className="text-[10px] font-medium leading-tight truncate">
-                            {w.name}
+                            ({w.seed}) {w.name}
                           </div>
                           <div className="text-[8px] opacity-70 leading-tight truncate">
+                            {w.team}
+                          </div>
+                          <div className="text-[8px] opacity-60 leading-tight truncate">
                             {pick.playerName}
                           </div>
                         </div>
