@@ -110,11 +110,13 @@ function WeightClassBoard({
   teamColorMap,
   pickedView,
   dimmedWeightClasses,
+  highlightPlayerId,
 }: {
   state: DraftState;
   teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
   pickedView: PickedView;
   dimmedWeightClasses: Set<number>;
+  highlightPlayerId: string | null;
 }) {
   // Build a lookup: sessionWrestlerId -> pick (for drafted wrestlers)
   const pickByWrestler = useMemo(() => {
@@ -150,7 +152,7 @@ function WeightClassBoard({
         return (
           <div
             key={wc}
-            className={`flex flex-col min-w-0 overflow-hidden ${isDimmed ? "opacity-25" : ""}`}
+            className={`flex flex-col min-w-0 overflow-hidden ${isDimmed ? "opacity-50" : ""}`}
           >
             <div
               className={`text-center text-sm font-bold py-2 border-b-2 border-border shrink-0 ${isDimmed ? "bg-gray-400 text-gray-600" : "bg-gray-200 text-black"}`}
@@ -168,13 +170,15 @@ function WeightClassBoard({
                     if (pickedView === "hidden") return null;
 
                     const color = teamColorMap.get(pick.playerId);
+                    const isHighlightedPlayer =
+                      pick.playerId === highlightPlayerId;
 
-                    // Expanded mode — wider bar with wrestler name
-                    if (pickedView === "expanded") {
+                    // Expanded mode OR highlighted player's pick — wider bar with wrestler name
+                    if (pickedView === "expanded" || isHighlightedPlayer) {
                       return (
                         <div
                           key={w.sessionWrestlerId}
-                          className={`px-1.5 py-1 rounded text-center ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"}`}
+                          className={`px-1.5 py-1 rounded text-center ${isHighlightedPlayer ? "ring-1 ring-foreground/30" : ""} ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"}`}
                           title={`${w.name} — picked by ${pick.playerName}`}
                         >
                           <div className="text-[10px] font-medium leading-tight truncate">
@@ -445,6 +449,12 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
     return new Set(playerPicks.map((p) => p.weightClass));
   }, [state, dimMode]);
 
+  // When dimming is active, highlight that player's picks (auto-expand them)
+  const highlightPlayerId = useMemo(() => {
+    if (!state || dimMode === "off") return null;
+    return dimMode === "current" ? state.turn.currentPlayerId : dimMode;
+  }, [state, dimMode]);
+
   if (!state) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -550,6 +560,7 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
           teamColorMap={teamColorMap}
           pickedView={pickedView}
           dimmedWeightClasses={dimmedWeightClasses}
+          highlightPlayerId={highlightPlayerId}
         />
       </div>
     </div>
