@@ -14,6 +14,7 @@ import { TurnIndicator } from "../../../components/TurnIndicator";
 import { PlayerRoster } from "../../../components/PlayerRoster";
 import { PickConfirmation } from "../../../components/PickConfirmation";
 import { PreSelectionControl } from "../../../components/PreSelectionControl";
+import { getCurrentDraftPosition } from "../../../../lib/draft-order";
 import type { SortMode } from "../../../components/WrestlerList";
 
 function ConnectionDot({ status }: { status: ConnectionStatus }) {
@@ -68,6 +69,24 @@ export function PlayerDraftClient({
     () => new Set(myPicks.map((p) => p.weightClass)),
     [myPicks],
   );
+
+  const picksUntilMyTurn = useMemo(() => {
+    if (!state || !currentPlayer || isMyTurn) return null;
+    if (state.session.status !== "active") return null;
+    const playerCount = state.session.playerCount;
+    const myDraftOrder = currentPlayer.draftOrder;
+    const currentPick = state.turn.pickNumber;
+    const totalPicks = playerCount * 10;
+    // Walk forward from the current pick to find the next pick where it's my turn
+    for (let i = 1; i <= totalPicks - currentPick; i++) {
+      const futurePick = currentPick + i;
+      const pos = getCurrentDraftPosition(futurePick, playerCount);
+      if (pos.draftOrderPosition === myDraftOrder) {
+        return i;
+      }
+    }
+    return null; // draft will end before my next turn
+  }, [state, currentPlayer, isMyTurn]);
 
   const selectedWrestler = useMemo(
     () =>
@@ -161,6 +180,7 @@ export function PlayerDraftClient({
               turn={state.turn}
               sessionStatus={state.session.status}
               isMyTurn={isMyTurn}
+              picksUntilMyTurn={picksUntilMyTurn}
             />
 
             <WeightClassFilter

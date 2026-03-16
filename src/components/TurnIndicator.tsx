@@ -6,12 +6,14 @@ interface TurnIndicatorProps {
   turn: DraftStateTurn;
   sessionStatus: string;
   isMyTurn?: boolean;
+  picksUntilMyTurn?: number | null;
 }
 
 export function TurnIndicator({
   turn,
   sessionStatus,
   isMyTurn,
+  picksUntilMyTurn,
 }: TurnIndicatorProps) {
   if (sessionStatus === "completed") {
     return (
@@ -38,9 +40,17 @@ export function TurnIndicator({
       {isMyTurn ? (
         <p className="text-sm font-medium text-success">Your turn</p>
       ) : (
-        <p className="text-sm font-medium text-foreground">
-          {turn.currentPlayerName ?? "—"}&apos;s turn
-        </p>
+        <>
+          <p className="text-sm font-medium text-foreground">
+            {turn.currentPlayerName ?? "—"}&apos;s turn
+          </p>
+          {picksUntilMyTurn != null && picksUntilMyTurn > 0 && (
+            <p className="text-xs text-muted-foreground mt-0.5">
+              You&apos;re up in {picksUntilMyTurn} pick
+              {picksUntilMyTurn === 1 ? "" : "s"}
+            </p>
+          )}
+        </>
       )}
       <p className="text-xs text-muted-foreground mt-0.5">
         Round {turn.round} · Pick #{turn.pickNumber}
