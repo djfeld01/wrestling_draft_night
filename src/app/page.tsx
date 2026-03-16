@@ -4,6 +4,7 @@ import { desc, eq, inArray } from "drizzle-orm";
 import { headers } from "next/headers";
 import { auth } from "../../lib/auth";
 import Link from "next/link";
+import { LogoutButton } from "../components/LogoutButton";
 
 export const dynamic = "force-dynamic";
 
@@ -74,7 +75,10 @@ export default async function Home() {
           <h1 className="text-xl font-semibold text-foreground">
             Wrestling Draft
           </h1>
-          <span className="text-xs text-muted-foreground">{userEmail}</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-muted-foreground">{userEmail}</span>
+            <LogoutButton />
+          </div>
         </div>
 
         <div className="flex gap-3 mb-8">
