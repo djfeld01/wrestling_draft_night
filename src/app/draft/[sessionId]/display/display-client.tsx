@@ -164,6 +164,8 @@ function WeightClassBoard({
                   }
                   // Available wrestler
                   const isTop10 = availableIndex < 10;
+                  const rowBg =
+                    availableIndex % 2 === 0 ? "bg-background" : "bg-muted/40";
                   availableIndex++;
                   const nameParts = w.name.split(" ");
                   const firstName = nameParts[0] || "";
@@ -173,7 +175,7 @@ function WeightClassBoard({
                     return (
                       <div
                         key={w.sessionWrestlerId}
-                        className="px-1 py-1.5 border border-border rounded bg-background"
+                        className={`px-1 py-1.5 border border-border rounded ${rowBg}`}
                       >
                         <div className="text-[10px] text-muted-foreground truncate leading-tight">
                           ({w.seed}) {firstName}
@@ -191,7 +193,7 @@ function WeightClassBoard({
                   return (
                     <div
                       key={w.sessionWrestlerId}
-                      className="px-1 py-0.5 border border-border/50 rounded bg-background"
+                      className={`px-1 py-0.5 border border-border/50 rounded ${rowBg}`}
                     >
                       <div className="text-[9px] text-muted-foreground truncate leading-tight">
                         ({w.seed}) {w.name}
