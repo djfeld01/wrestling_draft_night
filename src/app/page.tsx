@@ -151,19 +151,27 @@ function SessionRow({
           {session.status}
         </span>
         {isOrganizer && (
-          <Link
-            href={`/draft/${session.id}/admin`}
-            className="text-xs text-accent hover:underline"
-          >
-            Manage
-          </Link>
+          <>
+            <Link
+              href={`/draft/${session.id}/admin`}
+              className="text-xs text-accent hover:underline"
+            >
+              Manage
+            </Link>
+            <Link
+              href={`/draft/${session.id}`}
+              className="text-xs text-accent hover:underline"
+            >
+              My Team
+            </Link>
+          </>
         )}
         {!isOrganizer && (
           <Link
             href={`/draft/${session.id}`}
             className="text-xs text-accent hover:underline"
           >
-            My Draft
+            My Team
           </Link>
         )}
         {session.status === "active" && (
