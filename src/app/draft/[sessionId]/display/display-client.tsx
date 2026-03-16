@@ -640,24 +640,41 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
           >
             On the Clock
           </button>
-          <select
-            value={dimMode !== "off" && dimMode !== "current" ? dimMode : ""}
-            onChange={(e) => setDimMode(e.target.value || "off")}
-            className={`px-1.5 py-0.5 rounded text-[10px] font-medium border border-border bg-background transition-colors ${
-              dimMode !== "off" && dimMode !== "current"
-                ? "text-accent-foreground bg-accent"
-                : "text-muted-foreground"
-            }`}
-          >
-            <option value="">Team...</option>
-            {[...state.players]
-              .sort((a, b) => a.draftOrder - b.draftOrder)
-              .map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-          </select>
+          {(() => {
+            const isTeamSelected = dimMode !== "off" && dimMode !== "current";
+            const selectedPlayer = isTeamSelected
+              ? state.players.find((p) => p.id === dimMode)
+              : null;
+            return (
+              <div className="relative inline-flex items-center">
+                <select
+                  value={isTeamSelected ? dimMode : ""}
+                  onChange={(e) => setDimMode(e.target.value || "off")}
+                  className={`min-w-[7rem] px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors appearance-none pr-5 ${
+                    isTeamSelected
+                      ? "border-accent bg-accent text-foreground"
+                      : "border-border bg-background text-muted-foreground"
+                  }`}
+                >
+                  <option value="">
+                    {isTeamSelected && selectedPlayer
+                      ? selectedPlayer.name
+                      : "Team..."}
+                  </option>
+                  {[...state.players]
+                    .sort((a, b) => a.draftOrder - b.draftOrder)
+                    .map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.name}
+                      </option>
+                    ))}
+                </select>
+                <span className="pointer-events-none absolute right-1 text-[8px] text-muted-foreground">
+                  ▼
+                </span>
+              </div>
+            );
+          })()}
         </div>
       </div>
 
