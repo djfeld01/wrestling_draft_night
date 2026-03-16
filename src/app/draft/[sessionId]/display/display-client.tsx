@@ -141,7 +141,7 @@ function WeightClassBoard({
             <div className="text-center text-xs font-semibold text-foreground py-1.5 bg-muted border-b border-border shrink-0">
               {wc}
             </div>
-            <div className="flex flex-col gap-0.5 p-0.5 overflow-y-auto">
+            <div className="flex flex-col gap-0.5 p-0.5 overflow-y-auto hide-scrollbar">
               {(() => {
                 // Count available wrestlers to determine top-10 status
                 let availableIndex = 0;
