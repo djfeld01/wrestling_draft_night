@@ -142,38 +142,64 @@ function WeightClassBoard({
               {wc}
             </div>
             <div className="flex flex-col gap-0.5 p-0.5 overflow-y-auto">
-              {wrestlers.map((w) => {
-                const pick = pickByWrestler.get(w.sessionWrestlerId);
-                if (pick) {
-                  // Drafted — compact card with team color
-                  const color = teamColorMap.get(pick.playerId);
+              {(() => {
+                // Count available wrestlers to determine top-10 status
+                let availableIndex = 0;
+                return wrestlers.map((w) => {
+                  const pick = pickByWrestler.get(w.sessionWrestlerId);
+                  if (pick) {
+                    // Drafted — compact card with team color
+                    const color = teamColorMap.get(pick.playerId);
+                    return (
+                      <div
+                        key={w.sessionWrestlerId}
+                        className={`px-1 py-0.5 rounded text-center truncate ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"}`}
+                        title={`${w.name} — picked by ${pick.playerName}`}
+                      >
+                        <span className="text-[10px] font-medium leading-tight">
+                          {w.name}
+                        </span>
+                      </div>
+                    );
+                  }
+                  // Available wrestler
+                  const isTop10 = availableIndex < 10;
+                  availableIndex++;
+                  const nameParts = w.name.split(" ");
+                  const firstName = nameParts[0] || "";
+                  const lastName = nameParts.slice(1).join(" ") || "";
+
+                  if (isTop10) {
+                    return (
+                      <div
+                        key={w.sessionWrestlerId}
+                        className="px-1 py-1.5 border border-border rounded bg-background"
+                      >
+                        <div className="text-[10px] text-muted-foreground truncate leading-tight">
+                          #{w.seed} {firstName}
+                        </div>
+                        <div className="text-xs font-semibold text-foreground truncate leading-tight">
+                          {lastName}
+                        </div>
+                        <div className="text-[9px] text-muted-foreground truncate leading-tight">
+                          {w.team}
+                        </div>
+                      </div>
+                    );
+                  }
+                  // Below top 10 — compact single line
                   return (
                     <div
                       key={w.sessionWrestlerId}
-                      className={`px-1 py-0.5 rounded text-center truncate ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"}`}
-                      title={`${w.name} — picked by ${pick.playerName}`}
+                      className="px-1 py-0.5 border border-border/50 rounded bg-background"
                     >
-                      <span className="text-[10px] font-medium leading-tight">
-                        {w.name}
-                      </span>
+                      <div className="text-[9px] text-muted-foreground truncate leading-tight">
+                        #{w.seed} {w.name}
+                      </div>
                     </div>
                   );
-                }
-                // Available — show seed, name, team
-                return (
-                  <div
-                    key={w.sessionWrestlerId}
-                    className="px-1 py-1 border border-border rounded bg-background"
-                  >
-                    <div className="text-[10px] font-medium text-foreground truncate leading-tight">
-                      #{w.seed} {w.name}
-                    </div>
-                    <div className="text-[9px] text-muted-foreground truncate leading-tight">
-                      {w.team}
-                    </div>
-                  </div>
-                );
-              })}
+                });
+              })()}
             </div>
           </div>
         );
