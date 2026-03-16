@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import {
   useDraftEvents,
   type DraftState,
@@ -296,10 +296,35 @@ function RecentPicks({
   picks: DraftStatePick[];
   teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
 }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
   const recent = useMemo(
     () => [...picks].sort((a, b) => b.pickNumber - a.pickNumber).slice(0, 20),
     [picks],
   );
+
+  const updateScrollState = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  }, []);
+
+  useEffect(() => {
+    updateScrollState();
+  }, [recent, updateScrollState]);
+
+  const scroll = (direction: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.6;
+    el.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
 
   if (recent.length === 0) {
     return (
@@ -312,8 +337,21 @@ function RecentPicks({
   }
 
   return (
-    <div className="border-b border-border">
-      <div className="flex items-center gap-2 overflow-x-auto px-3 py-1.5 scrollbar-thin">
+    <div className="border-b border-border relative flex items-center">
+      {canScrollLeft && (
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-0 z-10 h-full px-1.5 bg-gradient-to-r from-background to-transparent flex items-center"
+          aria-label="Scroll recent picks left"
+        >
+          <span className="text-muted-foreground text-sm">◀</span>
+        </button>
+      )}
+      <div
+        ref={scrollRef}
+        onScroll={updateScrollState}
+        className="flex items-center gap-2 overflow-x-auto hide-scrollbar px-3 py-1.5"
+      >
         <span className="text-[10px] text-muted-foreground shrink-0 font-medium">
           Recent:
         </span>
@@ -332,6 +370,15 @@ function RecentPicks({
           );
         })}
       </div>
+      {canScrollRight && (
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-0 z-10 h-full px-1.5 bg-gradient-to-l from-background to-transparent flex items-center"
+          aria-label="Scroll recent picks right"
+        >
+          <span className="text-muted-foreground text-sm">▶</span>
+        </button>
+      )}
     </div>
   );
 }
