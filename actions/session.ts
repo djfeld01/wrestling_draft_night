@@ -7,6 +7,7 @@ import {
   wrestlers,
   sessionWrestlers,
   picks,
+  teamMembers,
 } from "../db/schema";
 import { eq, and, inArray } from "drizzle-orm";
 import { generateAuthCode } from "../lib/auth-code";
@@ -406,8 +407,21 @@ export async function deleteSession(
     };
   }
 
-  // Delete in FK order: picks → players → sessionWrestlers → session
+  // Delete in FK order: picks → team_members → players → sessionWrestlers → session
   await db.delete(picks).where(eq(picks.sessionId, sessionId));
+
+  // Delete team members for all players in this session
+  const sessionPlayers = await db
+    .select({ id: players.id })
+    .from(players)
+    .where(eq(players.sessionId, sessionId));
+  if (sessionPlayers.length > 0) {
+    const playerIds = sessionPlayers.map((p) => p.id);
+    await db
+      .delete(teamMembers)
+      .where(inArray(teamMembers.playerId, playerIds));
+  }
+
   await db.delete(players).where(eq(players.sessionId, sessionId));
   await db
     .delete(sessionWrestlers)

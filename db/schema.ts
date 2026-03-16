@@ -79,3 +79,12 @@ export const picks = pgTable("picks", {
   weightClass: integer("weight_class").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export const teamMembers = pgTable("team_members", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  playerId: uuid("player_id")
+    .references(() => players.id)
+    .notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
