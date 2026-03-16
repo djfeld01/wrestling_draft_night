@@ -12,6 +12,31 @@ import { JoinQRCode } from "../../../../components/JoinQRCode";
 
 const WEIGHT_CLASSES = [125, 133, 141, 149, 157, 165, 174, 184, 197, 285];
 
+// Muted team color palette — bg and text pairs
+const TEAM_COLORS = [
+  { bg: "bg-blue-200", text: "text-blue-900" },
+  { bg: "bg-rose-200", text: "text-rose-900" },
+  { bg: "bg-emerald-200", text: "text-emerald-900" },
+  { bg: "bg-amber-200", text: "text-amber-900" },
+  { bg: "bg-violet-200", text: "text-violet-900" },
+  { bg: "bg-cyan-200", text: "text-cyan-900" },
+  { bg: "bg-orange-200", text: "text-orange-900" },
+  { bg: "bg-pink-200", text: "text-pink-900" },
+  { bg: "bg-teal-200", text: "text-teal-900" },
+  { bg: "bg-indigo-200", text: "text-indigo-900" },
+  { bg: "bg-lime-200", text: "text-lime-900" },
+  { bg: "bg-fuchsia-200", text: "text-fuchsia-900" },
+];
+
+function buildTeamColorMap(players: DraftState["players"]) {
+  const map = new Map<string, (typeof TEAM_COLORS)[0]>();
+  const sorted = [...players].sort((a, b) => a.draftOrder - b.draftOrder);
+  sorted.forEach((p, i) => {
+    map.set(p.id, TEAM_COLORS[i % TEAM_COLORS.length]);
+  });
+  return map;
+}
+
 // --- Header Bar ---
 
 function DisplayHeader({
@@ -32,23 +57,23 @@ function DisplayHeader({
         : "bg-destructive";
 
   return (
-    <div className="flex items-center justify-between px-6 py-3 border-b border-border bg-muted/50">
-      <div className="flex items-center gap-6">
-        <h1 className="text-2xl font-semibold text-foreground">
+    <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-muted/50">
+      <div className="flex items-center gap-4">
+        <h1 className="text-lg font-semibold text-foreground">
           {state.session.name}
         </h1>
-        <span className="text-lg text-muted-foreground">
+        <span className="text-sm text-muted-foreground">
           Round {state.session.currentRound} of 10
         </span>
       </div>
-      <div className="flex items-center gap-6">
-        <span className="text-lg text-muted-foreground">
-          Pick {picksMade} of {totalPicks}
+      <div className="flex items-center gap-4">
+        <span className="text-sm text-muted-foreground">
+          Pick {picksMade}/{totalPicks}
         </span>
         <StatusBadge status={state.session.status} />
-        <span className="flex items-center gap-2 text-sm text-muted-foreground">
+        <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <span
-            className={`inline-block w-2.5 h-2.5 rounded-full ${connectionColor}`}
+            className={`inline-block w-2 h-2 rounded-full ${connectionColor}`}
           />
           {connectionStatus}
         </span>
@@ -65,124 +90,106 @@ function StatusBadge({ status }: { status: string }) {
   };
   return (
     <span
-      className={`inline-block px-3 py-1 rounded text-sm font-medium ${styles[status] || styles.setup}`}
+      className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${styles[status] || styles.setup}`}
     >
       {status}
     </span>
   );
 }
 
-// --- Draft Board (main grid) ---
+// --- Weight Class Board (main content) ---
 
-function DraftBoard({ state }: { state: DraftState }) {
-  const sortedPlayers = useMemo(
-    () => [...state.players].sort((a, b) => a.draftOrder - b.draftOrder),
-    [state.players],
-  );
-
-  // Build a lookup: playerId -> weightClass -> pick
-  const pickGrid = useMemo(() => {
-    const grid = new Map<string, Map<number, DraftStatePick>>();
-    for (const player of state.players) {
-      grid.set(player.id, new Map());
-    }
+function WeightClassBoard({
+  state,
+  teamColorMap,
+}: {
+  state: DraftState;
+  teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
+}) {
+  // Build a lookup: sessionWrestlerId -> pick (for drafted wrestlers)
+  const pickByWrestler = useMemo(() => {
+    const map = new Map<string, DraftStatePick>();
     for (const pick of state.picks) {
-      const playerMap = grid.get(pick.playerId);
-      if (playerMap) {
-        playerMap.set(pick.weightClass, pick);
-      }
+      map.set(pick.sessionWrestlerId, pick);
     }
-    return grid;
-  }, [state.players, state.picks]);
+    return map;
+  }, [state.picks]);
+
+  // Group wrestlers by weight class, sorted by seed, top 10
+  const columns = useMemo(() => {
+    const groups = new Map<number, DraftStateWrestler[]>();
+    for (const wc of WEIGHT_CLASSES) {
+      groups.set(wc, []);
+    }
+    for (const w of state.wrestlers) {
+      const list = groups.get(w.weightClass);
+      if (list) list.push(w);
+    }
+    // Sort each group by seed and take top 10
+    for (const [wc, list] of groups) {
+      list.sort((a, b) => a.seed - b.seed);
+      groups.set(wc, list.slice(0, 10));
+    }
+    return groups;
+  }, [state.wrestlers]);
 
   return (
-    <div className="border border-border rounded-lg bg-background overflow-hidden">
-      <div className="overflow-x-auto">
-        <table className="w-full text-base">
-          <thead>
-            <tr className="bg-muted border-b border-border">
-              <th className="text-left text-sm font-medium text-muted-foreground py-3 px-4 sticky left-0 bg-muted z-10 min-w-[140px]">
-                Player
-              </th>
-              {WEIGHT_CLASSES.map((wc) => (
-                <th
-                  key={wc}
-                  className="text-center text-sm font-medium text-muted-foreground py-3 px-3 min-w-[120px]"
-                >
-                  {wc}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {sortedPlayers.map((player) => {
-              const isCurrentTurn =
-                player.id === state.turn.currentPlayerId &&
-                state.session.status === "active";
-              const playerPicks = pickGrid.get(player.id);
-
-              return (
-                <tr
-                  key={player.id}
-                  className={`border-b border-border last:border-b-0 transition-colors ${
-                    isCurrentTurn ? "bg-success/5" : ""
-                  }`}
-                >
-                  <td
-                    className={`py-3 px-4 sticky left-0 z-10 ${
-                      isCurrentTurn
-                        ? "bg-success/10 font-semibold text-success"
-                        : "bg-background text-foreground font-medium"
-                    }`}
+    <div className="grid grid-cols-10 gap-1 flex-1 min-h-0 overflow-auto">
+      {WEIGHT_CLASSES.map((wc) => {
+        const wrestlers = columns.get(wc) ?? [];
+        return (
+          <div key={wc} className="flex flex-col min-w-0">
+            <div className="text-center text-xs font-semibold text-foreground py-1.5 bg-muted border-b border-border sticky top-0 z-10">
+              {wc}
+            </div>
+            <div className="flex flex-col gap-0.5 p-0.5">
+              {wrestlers.map((w) => {
+                const pick = pickByWrestler.get(w.sessionWrestlerId);
+                if (pick) {
+                  // Drafted — compact card with team color
+                  const color = teamColorMap.get(pick.playerId);
+                  return (
+                    <div
+                      key={w.sessionWrestlerId}
+                      className={`px-1 py-0.5 rounded text-center truncate ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"}`}
+                      title={`${w.name} — picked by ${pick.playerName}`}
+                    >
+                      <span className="text-[10px] font-medium leading-tight">
+                        {w.name}
+                      </span>
+                    </div>
+                  );
+                }
+                // Available — show seed, name, team
+                return (
+                  <div
+                    key={w.sessionWrestlerId}
+                    className="px-1 py-1 border border-border rounded bg-background"
                   >
-                    <span className="text-base">{player.name}</span>
-                    <span className="text-xs text-muted-foreground ml-2">
-                      #{player.draftOrder}
-                    </span>
-                  </td>
-                  {WEIGHT_CLASSES.map((wc) => {
-                    const pick = playerPicks?.get(wc);
-                    return (
-                      <td
-                        key={wc}
-                        className={`py-3 px-3 text-center ${
-                          isCurrentTurn ? "bg-success/5" : ""
-                        }`}
-                      >
-                        {pick ? (
-                          <div>
-                            <div className="text-sm font-medium text-foreground leading-tight">
-                              {pick.wrestlerName}
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                              #{pick.wrestlerSeed} {pick.wrestlerTeam}
-                            </div>
-                          </div>
-                        ) : (
-                          <span className="text-sm text-muted-foreground/40">
-                            —
-                          </span>
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+                    <div className="text-[10px] font-medium text-foreground truncate leading-tight">
+                      #{w.seed} {w.name}
+                    </div>
+                    <div className="text-[9px] text-muted-foreground truncate leading-tight">
+                      {w.team}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-// --- Current Turn Indicator ---
+// --- Current Turn Banner ---
 
 function CurrentTurnBanner({ state }: { state: DraftState }) {
   if (state.session.status === "completed") {
     return (
-      <div className="border border-border rounded-lg p-4 bg-muted text-center">
-        <p className="text-xl font-semibold text-muted-foreground">
+      <div className="text-center py-2">
+        <p className="text-sm font-semibold text-muted-foreground">
           Draft Complete
         </p>
       </div>
@@ -191,154 +198,107 @@ function CurrentTurnBanner({ state }: { state: DraftState }) {
 
   if (state.session.status === "setup") {
     return (
-      <div className="border border-border rounded-lg p-4 bg-muted text-center">
-        <p className="text-xl font-semibold text-muted-foreground">
+      <div className="text-center py-2">
+        <p className="text-sm font-semibold text-muted-foreground">
           Waiting to Start
         </p>
       </div>
     );
   }
 
-  const totalPicks = state.session.playerCount * 10;
-  const picksMade = state.picks.length;
-
   return (
-    <div className="border border-border rounded-lg p-5 bg-muted/50">
-      <p className="text-sm text-muted-foreground mb-1">On the Clock</p>
-      <p className="text-2xl font-bold text-foreground">
+    <div className="text-center py-1">
+      <p className="text-xs text-muted-foreground">On the Clock</p>
+      <p className="text-base font-bold text-foreground">
         {state.turn.currentPlayerName ?? "—"}
       </p>
-      <p className="text-sm text-muted-foreground mt-1">
-        Round {state.turn.round} · Pick #{state.turn.pickNumber} · Order #
-        {state.turn.draftOrderPosition}
-      </p>
-      <div className="mt-3 w-full bg-border rounded-full h-2">
-        <div
-          className="bg-accent h-2 rounded-full transition-all duration-500"
-          style={{
-            width: `${totalPicks > 0 ? (picksMade / totalPicks) * 100 : 0}%`,
-          }}
-        />
-      </div>
-      <p className="text-xs text-muted-foreground mt-1">
-        {picksMade} of {totalPicks} picks
+      <p className="text-xs text-muted-foreground">
+        Round {state.turn.round} · Pick #{state.turn.pickNumber}
       </p>
     </div>
   );
 }
 
-// --- Recent Picks ---
+// --- Team Legend ---
 
-function RecentPicks({ picks }: { picks: DraftStatePick[] }) {
-  const recentPicks = useMemo(
-    () => [...picks].sort((a, b) => b.pickNumber - a.pickNumber).slice(0, 10),
+function TeamLegend({
+  state,
+  teamColorMap,
+}: {
+  state: DraftState;
+  teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
+}) {
+  const sorted = useMemo(
+    () => [...state.players].sort((a, b) => a.draftOrder - b.draftOrder),
+    [state.players],
+  );
+
+  return (
+    <div className="flex flex-wrap gap-2 justify-center">
+      {sorted.map((p) => {
+        const color = teamColorMap.get(p.id);
+        const isCurrentTurn =
+          p.id === state.turn.currentPlayerId &&
+          state.session.status === "active";
+        return (
+          <span
+            key={p.id}
+            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"} ${isCurrentTurn ? "ring-2 ring-foreground" : ""}`}
+          >
+            #{p.draftOrder} {p.name}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+// --- Recent Picks (compact sidebar) ---
+
+function RecentPicks({
+  picks,
+  teamColorMap,
+}: {
+  picks: DraftStatePick[];
+  teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
+}) {
+  const recent = useMemo(
+    () => [...picks].sort((a, b) => b.pickNumber - a.pickNumber).slice(0, 8),
     [picks],
   );
 
   return (
-    <div className="border border-border rounded-lg bg-background overflow-hidden">
-      <div className="p-3 border-b border-border">
-        <h2 className="text-sm font-medium text-foreground">Recent Picks</h2>
+    <div className="border border-border rounded bg-background overflow-hidden">
+      <div className="px-2 py-1.5 border-b border-border bg-muted/50">
+        <h2 className="text-xs font-medium text-foreground">Recent Picks</h2>
       </div>
-      <div className="overflow-y-auto max-h-[400px]">
-        {recentPicks.length === 0 ? (
-          <p className="text-sm text-muted-foreground text-center py-6">
+      <div className="divide-y divide-border">
+        {recent.length === 0 ? (
+          <p className="text-xs text-muted-foreground text-center py-3">
             No picks yet
           </p>
         ) : (
-          <div className="divide-y divide-border">
-            {recentPicks.map((pick) => (
-              <div key={pick.id} className="px-4 py-2.5">
+          recent.map((pick) => {
+            const color = teamColorMap.get(pick.playerId);
+            return (
+              <div key={pick.id} className="px-2 py-1">
                 <div className="flex items-baseline justify-between">
-                  <span className="text-sm font-medium text-foreground">
+                  <span
+                    className={`text-xs font-medium ${color?.text ?? "text-foreground"}`}
+                  >
                     {pick.playerName}
                   </span>
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-[10px] text-muted-foreground">
                     #{pick.pickNumber}
                   </span>
                 </div>
-                <div className="text-sm text-muted-foreground mt-0.5">
-                  {pick.wrestlerName} · {pick.weightClass} lbs
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// --- Available Wrestlers by Weight Class ---
-
-function AvailableWrestlers({
-  wrestlers,
-}: {
-  wrestlers: DraftStateWrestler[];
-}) {
-  const grouped = useMemo(() => {
-    const groups = new Map<number, DraftStateWrestler[]>();
-    for (const wc of WEIGHT_CLASSES) {
-      groups.set(wc, []);
-    }
-    for (const w of wrestlers) {
-      if (w.isAvailable) {
-        const list = groups.get(w.weightClass);
-        if (list) list.push(w);
-      }
-    }
-    // Sort each group by seed
-    for (const [, list] of groups) {
-      list.sort((a, b) => a.seed - b.seed);
-    }
-    return groups;
-  }, [wrestlers]);
-
-  return (
-    <div className="border border-border rounded-lg bg-background overflow-hidden">
-      <div className="p-3 border-b border-border">
-        <h2 className="text-sm font-medium text-foreground">
-          Available Wrestlers
-        </h2>
-      </div>
-      <div className="overflow-y-auto max-h-[400px] p-3">
-        <div className="grid grid-cols-2 gap-3">
-          {WEIGHT_CLASSES.map((wc) => {
-            const available = grouped.get(wc) ?? [];
-            return (
-              <div key={wc}>
-                <div className="flex items-baseline justify-between mb-1">
-                  <span className="text-xs font-medium text-foreground">
-                    {wc} lbs
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {available.length} left
-                  </span>
-                </div>
-                <div className="space-y-0.5">
-                  {available.slice(0, 5).map((w) => (
-                    <div
-                      key={w.sessionWrestlerId}
-                      className="text-xs text-muted-foreground truncate"
-                    >
-                      #{w.seed} {w.name} ({w.team})
-                    </div>
-                  ))}
-                  {available.length > 5 && (
-                    <div className="text-xs text-muted-foreground/60">
-                      +{available.length - 5} more
-                    </div>
-                  )}
-                  {available.length === 0 && (
-                    <div className="text-xs text-muted-foreground/40">
-                      All drafted
-                    </div>
-                  )}
+                <div className="text-[10px] text-muted-foreground">
+                  {pick.wrestlerName} · {pick.weightClass}
                 </div>
               </div>
             );
-          })}
-        </div>
+          })
+        )}
       </div>
     </div>
   );
@@ -349,37 +309,45 @@ function AvailableWrestlers({
 export function DisplayClient({ sessionId }: { sessionId: string }) {
   const { state, connectionStatus } = useDraftEvents(sessionId);
 
+  const teamColorMap = useMemo(
+    () => (state ? buildTeamColorMap(state.players) : new Map()),
+    [state],
+  );
+
   if (!state) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <p className="text-lg text-muted-foreground">Loading draft...</p>
+        <p className="text-sm text-muted-foreground">Loading draft...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="h-screen bg-background flex flex-col overflow-hidden">
       <DisplayHeader state={state} connectionStatus={connectionStatus} />
 
-      <div className="flex-1 p-4 flex gap-4 overflow-hidden">
-        {/* Main area: Draft Board */}
-        <div className="flex-1 min-w-0 overflow-auto">
-          <DraftBoard state={state} />
-        </div>
+      {/* Turn + Team Legend */}
+      <div className="px-4 py-1 border-b border-border space-y-1">
+        <CurrentTurnBanner state={state} />
+        <TeamLegend state={state} teamColorMap={teamColorMap} />
+      </div>
 
-        {/* Side panel */}
-        <div className="w-80 shrink-0 flex flex-col gap-4 overflow-auto">
+      {/* Main content */}
+      <div className="flex-1 flex gap-2 p-2 min-h-0 overflow-hidden">
+        {/* Weight class board — takes most of the space */}
+        <WeightClassBoard state={state} teamColorMap={teamColorMap} />
+
+        {/* Sidebar */}
+        <div className="w-56 shrink-0 flex flex-col gap-2 overflow-auto">
           {state.session.status === "setup" && (
-            <div className="border border-border rounded-lg p-4 bg-muted">
-              <h3 className="text-sm font-medium text-foreground mb-3">
+            <div className="border border-border rounded p-2 bg-muted">
+              <p className="text-xs font-medium text-foreground mb-2">
                 Scan to Join
-              </h3>
-              <JoinQRCode sessionId={sessionId} size={200} />
+              </p>
+              <JoinQRCode sessionId={sessionId} size={180} />
             </div>
           )}
-          <CurrentTurnBanner state={state} />
-          <RecentPicks picks={state.picks} />
-          <AvailableWrestlers wrestlers={state.wrestlers} />
+          <RecentPicks picks={state.picks} teamColorMap={teamColorMap} />
         </div>
       </div>
     </div>
