@@ -259,9 +259,20 @@ function WeightClassBoard({
   );
 }
 
-// --- Current Turn Banner ---
+// --- Draft Order Strip (replaces CurrentTurnBanner + TeamLegend) ---
 
-function CurrentTurnBanner({ state }: { state: DraftState }) {
+function DraftOrderStrip({
+  state,
+  teamColorMap,
+}: {
+  state: DraftState;
+  teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
+}) {
+  const sorted = useMemo(
+    () => [...state.players].sort((a, b) => a.draftOrder - b.draftOrder),
+    [state.players],
+  );
+
   if (state.session.status === "completed") {
     return (
       <div className="text-center py-2">
@@ -282,49 +293,44 @@ function CurrentTurnBanner({ state }: { state: DraftState }) {
     );
   }
 
-  return (
-    <div className="text-center py-1">
-      <p className="text-xs text-muted-foreground">On the Clock</p>
-      <p className="text-base font-bold text-foreground">
-        {state.turn.currentPlayerName ?? "—"}
-      </p>
-      <p className="text-xs text-muted-foreground">
-        Round {state.turn.round} · Pick #{state.turn.pickNumber}
-      </p>
-    </div>
-  );
-}
-
-// --- Team Legend ---
-
-function TeamLegend({
-  state,
-  teamColorMap,
-}: {
-  state: DraftState;
-  teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
-}) {
-  const sorted = useMemo(
-    () => [...state.players].sort((a, b) => a.draftOrder - b.draftOrder),
-    [state.players],
-  );
+  // Snake draft direction: odd rounds go forward (→), even rounds go backward (←)
+  const isForward = state.turn.round % 2 === 1;
 
   return (
-    <div className="flex flex-wrap gap-2 justify-center">
-      {sorted.map((p) => {
-        const color = teamColorMap.get(p.id);
-        const isCurrentTurn =
-          p.id === state.turn.currentPlayerId &&
-          state.session.status === "active";
-        return (
-          <span
-            key={p.id}
-            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"} ${isCurrentTurn ? "ring-2 ring-foreground" : ""}`}
-          >
-            #{p.draftOrder} {p.name}
-          </span>
-        );
-      })}
+    <div className="space-y-1">
+      <div className="flex items-center justify-center gap-0.5 text-xs text-muted-foreground">
+        <span>Round {state.turn.round}</span>
+        <span>·</span>
+        <span>Pick #{state.turn.pickNumber}</span>
+        <span className="ml-1 text-sm">{isForward ? "→" : "←"}</span>
+      </div>
+      <div className="flex items-center justify-center gap-1">
+        {sorted.map((p, i) => {
+          const color = teamColorMap.get(p.id);
+          const isOnClock = p.id === state.turn.currentPlayerId;
+
+          return (
+            <div key={p.id} className="flex items-center">
+              {i > 0 && (
+                <span className="text-muted-foreground/40 text-[10px] mx-0.5">
+                  {isForward ? "›" : "‹"}
+                </span>
+              )}
+              <span
+                className={`inline-flex items-center justify-center rounded font-medium truncate transition-all ${
+                  color?.bg ?? "bg-muted"
+                } ${color?.text ?? "text-muted-foreground"} ${
+                  isOnClock
+                    ? "px-3 py-1.5 text-sm ring-2 ring-foreground"
+                    : "px-2 py-0.5 text-[10px]"
+                }`}
+              >
+                {p.name}
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -468,9 +474,8 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
       <DisplayHeader state={state} connectionStatus={connectionStatus} />
 
       {/* Turn + Team Legend */}
-      <div className="px-4 py-1 border-b border-border space-y-1">
-        <CurrentTurnBanner state={state} />
-        <TeamLegend state={state} teamColorMap={teamColorMap} />
+      <div className="px-4 py-1 border-b border-border">
+        <DraftOrderStrip state={state} teamColorMap={teamColorMap} />
       </div>
 
       {/* Recent picks — horizontal scrolling strip */}
