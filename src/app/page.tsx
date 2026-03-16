@@ -203,14 +203,12 @@ function SessionRow({
             My Team
           </Link>
         )}
-        {session.status === "active" && (
-          <Link
-            href={`/draft/${session.id}/display`}
-            className="text-xs text-accent hover:underline"
-          >
-            Display
-          </Link>
-        )}
+        <Link
+          href={`/draft/${session.id}/display`}
+          className="text-xs text-accent hover:underline"
+        >
+          Display
+        </Link>
       </div>
     </div>
   );

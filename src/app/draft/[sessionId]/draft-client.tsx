@@ -170,6 +170,18 @@ export function PlayerDraftClient({
           <ConnectionDot status={connectionStatus} />
         </div>
 
+        {/* Quick links */}
+        <div className="flex gap-3 mb-4">
+          <a
+            href={`/draft/${sessionId}/display`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-accent hover:underline"
+          >
+            Open Display View ↗
+          </a>
+        </div>
+
         {error && <p className="text-sm text-destructive mb-3">{error}</p>}
 
         {/* Desktop: side-by-side / Mobile: stacked */}
