@@ -176,7 +176,7 @@ function WeightClassBoard({
                         className="px-1 py-1.5 border border-border rounded bg-background"
                       >
                         <div className="text-[10px] text-muted-foreground truncate leading-tight">
-                          #{w.seed} {firstName}
+                          ({w.seed}) {firstName}
                         </div>
                         <div className="text-xs font-semibold text-foreground truncate leading-tight">
                           {lastName}
@@ -194,7 +194,7 @@ function WeightClassBoard({
                       className="px-1 py-0.5 border border-border/50 rounded bg-background"
                     >
                       <div className="text-[9px] text-muted-foreground truncate leading-tight">
-                        #{w.seed} {w.name}
+                        ({w.seed}) {w.name}
                       </div>
                     </div>
                   );
