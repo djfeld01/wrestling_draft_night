@@ -45,7 +45,7 @@ export type CreateSessionResult =
 
 export async function createSession(
   name: string,
-  _playerCount?: number,
+  organizerEmail?: string,
 ): Promise<CreateSessionResult> {
   if (!name || name.trim().length === 0) {
     return {
@@ -59,6 +59,7 @@ export async function createSession(
     .insert(draftSessions)
     .values({
       name: name.trim(),
+      organizerEmail: organizerEmail?.trim().toLowerCase() || null,
       playerCount: 0,
       status: "setup",
     })

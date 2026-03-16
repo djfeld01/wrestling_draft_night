@@ -1,14 +1,27 @@
 import { db } from "../../../../db";
 import { draftSessions, players } from "../../../../db/schema";
-import { desc, asc } from "drizzle-orm";
+import { desc, asc, eq, or } from "drizzle-orm";
+import { headers } from "next/headers";
+import { auth } from "../../../../lib/auth";
+import { redirect } from "next/navigation";
 import { CreateSessionForm, SessionCard } from "./session-manager";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminSessionsPage() {
+  const session = await auth.api.getSession({ headers: await headers() });
+
+  if (!session?.user?.email) {
+    redirect("/login?callbackUrl=/admin/sessions");
+  }
+
+  const userEmail = session.user.email;
+
+  // Show sessions where user is the organizer
   const sessions = await db
     .select()
     .from(draftSessions)
+    .where(eq(draftSessions.organizerEmail, userEmail))
     .orderBy(desc(draftSessions.createdAt));
 
   const sessionIds = sessions.map((s) => s.id);
@@ -31,11 +44,14 @@ export default async function AdminSessionsPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-4 py-8">
-        <h1 className="text-xl font-semibold text-foreground mb-6">
-          Draft Sessions
-        </h1>
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-xl font-semibold text-foreground">
+            My Draft Sessions
+          </h1>
+          <span className="text-xs text-muted-foreground">{userEmail}</span>
+        </div>
 
-        <CreateSessionForm />
+        <CreateSessionForm organizerEmail={userEmail} />
 
         <div className="mt-8 space-y-4">
           {sessions.length === 0 && (
@@ -43,11 +59,11 @@ export default async function AdminSessionsPage() {
               No sessions yet. Create one above.
             </p>
           )}
-          {sessions.map((session) => (
+          {sessions.map((s) => (
             <SessionCard
-              key={session.id}
-              session={session}
-              sessionPlayers={playersBySession.get(session.id) || []}
+              key={s.id}
+              session={s}
+              sessionPlayers={playersBySession.get(s.id) || []}
             />
           ))}
         </div>

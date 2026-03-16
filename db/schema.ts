@@ -18,6 +18,7 @@ export const draftSessions = pgTable("draft_sessions", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
   status: sessionStatusEnum("status").default("setup").notNull(),
+  organizerEmail: varchar("organizer_email", { length: 255 }),
   playerCount: integer("player_count").notNull(),
   currentRound: integer("current_round").default(1).notNull(),
   currentPickNumber: integer("current_pick_number").default(1).notNull(),

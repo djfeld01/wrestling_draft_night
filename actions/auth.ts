@@ -101,6 +101,7 @@ export async function joinSession(
  */
 export async function requestMagicLink(
   email: string,
+  callbackURL?: string,
 ): Promise<{ success: boolean; error?: string }> {
   if (!email || email.trim().length === 0) {
     return { success: false, error: "Email is required." };
@@ -108,27 +109,19 @@ export async function requestMagicLink(
 
   const normalizedEmail = email.trim().toLowerCase();
 
-  // Look up the player by email
-  const [player] = await db
-    .select()
-    .from(players)
-    .where(eq(players.email, normalizedEmail));
-
-  if (!player) {
-    // Don't reveal whether the email exists
-    return { success: true };
-  }
-
+  // For organizers or returning users, send magic link directly
+  // better-auth will auto-create the user if they don't exist
   try {
     await auth.api.signInMagicLink({
       body: {
         email: normalizedEmail,
-        callbackURL: `/draft/${player.sessionId}`,
+        callbackURL: callbackURL || "/",
       },
       headers: await headers(),
     });
   } catch (err) {
     console.error(`[Magic Link] Failed to send for ${normalizedEmail}`, err);
+    return { success: false, error: "Failed to send login email." };
   }
 
   return { success: true };

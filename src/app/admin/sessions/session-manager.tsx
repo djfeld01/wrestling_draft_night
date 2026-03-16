@@ -29,7 +29,11 @@ type Player = {
   draftOrder: number;
 };
 
-export function CreateSessionForm() {
+export function CreateSessionForm({
+  organizerEmail,
+}: {
+  organizerEmail: string;
+}) {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
@@ -38,7 +42,7 @@ export function CreateSessionForm() {
     e.preventDefault();
     setError("");
     startTransition(async () => {
-      const result = await createSession(name, 0);
+      const result = await createSession(name, organizerEmail);
       if (!result.success) {
         setError(result.error);
       } else {
