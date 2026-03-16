@@ -268,10 +268,46 @@ export function applySSEEvent(
  * Also attempts SSE for instant updates when available.
  * Implements exponential backoff for connection failures (1s, 2s, 4s, max 30s).
  */
+function logPicksToLocalStorage(sessionId: string, state: DraftState) {
+  try {
+    const key = `draft-log-${sessionId}`;
+    const log = {
+      sessionId,
+      sessionName: state.session.name,
+      lastUpdated: new Date().toISOString(),
+      status: state.session.status,
+      currentRound: state.session.currentRound,
+      currentPickNumber: state.session.currentPickNumber,
+      picks: state.picks
+        .slice()
+        .sort((a, b) => a.pickNumber - b.pickNumber)
+        .map((p) => ({
+          pickNumber: p.pickNumber,
+          round: p.round,
+          playerName: p.playerName,
+          wrestlerName: p.wrestlerName,
+          wrestlerSeed: p.wrestlerSeed,
+          weightClass: p.weightClass,
+          timestamp: p.createdAt,
+        })),
+    };
+    localStorage.setItem(key, JSON.stringify(log));
+  } catch {
+    // localStorage may be unavailable — silently ignore
+  }
+}
+
 export function useDraftEvents(sessionId: string): UseDraftEventsReturn {
   const [state, setState] = useState<DraftState | null>(null);
   const [connectionStatus, setConnectionStatus] =
     useState<ConnectionStatus>("connecting");
+
+  // Persist picks to localStorage whenever they change
+  useEffect(() => {
+    if (state && state.picks.length > 0) {
+      logPicksToLocalStorage(sessionId, state);
+    }
+  }, [sessionId, state?.picks.length, state]);
 
   const refresh = useCallback(async () => {
     try {
