@@ -267,9 +267,13 @@ function WeightClassBoard({
 function DraftOrderStrip({
   state,
   teamColorMap,
+  selectedTeamId,
+  onTeamClick,
 }: {
   state: DraftState;
   teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
+  selectedTeamId: string | null;
+  onTeamClick: (playerId: string) => void;
 }) {
   const sorted = useMemo(
     () => [...state.players].sort((a, b) => a.draftOrder - b.draftOrder),
@@ -311,6 +315,7 @@ function DraftOrderStrip({
         {sorted.map((p, i) => {
           const color = teamColorMap.get(p.id);
           const isOnClock = p.id === state.turn.currentPlayerId;
+          const isSelected = p.id === selectedTeamId;
 
           return (
             <div key={p.id} className="flex items-center">
@@ -319,20 +324,109 @@ function DraftOrderStrip({
                   {isForward ? "›" : "‹"}
                 </span>
               )}
-              <span
-                className={`inline-flex items-center justify-center rounded font-medium truncate transition-all ${
+              <button
+                onClick={() => onTeamClick(p.id)}
+                className={`inline-flex items-center justify-center rounded font-medium truncate transition-all cursor-pointer ${
                   color?.bg ?? "bg-muted"
                 } ${color?.text ?? "text-muted-foreground"} ${
                   isOnClock
                     ? "px-3 py-1.5 text-sm ring-2 ring-foreground"
                     : "px-2 py-0.5 text-[10px]"
-                }`}
+                } ${isSelected ? "ring-2 ring-foreground/50" : ""}`}
               >
                 {p.name}
-              </span>
+              </button>
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+// --- Team Roster Popup ---
+
+function TeamRosterPopup({
+  state,
+  playerId,
+  teamColorMap,
+  onClose,
+}: {
+  state: DraftState;
+  playerId: string;
+  teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
+  onClose: () => void;
+}) {
+  const player = state.players.find((p) => p.id === playerId);
+  const color = teamColorMap.get(playerId);
+
+  const picksByWc = useMemo(() => {
+    const map = new Map<number, DraftStatePick>();
+    for (const pick of state.picks) {
+      if (pick.playerId === playerId) {
+        map.set(pick.weightClass, pick);
+      }
+    }
+    return map;
+  }, [state.picks, playerId]);
+
+  if (!player) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+      onClick={onClose}
+    >
+      <div
+        className="bg-background border border-border rounded-lg shadow-lg p-4 max-w-md w-full mx-4"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <span
+              className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-muted-foreground"}`}
+            >
+              #{player.draftOrder}
+            </span>
+            <span className="text-sm font-semibold text-foreground">
+              {player.name}
+            </span>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-muted-foreground hover:text-foreground text-sm"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {WEIGHT_CLASSES.map((wc) => {
+            const pick = picksByWc.get(wc);
+            return (
+              <span
+                key={wc}
+                className={`inline-block px-2 py-1 rounded text-xs ${
+                  pick
+                    ? `${color?.bg ?? "bg-accent/10"} ${color?.text ?? "text-foreground"}`
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                <span className="font-medium">{wc}:</span>{" "}
+                {pick ? (
+                  <>
+                    ({pick.wrestlerSeed}) {pick.wrestlerName}
+                  </>
+                ) : (
+                  "—"
+                )}
+              </span>
+            );
+          })}
+        </div>
+        <p className="text-[10px] text-muted-foreground mt-2 text-center">
+          {picksByWc.size} of 10 weight classes filled
+        </p>
       </div>
     </div>
   );
@@ -440,6 +534,7 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
   const { state, connectionStatus } = useDraftEvents(sessionId);
   const [pickedView, setPickedView] = useState<PickedView>("compact");
   const [dimMode, setDimMode] = useState<DimMode>("off");
+  const [rosterTeamId, setRosterTeamId] = useState<string | null>(null);
 
   const teamColorMap = useMemo(
     () => (state ? buildTeamColorMap(state.players) : new Map()),
@@ -478,8 +573,23 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
 
       {/* Turn + Team Legend */}
       <div className="px-4 py-1 border-b border-border">
-        <DraftOrderStrip state={state} teamColorMap={teamColorMap} />
+        <DraftOrderStrip
+          state={state}
+          teamColorMap={teamColorMap}
+          selectedTeamId={rosterTeamId}
+          onTeamClick={(id) => setRosterTeamId(rosterTeamId === id ? null : id)}
+        />
       </div>
+
+      {/* Team roster popup */}
+      {rosterTeamId && (
+        <TeamRosterPopup
+          state={state}
+          playerId={rosterTeamId}
+          teamColorMap={teamColorMap}
+          onClose={() => setRosterTeamId(null)}
+        />
+      )}
 
       {/* Recent picks — horizontal scrolling strip */}
       <RecentPicks picks={state.picks} teamColorMap={teamColorMap} />
