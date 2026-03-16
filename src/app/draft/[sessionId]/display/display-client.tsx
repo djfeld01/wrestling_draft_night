@@ -528,9 +528,81 @@ function RecentPicks({
   );
 }
 
+// --- Pick Announcement Overlay ---
+
+function PickAnnouncement({
+  pick,
+  teamColorMap,
+}: {
+  pick: DraftStatePick;
+  teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
+}) {
+  const color = teamColorMap.get(pick.playerId);
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 pointer-events-none">
+      <div
+        className={`rounded-xl shadow-2xl px-10 py-8 text-center max-w-lg w-full mx-4 ${color?.bg ?? "bg-muted"} ${color?.text ?? "text-foreground"}`}
+      >
+        <p className="text-sm font-medium opacity-70 mb-1">
+          Pick #{pick.pickNumber} · {pick.weightClass} lbs
+        </p>
+        <p className="text-4xl font-bold leading-tight">
+          ({pick.wrestlerSeed}) {pick.wrestlerName}
+        </p>
+        <p className="text-lg opacity-80 mt-1">{pick.wrestlerTeam}</p>
+        <div className="mt-4 pt-3 border-t border-current/20">
+          <p className="text-sm opacity-70">Drafted by</p>
+          <p className="text-xl font-semibold">{pick.playerName}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function usePickAnnouncementQueue(picks: DraftStatePick[]) {
+  const [activePick, setActivePick] = useState<DraftStatePick | null>(null);
+  const seenRef = useRef(new Set<string>());
+  const queueRef = useRef<DraftStatePick[]>([]);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Detect new picks and enqueue
+  useEffect(() => {
+    for (const p of picks) {
+      if (!seenRef.current.has(p.id)) {
+        seenRef.current.add(p.id);
+        queueRef.current.push(p);
+      }
+    }
+  }, [picks]);
+
+  // Poll the queue: when no active pick and queue has items, show next
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      if (queueRef.current.length > 0) {
+        const next = queueRef.current.shift()!;
+        setActivePick(next);
+        setTimeout(() => setActivePick(null), 2000);
+      }
+    }, 200);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  return activePick;
+}
+
 // --- Main Display Client ---
 
-export function DisplayClient({ sessionId }: { sessionId: string }) {
+export function DisplayClient({
+  sessionId,
+  backLink,
+  backLabel,
+}: {
+  sessionId: string;
+  backLink: string;
+  backLabel: string;
+}) {
   const { state, connectionStatus } = useDraftEvents(sessionId);
   const [pickedView, setPickedView] = useState<PickedView>("compact");
   const [dimMode, setDimMode] = useState<DimMode>("off");
@@ -559,6 +631,9 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
     return dimMode === "current" ? state.turn.currentPlayerId : dimMode;
   }, [state, dimMode]);
 
+  // Pick announcement queue
+  const announcePick = usePickAnnouncementQueue(state?.picks ?? []);
+
   if (!state) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -570,6 +645,16 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
   return (
     <div className="h-screen bg-background flex flex-col overflow-hidden">
       <DisplayHeader state={state} connectionStatus={connectionStatus} />
+
+      {/* Back link */}
+      <div className="px-4 py-1 border-b border-border">
+        <a
+          href={backLink}
+          className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+        >
+          ← Back to {backLabel}
+        </a>
+      </div>
 
       {/* Turn + Team Legend */}
       <div className="px-4 py-1 border-b border-border">
@@ -698,6 +783,11 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
           highlightPlayerId={highlightPlayerId}
         />
       </div>
+
+      {/* Pick announcement overlay */}
+      {announcePick && (
+        <PickAnnouncement pick={announcePick} teamColorMap={teamColorMap} />
+      )}
     </div>
   );
 }
