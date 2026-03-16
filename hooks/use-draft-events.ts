@@ -262,10 +262,10 @@ export function applySSEEvent(
 }
 
 /**
- * Custom hook that opens an EventSource connection to the SSE endpoint,
- * parses events, and maintains local draft state.
+ * Custom hook that maintains draft state via polling.
  *
- * On reconnect, fetches full draft state via REST and replaces local state.
+ * Polls the REST state endpoint at a regular interval for updates.
+ * Also attempts SSE for instant updates when available.
  * Implements exponential backoff for connection failures (1s, 2s, 4s, max 30s).
  */
 export function useDraftEvents(sessionId: string): UseDraftEventsReturn {
@@ -286,8 +286,25 @@ export function useDraftEvents(sessionId: string): UseDraftEventsReturn {
     let mounted = true;
     let eventSource: EventSource | null = null;
     let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
+    let pollTimer: ReturnType<typeof setInterval> | null = null;
     let backoff = INITIAL_BACKOFF_MS;
     let lastEventId: string | null = null;
+
+    // Poll every 3 seconds for state updates (reliable on serverless)
+    function startPolling() {
+      if (pollTimer) return;
+      pollTimer = setInterval(async () => {
+        if (!mounted) return;
+        try {
+          const freshState = await fetchDraftState(sessionId);
+          if (mounted) {
+            setState(freshState);
+          }
+        } catch (err) {
+          // Silently ignore poll errors — next poll will retry
+        }
+      }, 3000);
+    }
 
     function connect() {
       if (!mounted) return;
@@ -388,7 +405,10 @@ export function useDraftEvents(sessionId: string): UseDraftEventsReturn {
         console.error("Failed to fetch initial draft state:", err);
       });
 
-    // Open SSE connection
+    // Start polling for reliable updates
+    startPolling();
+
+    // Also open SSE connection for instant updates when possible
     connect();
 
     return () => {
@@ -402,6 +422,11 @@ export function useDraftEvents(sessionId: string): UseDraftEventsReturn {
       if (reconnectTimer) {
         clearTimeout(reconnectTimer);
         reconnectTimer = null;
+      }
+
+      if (pollTimer) {
+        clearInterval(pollTimer);
+        pollTimer = null;
       }
     };
   }, [sessionId]);
