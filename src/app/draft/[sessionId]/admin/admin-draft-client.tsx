@@ -294,28 +294,46 @@ function ProxyPick({
                   </td>
                 </tr>
               )}
-              {availableWrestlers.map((w) => (
-                <tr
-                  key={w.sessionWrestlerId}
-                  onClick={() => setSelectedWrestlerId(w.sessionWrestlerId)}
-                  className={`border-b border-border last:border-b-0 cursor-pointer transition-colors ${
-                    selectedWrestlerId === w.sessionWrestlerId
-                      ? "bg-accent/10"
-                      : "hover:bg-muted"
-                  }`}
-                >
-                  <td className="py-1.5 px-3 text-muted-foreground">
-                    {w.seed}
-                  </td>
-                  <td className="py-1.5 px-3 text-foreground">{w.name}</td>
-                  <td className="py-1.5 px-3 text-muted-foreground">
-                    {w.team}
-                  </td>
-                  <td className="py-1.5 px-3 text-muted-foreground">
-                    {w.weightClass}
-                  </td>
-                </tr>
-              ))}
+              {availableWrestlers.map((w) => {
+                const isPicked = !w.isAvailable;
+                return (
+                  <tr
+                    key={w.sessionWrestlerId}
+                    onClick={
+                      !isPicked
+                        ? () => setSelectedWrestlerId(w.sessionWrestlerId)
+                        : undefined
+                    }
+                    className={`border-b border-border last:border-b-0 transition-colors ${
+                      isPicked
+                        ? "opacity-40"
+                        : selectedWrestlerId === w.sessionWrestlerId
+                          ? "bg-accent/10 cursor-pointer"
+                          : "hover:bg-muted cursor-pointer"
+                    }`}
+                  >
+                    <td className="py-1.5 px-3 text-muted-foreground">
+                      {w.seed}
+                    </td>
+                    <td className="py-1.5 px-3 text-foreground">
+                      <span className={isPicked ? "line-through" : ""}>
+                        {w.name}
+                      </span>
+                      {isPicked && (
+                        <span className="ml-1.5 inline-block px-1 py-0.5 rounded text-[10px] bg-muted text-muted-foreground leading-none">
+                          Picked
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-1.5 px-3 text-muted-foreground">
+                      {w.team}
+                    </td>
+                    <td className="py-1.5 px-3 text-muted-foreground">
+                      {w.weightClass}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
