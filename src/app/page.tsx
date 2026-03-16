@@ -153,7 +153,11 @@ function SessionRow({
         {isOrganizer && (
           <>
             <Link
-              href={`/draft/${session.id}/admin`}
+              href={
+                session.status === "setup"
+                  ? `/admin/sessions`
+                  : `/draft/${session.id}/admin`
+              }
               className="text-xs text-accent hover:underline"
             >
               Manage
