@@ -137,6 +137,7 @@ function ProxyPick({
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [sortMode, setSortMode] = useState<"weight" | "seed">("weight");
+  const [hidePicked, setHidePicked] = useState(true);
   const [selectedWrestlerId, setSelectedWrestlerId] = useState<string | null>(
     null,
   );
@@ -154,7 +155,7 @@ function ProxyPick({
   const availableWrestlers = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
     return state.wrestlers
-      .filter((w) => w.isAvailable)
+      .filter((w) => !hidePicked || w.isAvailable)
       .filter((w) => !lockedWeightClasses.has(w.weightClass))
       .filter(
         (w) =>
@@ -180,6 +181,7 @@ function ProxyPick({
     lockedWeightClasses,
     searchQuery,
     sortMode,
+    hidePicked,
   ]);
 
   function handleConfirm() {
@@ -252,6 +254,16 @@ function ProxyPick({
             <option value="seed">Sort by Overall Seed</option>
           </select>
         </div>
+
+        <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer mb-3">
+          <input
+            type="checkbox"
+            checked={hidePicked}
+            onChange={(e) => setHidePicked(e.target.checked)}
+            className="rounded border-border"
+          />
+          Hide picked wrestlers
+        </label>
 
         <div className="max-h-64 overflow-y-auto border border-border rounded-md">
           <table className="w-full text-sm">

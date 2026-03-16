@@ -13,6 +13,7 @@ interface WrestlerListProps {
   lockedWeightClasses?: Set<number>;
   searchQuery?: string;
   sortMode?: SortMode;
+  hidePicked?: boolean;
 }
 
 export function WrestlerList({
@@ -23,10 +24,12 @@ export function WrestlerList({
   lockedWeightClasses,
   searchQuery = "",
   sortMode = "weight",
+  hidePicked = false,
 }: WrestlerListProps) {
   const filtered = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
     return wrestlers
+      .filter((w) => !hidePicked || w.isAvailable)
       .filter(
         (w) =>
           weightClassFilter === "all" || w.weightClass === weightClassFilter,
