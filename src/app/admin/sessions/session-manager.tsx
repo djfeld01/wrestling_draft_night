@@ -520,12 +520,22 @@ export function SessionCard({
         )}
 
         {session.status === "active" && (
-          <a
-            href={`/draft/${session.id}/admin`}
-            className="inline-block px-3 py-1.5 bg-accent text-accent-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
-          >
-            Go to Draft Admin
-          </a>
+          <div className="flex gap-2">
+            <a
+              href={`/draft/${session.id}/admin`}
+              className="inline-block px-3 py-1.5 bg-accent text-accent-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              Go to Draft Admin
+            </a>
+            <a
+              href={`/draft/${session.id}/display`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted transition-colors"
+            >
+              Display View ↗
+            </a>
+          </div>
         )}
 
         {session.status === "completed" && (
@@ -535,6 +545,14 @@ export function SessionCard({
               className="inline-block px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted transition-colors"
             >
               View Draft
+            </a>
+            <a
+              href={`/draft/${session.id}/display`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted transition-colors"
+            >
+              Display View ↗
             </a>
             <a
               href={`/api/draft/${session.id}/export?format=csv`}
