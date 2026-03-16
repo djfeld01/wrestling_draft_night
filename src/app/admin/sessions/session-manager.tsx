@@ -9,6 +9,7 @@ import {
   updatePlayerEmail,
   addPlayerToSession,
   deleteSession,
+  removePlayer,
 } from "../../../../actions/session";
 import { JoinQRCode } from "../../../components/JoinQRCode";
 
@@ -111,11 +112,13 @@ function StatusBadge({ status }: { status: string }) {
 function PlayerRow({
   player,
   isSetup,
+  sessionId,
   draftOrderValue,
   onDraftOrderChange,
 }: {
   player: Player;
   isSetup: boolean;
+  sessionId: string;
   draftOrderValue: number;
   onDraftOrderChange: (val: number) => void;
 }) {
@@ -137,6 +140,13 @@ function PlayerRow({
         await updatePlayerEmail(player.id, playerEmail);
       });
     }
+  }
+
+  function handleRemove() {
+    startSaving(async () => {
+      await removePlayer(sessionId, player.id);
+      window.location.reload();
+    });
   }
 
   return (
@@ -187,6 +197,17 @@ function PlayerRow({
           </span>
         )}
       </td>
+      {isSetup && (
+        <td className="py-2 px-3">
+          <button
+            onClick={handleRemove}
+            disabled={isSaving}
+            className="text-xs text-destructive hover:underline disabled:opacity-50"
+          >
+            Remove
+          </button>
+        </td>
+      )}
     </tr>
   );
 }
@@ -375,6 +396,9 @@ export function SessionCard({
               <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3">
                 Email
               </th>
+              {isSetup && (
+                <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3 w-20"></th>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -383,6 +407,7 @@ export function SessionCard({
                 key={player.id}
                 player={player}
                 isSetup={isSetup}
+                sessionId={session.id}
                 draftOrderValue={draftOrders[player.id] ?? player.draftOrder}
                 onDraftOrderChange={(val) =>
                   handleDraftOrderChange(player.id, val)

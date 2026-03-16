@@ -432,3 +432,61 @@ export async function deleteSession(
 
   return { success: true };
 }
+
+export type RemovePlayerResult =
+  | { success: true }
+  | { success: false; error: string };
+
+export async function removePlayer(
+  sessionId: string,
+  playerId: string,
+): Promise<RemovePlayerResult> {
+  const [session] = await db
+    .select()
+    .from(draftSessions)
+    .where(eq(draftSessions.id, sessionId));
+
+  if (!session) {
+    return { success: false, error: "Draft session not found." };
+  }
+
+  if (session.status !== "setup") {
+    return { success: false, error: "Can only remove players during setup." };
+  }
+
+  const [player] = await db
+    .select()
+    .from(players)
+    .where(and(eq(players.id, playerId), eq(players.sessionId, sessionId)));
+
+  if (!player) {
+    return { success: false, error: "Player not found in this session." };
+  }
+
+  // Delete team members, then the player
+  await db.delete(teamMembers).where(eq(teamMembers.playerId, playerId));
+  await db
+    .delete(players)
+    .where(and(eq(players.id, playerId), eq(players.sessionId, sessionId)));
+
+  // Reorder remaining players and update count
+  const remaining = await db
+    .select()
+    .from(players)
+    .where(eq(players.sessionId, sessionId));
+
+  remaining.sort((a, b) => a.draftOrder - b.draftOrder);
+  for (let i = 0; i < remaining.length; i++) {
+    await db
+      .update(players)
+      .set({ draftOrder: i + 1 })
+      .where(eq(players.id, remaining[i].id));
+  }
+
+  await db
+    .update(draftSessions)
+    .set({ playerCount: remaining.length, updatedAt: new Date() })
+    .where(eq(draftSessions.id, sessionId));
+
+  return { success: true };
+}
