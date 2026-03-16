@@ -114,13 +114,19 @@ function PlayerRow({
   isSetup,
   sessionId,
   draftOrderValue,
-  onDraftOrderChange,
+  onMoveUp,
+  onMoveDown,
+  isFirst,
+  isLast,
 }: {
   player: Player;
   isSetup: boolean;
   sessionId: string;
   draftOrderValue: number;
-  onDraftOrderChange: (val: number) => void;
+  onMoveUp: () => void;
+  onMoveDown: () => void;
+  isFirst: boolean;
+  isLast: boolean;
 }) {
   const [playerName, setPlayerName] = useState(player.name);
   const [playerEmail, setPlayerEmail] = useState(player.email || "");
@@ -153,13 +159,29 @@ function PlayerRow({
     <tr className="border-b border-border last:border-b-0">
       <td className="py-2 px-3">
         {isSetup ? (
-          <input
-            type="number"
-            min={1}
-            value={draftOrderValue}
-            onChange={(e) => onDraftOrderChange(Number(e.target.value))}
-            className="w-14 px-2 py-1 border border-border rounded text-sm bg-background text-foreground text-center focus:outline-none focus:ring-1 focus:ring-accent"
-          />
+          <div className="flex items-center gap-1">
+            <span className="text-sm text-foreground w-6 text-center">
+              {draftOrderValue}
+            </span>
+            <div className="flex flex-col">
+              <button
+                onClick={onMoveUp}
+                disabled={isFirst || isSaving}
+                className="text-[10px] text-muted-foreground hover:text-foreground disabled:opacity-30 leading-none"
+                aria-label="Move up"
+              >
+                ▲
+              </button>
+              <button
+                onClick={onMoveDown}
+                disabled={isLast || isSaving}
+                className="text-[10px] text-muted-foreground hover:text-foreground disabled:opacity-30 leading-none"
+                aria-label="Move down"
+              >
+                ▼
+              </button>
+            </div>
+          </div>
         ) : (
           <span className="text-sm text-muted-foreground">
             {player.draftOrder}
@@ -364,8 +386,38 @@ export function SessionCard({
   }
 
   const sortedPlayers = [...sessionPlayers].sort(
-    (a, b) => a.draftOrder - b.draftOrder,
+    (a, b) =>
+      (draftOrders[a.id] ?? a.draftOrder) - (draftOrders[b.id] ?? b.draftOrder),
   );
+
+  function handleMoveUp(playerId: string) {
+    const currentOrder = draftOrders[playerId];
+    if (currentOrder <= 1) return;
+    // Find the player currently at currentOrder - 1
+    const swapEntry = Object.entries(draftOrders).find(
+      ([, order]) => order === currentOrder - 1,
+    );
+    if (!swapEntry) return;
+    setDraftOrders((prev) => ({
+      ...prev,
+      [playerId]: currentOrder - 1,
+      [swapEntry[0]]: currentOrder,
+    }));
+  }
+
+  function handleMoveDown(playerId: string) {
+    const currentOrder = draftOrders[playerId];
+    if (currentOrder >= sessionPlayers.length) return;
+    const swapEntry = Object.entries(draftOrders).find(
+      ([, order]) => order === currentOrder + 1,
+    );
+    if (!swapEntry) return;
+    setDraftOrders((prev) => ({
+      ...prev,
+      [playerId]: currentOrder + 1,
+      [swapEntry[0]]: currentOrder,
+    }));
+  }
 
   return (
     <div className="border border-border rounded-lg bg-background">
@@ -402,16 +454,17 @@ export function SessionCard({
             </tr>
           </thead>
           <tbody>
-            {sortedPlayers.map((player) => (
+            {sortedPlayers.map((player, idx) => (
               <PlayerRow
                 key={player.id}
                 player={player}
                 isSetup={isSetup}
                 sessionId={session.id}
                 draftOrderValue={draftOrders[player.id] ?? player.draftOrder}
-                onDraftOrderChange={(val) =>
-                  handleDraftOrderChange(player.id, val)
-                }
+                onMoveUp={() => handleMoveUp(player.id)}
+                onMoveDown={() => handleMoveDown(player.id)}
+                isFirst={idx === 0}
+                isLast={idx === sortedPlayers.length - 1}
               />
             ))}
           </tbody>
