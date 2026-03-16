@@ -100,16 +100,21 @@ function StatusBadge({ status }: { status: string }) {
 // --- Picked Wrestler View Modes ---
 type PickedView = "compact" | "expanded" | "hidden";
 
+// --- Dim Mode ---
+type DimMode = "off" | "current" | string; // "off", "current" (on the clock), or playerId
+
 // --- Weight Class Board (main content) ---
 
 function WeightClassBoard({
   state,
   teamColorMap,
   pickedView,
+  dimmedWeightClasses,
 }: {
   state: DraftState;
   teamColorMap: Map<string, (typeof TEAM_COLORS)[0]>;
   pickedView: PickedView;
+  dimmedWeightClasses: Set<number>;
 }) {
   // Build a lookup: sessionWrestlerId -> pick (for drafted wrestlers)
   const pickByWrestler = useMemo(() => {
@@ -141,9 +146,15 @@ function WeightClassBoard({
     <div className="grid grid-cols-10 gap-1 h-full overflow-hidden">
       {WEIGHT_CLASSES.map((wc) => {
         const wrestlers = columns.get(wc) ?? [];
+        const isDimmed = dimmedWeightClasses.has(wc);
         return (
-          <div key={wc} className="flex flex-col min-w-0 overflow-hidden">
-            <div className="text-center text-sm font-bold text-black py-2 bg-gray-200 border-b-2 border-border shrink-0">
+          <div
+            key={wc}
+            className={`flex flex-col min-w-0 overflow-hidden ${isDimmed ? "opacity-25" : ""}`}
+          >
+            <div
+              className={`text-center text-sm font-bold py-2 border-b-2 border-border shrink-0 ${isDimmed ? "bg-gray-400 text-gray-600" : "bg-gray-200 text-black"}`}
+            >
               {wc}
             </div>
             <div className="flex flex-col gap-0.5 p-0.5 overflow-y-auto hide-scrollbar">
@@ -415,11 +426,24 @@ function RecentPicks({
 export function DisplayClient({ sessionId }: { sessionId: string }) {
   const { state, connectionStatus } = useDraftEvents(sessionId);
   const [pickedView, setPickedView] = useState<PickedView>("compact");
+  const [dimMode, setDimMode] = useState<DimMode>("off");
 
   const teamColorMap = useMemo(
     () => (state ? buildTeamColorMap(state.players) : new Map()),
     [state],
   );
+
+  // Compute which weight classes to dim based on dimMode
+  const dimmedWeightClasses = useMemo(() => {
+    if (!state || dimMode === "off") return new Set<number>();
+    const targetPlayerId =
+      dimMode === "current" ? state.turn.currentPlayerId : dimMode;
+    if (!targetPlayerId) return new Set<number>();
+    const playerPicks = state.picks.filter(
+      (p) => p.playerId === targetPlayerId,
+    );
+    return new Set(playerPicks.map((p) => p.weightClass));
+  }, [state, dimMode]);
 
   if (!state) {
     return (
@@ -442,26 +466,71 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
       {/* Recent picks — horizontal scrolling strip */}
       <RecentPicks picks={state.picks} teamColorMap={teamColorMap} />
 
-      {/* Picked wrestler view toggle */}
-      <div className="flex items-center justify-center gap-1 px-3 py-1 border-b border-border">
-        <span className="text-[10px] text-muted-foreground mr-1">Picked:</span>
-        {(["compact", "expanded", "hidden"] as const).map((mode) => (
+      {/* Picked wrestler view toggle + Dim toggle */}
+      <div className="flex items-center justify-center gap-4 px-3 py-1 border-b border-border">
+        <div className="flex items-center gap-1">
+          <span className="text-[10px] text-muted-foreground mr-1">
+            Picked:
+          </span>
+          {(["compact", "expanded", "hidden"] as const).map((mode) => (
+            <button
+              key={mode}
+              onClick={() => setPickedView(mode)}
+              className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${
+                pickedView === mode
+                  ? "bg-accent text-accent-foreground"
+                  : "text-muted-foreground hover:bg-muted"
+              }`}
+            >
+              {mode === "compact"
+                ? "Compact"
+                : mode === "expanded"
+                  ? "Expanded"
+                  : "Hidden"}
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="text-[10px] text-muted-foreground mr-1">Dim:</span>
           <button
-            key={mode}
-            onClick={() => setPickedView(mode)}
+            onClick={() => setDimMode("off")}
             className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${
-              pickedView === mode
+              dimMode === "off"
                 ? "bg-accent text-accent-foreground"
                 : "text-muted-foreground hover:bg-muted"
             }`}
           >
-            {mode === "compact"
-              ? "Compact"
-              : mode === "expanded"
-                ? "Expanded"
-                : "Hidden"}
+            Off
           </button>
-        ))}
+          <button
+            onClick={() => setDimMode("current")}
+            className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${
+              dimMode === "current"
+                ? "bg-accent text-accent-foreground"
+                : "text-muted-foreground hover:bg-muted"
+            }`}
+          >
+            On the Clock
+          </button>
+          <select
+            value={dimMode !== "off" && dimMode !== "current" ? dimMode : ""}
+            onChange={(e) => setDimMode(e.target.value || "off")}
+            className={`px-1.5 py-0.5 rounded text-[10px] font-medium border border-border bg-background transition-colors ${
+              dimMode !== "off" && dimMode !== "current"
+                ? "text-accent-foreground bg-accent"
+                : "text-muted-foreground"
+            }`}
+          >
+            <option value="">Team...</option>
+            {[...state.players]
+              .sort((a, b) => a.draftOrder - b.draftOrder)
+              .map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}
+                </option>
+              ))}
+          </select>
+        </div>
       </div>
 
       {/* QR code during setup */}
@@ -480,6 +549,7 @@ export function DisplayClient({ sessionId }: { sessionId: string }) {
           state={state}
           teamColorMap={teamColorMap}
           pickedView={pickedView}
+          dimmedWeightClasses={dimmedWeightClasses}
         />
       </div>
     </div>
