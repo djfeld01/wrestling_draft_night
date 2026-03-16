@@ -165,7 +165,7 @@ function WeightClassBoard({
                   // Available wrestler
                   const isTop10 = availableIndex < 10;
                   const rowBg =
-                    availableIndex % 2 === 0 ? "bg-background" : "bg-gray-50";
+                    availableIndex % 2 === 0 ? "bg-background" : "bg-gray-200";
                   availableIndex++;
                   const nameParts = w.name.split(" ");
                   const firstName = nameParts[0] || "";
