@@ -14,6 +14,7 @@ import { TurnIndicator } from "../../../components/TurnIndicator";
 import { PlayerRoster } from "../../../components/PlayerRoster";
 import { PickConfirmation } from "../../../components/PickConfirmation";
 import { PreSelectionControl } from "../../../components/PreSelectionControl";
+import type { SortMode } from "../../../components/WrestlerList";
 
 function ConnectionDot({ status }: { status: ConnectionStatus }) {
   const color =
@@ -41,6 +42,8 @@ export function PlayerDraftClient({
   const [weightClassFilter, setWeightClassFilter] = useState<number | "all">(
     "all",
   );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortMode, setSortMode] = useState<SortMode>("weight");
   const [selectedWrestlerId, setSelectedWrestlerId] = useState<string | null>(
     null,
   );
@@ -164,6 +167,26 @@ export function PlayerDraftClient({
               lockedWeightClasses={lockedWeightClasses}
             />
 
+            {/* Search + Sort controls */}
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by name or school..."
+                className="flex-1 px-3 py-1.5 border border-border rounded-md bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent"
+              />
+              <select
+                value={sortMode}
+                onChange={(e) => setSortMode(e.target.value as SortMode)}
+                className="px-3 py-1.5 border border-border rounded-md bg-background text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-accent"
+                aria-label="Sort order"
+              >
+                <option value="weight">Sort by Weight Class</option>
+                <option value="seed">Sort by Overall Seed</option>
+              </select>
+            </div>
+
             <WrestlerList
               wrestlers={state.wrestlers}
               weightClassFilter={weightClassFilter}
@@ -174,6 +197,8 @@ export function PlayerDraftClient({
                   : currentPlayer.preSelectedWrestlerId
               }
               lockedWeightClasses={lockedWeightClasses}
+              searchQuery={searchQuery}
+              sortMode={sortMode}
             />
 
             {isMyTurn ? (

@@ -135,6 +135,8 @@ function ProxyPick({
   const [weightClassFilter, setWeightClassFilter] = useState<number | "all">(
     "all",
   );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortMode, setSortMode] = useState<"weight" | "seed">("weight");
   const [selectedWrestlerId, setSelectedWrestlerId] = useState<string | null>(
     null,
   );
@@ -150,6 +152,7 @@ function ProxyPick({
   }, [state.picks, state.turn.currentPlayerId]);
 
   const availableWrestlers = useMemo(() => {
+    const query = searchQuery.toLowerCase().trim();
     return state.wrestlers
       .filter((w) => w.isAvailable)
       .filter((w) => !lockedWeightClasses.has(w.weightClass))
@@ -157,12 +160,27 @@ function ProxyPick({
         (w) =>
           weightClassFilter === "all" || w.weightClass === weightClassFilter,
       )
-      .sort((a, b) =>
-        a.weightClass !== b.weightClass
+      .filter(
+        (w) =>
+          !query ||
+          w.name.toLowerCase().includes(query) ||
+          w.team.toLowerCase().includes(query),
+      )
+      .sort((a, b) => {
+        if (sortMode === "seed") {
+          return a.seed - b.seed;
+        }
+        return a.weightClass !== b.weightClass
           ? a.weightClass - b.weightClass
-          : a.seed - b.seed,
-      );
-  }, [state.wrestlers, weightClassFilter, lockedWeightClasses]);
+          : a.seed - b.seed;
+      });
+  }, [
+    state.wrestlers,
+    weightClassFilter,
+    lockedWeightClasses,
+    searchQuery,
+    sortMode,
+  ]);
 
   function handleConfirm() {
     if (!selectedWrestlerId) return;
@@ -213,6 +231,25 @@ function ProxyPick({
                 </option>
               ),
             )}
+          </select>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-2 mb-3">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by name or school..."
+            className="flex-1 px-3 py-1.5 border border-border rounded-md bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent"
+          />
+          <select
+            value={sortMode}
+            onChange={(e) => setSortMode(e.target.value as "weight" | "seed")}
+            className="px-3 py-1.5 border border-border rounded-md bg-background text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-accent"
+            aria-label="Sort order"
+          >
+            <option value="weight">Sort by Weight Class</option>
+            <option value="seed">Sort by Overall Seed</option>
           </select>
         </div>
 
