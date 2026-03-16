@@ -301,7 +301,10 @@ function ProxyPick({
                     key={w.sessionWrestlerId}
                     onClick={
                       !isPicked
-                        ? () => setSelectedWrestlerId(w.sessionWrestlerId)
+                        ? () => {
+                            setSelectedWrestlerId(w.sessionWrestlerId);
+                            setSearchQuery("");
+                          }
                         : undefined
                     }
                     className={`border-b border-border last:border-b-0 transition-colors ${

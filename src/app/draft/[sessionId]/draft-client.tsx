@@ -98,6 +98,7 @@ export function PlayerDraftClient({
 
   const handleWrestlerSelect = useCallback(
     (sessionWrestlerId: string) => {
+      setSearchQuery("");
       if (isMyTurn) {
         setSelectedWrestlerId(sessionWrestlerId);
         setError("");
