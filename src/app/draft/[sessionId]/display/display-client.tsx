@@ -133,15 +133,15 @@ function WeightClassBoard({
   }, [state.wrestlers]);
 
   return (
-    <div className="grid grid-cols-10 gap-1 flex-1 min-h-0">
+    <div className="grid grid-cols-10 gap-1 h-full overflow-hidden">
       {WEIGHT_CLASSES.map((wc) => {
         const wrestlers = columns.get(wc) ?? [];
         return (
-          <div key={wc} className="flex flex-col min-w-0 min-h-0">
+          <div key={wc} className="flex flex-col min-w-0 overflow-hidden">
             <div className="text-center text-xs font-semibold text-foreground py-1.5 bg-muted border-b border-border shrink-0">
               {wc}
             </div>
-            <div className="flex flex-col gap-0.5 p-0.5 overflow-y-auto flex-1">
+            <div className="flex flex-col gap-0.5 p-0.5 overflow-y-auto">
               {wrestlers.map((w) => {
                 const pick = pickByWrestler.get(w.sessionWrestlerId);
                 if (pick) {
