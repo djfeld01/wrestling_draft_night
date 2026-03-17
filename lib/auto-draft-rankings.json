@@ -2,1980 +2,2597 @@
   {
     "draftPriority": 1,
     "name": "Mitchell Mesenbrink",
+    "team": "Penn State",
     "weightClass": 165,
-    "seed": 1
+    "seed": 1,
+    "floRank": 1,
+    "p4pRank": 1
   },
   {
     "draftPriority": 2,
     "name": "Jesse Mendez",
+    "team": "Ohio State",
     "weightClass": 141,
-    "seed": 1
+    "seed": 1,
+    "floRank": 1,
+    "p4pRank": 2
   },
   {
     "draftPriority": 3,
     "name": "Levi Haines",
+    "team": "Penn State",
     "weightClass": 174,
-    "seed": 1
+    "seed": 1,
+    "floRank": 1,
+    "p4pRank": 3
   },
   {
     "draftPriority": 4,
     "name": "Shayne Van Ness",
+    "team": "Penn State",
     "weightClass": 149,
-    "seed": 1
+    "seed": 1,
+    "floRank": 1,
+    "p4pRank": 4
   },
   {
     "draftPriority": 5,
     "name": "Josh Barr",
+    "team": "Penn State",
     "weightClass": 197,
-    "seed": 1
+    "seed": 1,
+    "floRank": 1,
+    "p4pRank": 6
   },
   {
     "draftPriority": 6,
     "name": "Rocky Elam",
+    "team": "Iowa State",
     "weightClass": 197,
-    "seed": 2
+    "seed": 2,
+    "floRank": 2,
+    "p4pRank": 5
   },
   {
     "draftPriority": 7,
     "name": "Yonger Bastida",
+    "team": "Iowa State",
     "weightClass": 285,
-    "seed": 1
+    "seed": 1,
+    "floRank": 1,
+    "p4pRank": 7
   },
   {
     "draftPriority": 8,
     "name": "Sergio Vega",
+    "team": "Oklahoma State",
     "weightClass": 141,
-    "seed": 2
+    "seed": 2,
+    "floRank": 2,
+    "p4pRank": 8
   },
   {
     "draftPriority": 9,
     "name": "Rocco Welsh",
+    "team": "Penn State",
     "weightClass": 184,
-    "seed": 1
+    "seed": 1,
+    "floRank": 1,
+    "p4pRank": 10
   },
   {
     "draftPriority": 10,
     "name": "Brock Hardy",
+    "team": "Nebraska",
     "weightClass": 141,
-    "seed": 3
+    "seed": 3,
+    "floRank": 3,
+    "p4pRank": 9
   },
   {
     "draftPriority": 11,
     "name": "Aeoden Sinclair",
+    "team": "Missouri",
     "weightClass": 184,
-    "seed": 2
+    "seed": 2,
+    "floRank": 3,
+    "p4pRank": 12
   },
   {
     "draftPriority": 12,
     "name": "Angelo Ferrari",
+    "team": "Iowa",
     "weightClass": 184,
-    "seed": 7
+    "seed": 7,
+    "floRank": 2,
+    "p4pRank": 11
   },
   {
     "draftPriority": 13,
     "name": "Luke Lilledahl",
+    "team": "Penn State",
     "weightClass": 125,
-    "seed": 1
+    "seed": 1,
+    "floRank": 1,
+    "p4pRank": 14
   },
   {
     "draftPriority": 14,
     "name": "Max McEnelly",
+    "team": "Minnesota",
     "weightClass": 184,
-    "seed": 3
+    "seed": 3,
+    "floRank": 4,
+    "p4pRank": 13
   },
   {
     "draftPriority": 15,
     "name": "PJ Duke",
+    "team": "Penn State",
     "weightClass": 157,
-    "seed": 1
+    "seed": 1,
+    "floRank": 1,
+    "p4pRank": 17
   },
   {
     "draftPriority": 16,
     "name": "Isaac Trumble",
+    "team": "NC State",
     "weightClass": 285,
-    "seed": 2
+    "seed": 2,
+    "floRank": 2,
+    "p4pRank": 16
   },
   {
     "draftPriority": 17,
     "name": "Antrell Taylor",
+    "team": "Nebraska",
     "weightClass": 157,
-    "seed": 2
+    "seed": 2,
+    "floRank": 2,
+    "p4pRank": 18
   },
   {
     "draftPriority": 18,
     "name": "Ben Davino",
+    "team": "Ohio State",
     "weightClass": 133,
-    "seed": 2
+    "seed": 2,
+    "floRank": 1,
+    "p4pRank": 19
   },
   {
     "draftPriority": 19,
     "name": "Marcus Blaze",
+    "team": "Penn State",
     "weightClass": 133,
-    "seed": 3
+    "seed": 3,
+    "floRank": 2,
+    "p4pRank": 20
   },
   {
     "draftPriority": 20,
     "name": "Simon Ruiz",
+    "team": "Cornell",
     "weightClass": 174,
-    "seed": 2
+    "seed": 2,
+    "floRank": 2
   },
   {
     "draftPriority": 21,
     "name": "Jaxon Joy",
+    "team": "Cornell",
     "weightClass": 149,
-    "seed": 2
+    "seed": 2,
+    "floRank": 2
   },
   {
     "draftPriority": 22,
     "name": "Joey Blaze",
+    "team": "Purdue",
     "weightClass": 165,
-    "seed": 2
+    "seed": 2,
+    "floRank": 3
   },
   {
     "draftPriority": 23,
     "name": "Jax Forrest",
+    "team": "Oklahoma State",
     "weightClass": 133,
-    "seed": 1
+    "seed": 1,
+    "floRank": 3
   },
   {
     "draftPriority": 24,
     "name": "Eddie Ventresca",
+    "team": "Virginia Tech",
     "weightClass": 125,
-    "seed": 2
+    "seed": 2,
+    "floRank": 2
   },
   {
     "draftPriority": 25,
     "name": "Christopher Minto",
+    "team": "Nebraska",
     "weightClass": 174,
-    "seed": 3
+    "seed": 3,
+    "floRank": 3
   },
   {
     "draftPriority": 26,
     "name": "Taye Ghadiali",
+    "team": "Michigan",
     "weightClass": 285,
-    "seed": 3
+    "seed": 3,
+    "floRank": 3
   },
   {
     "draftPriority": 27,
     "name": "Stephen Little",
+    "team": "Little Rock",
     "weightClass": 197,
-    "seed": 3
+    "seed": 3,
+    "floRank": 4
   },
   {
     "draftPriority": 28,
     "name": "Collin Gaj",
+    "team": "Virginia Tech",
     "weightClass": 149,
-    "seed": 4
+    "seed": 4,
+    "floRank": 3
   },
   {
     "draftPriority": 29,
     "name": "Nicco Ruiz",
+    "team": "Arizona State",
     "weightClass": 165,
-    "seed": 4
+    "seed": 4,
+    "floRank": 4
   },
   {
     "draftPriority": 30,
     "name": "Kaleb Larkin",
+    "team": "Arizona State",
     "weightClass": 157,
-    "seed": 4
+    "seed": 4,
+    "floRank": 3
   },
   {
     "draftPriority": 31,
     "name": "Carson Kharchla",
+    "team": "Ohio State",
     "weightClass": 174,
-    "seed": 4
+    "seed": 4,
+    "floRank": 4
   },
   {
     "draftPriority": 32,
     "name": "Joey Novak",
+    "team": "Wyoming",
     "weightClass": 197,
-    "seed": 5
+    "seed": 5,
+    "floRank": 3
   },
   {
     "draftPriority": 33,
     "name": "Sheldon Seymour",
+    "team": "Lehigh",
     "weightClass": 125,
-    "seed": 4
+    "seed": 4,
+    "floRank": 3
   },
   {
     "draftPriority": 34,
     "name": "AJ Ferrari",
+    "team": "Nebraska",
     "weightClass": 285,
-    "seed": 4
+    "seed": 4,
+    "floRank": 4
   },
   {
     "draftPriority": 35,
     "name": "Sonny Sasso",
+    "team": "Virginia Tech",
     "weightClass": 197,
-    "seed": 4
+    "seed": 4,
+    "floRank": 5
   },
   {
     "draftPriority": 36,
     "name": "Koy Buesgens",
+    "team": "NC State",
     "weightClass": 149,
-    "seed": 5
+    "seed": 5,
+    "floRank": 4
   },
   {
     "draftPriority": 37,
     "name": "Nic Bouzakis",
+    "team": "Ohio State",
     "weightClass": 125,
-    "seed": 3
+    "seed": 3,
+    "floRank": 5
   },
   {
     "draftPriority": 38,
     "name": "Luke Stanich",
+    "team": "Lehigh",
     "weightClass": 141,
-    "seed": 5
+    "seed": 5,
+    "floRank": 5
   },
   {
     "draftPriority": 39,
     "name": "LaDarion Lockett",
+    "team": "Oklahoma State",
     "weightClass": 165,
-    "seed": 5
+    "seed": 5,
+    "floRank": 5
   },
   {
     "draftPriority": 40,
     "name": "Landon Robideau",
+    "team": "Oklahoma State",
     "weightClass": 157,
-    "seed": 5
+    "seed": 5,
+    "floRank": 4
   },
   {
     "draftPriority": 41,
     "name": "Patrick Kennedy",
+    "team": "Iowa",
     "weightClass": 174,
-    "seed": 5
+    "seed": 5,
+    "floRank": 5
   },
   {
     "draftPriority": 42,
     "name": "Kyler Larkin",
+    "team": "Arizona State",
     "weightClass": 133,
-    "seed": 5
+    "seed": 5,
+    "floRank": 4
   },
   {
     "draftPriority": 43,
     "name": "Meyer Shapiro",
+    "team": "Cornell",
     "weightClass": 157,
-    "seed": 3
+    "seed": 3,
+    "floRank": 6
   },
   {
     "draftPriority": 44,
     "name": "Aaron Seidel",
+    "team": "Virginia Tech",
     "weightClass": 133,
-    "seed": 4
+    "seed": 4,
+    "floRank": 5
   },
   {
     "draftPriority": 45,
     "name": "Troy Spratley",
+    "team": "Oklahoma State",
     "weightClass": 125,
-    "seed": 5
+    "seed": 5,
+    "floRank": 4
   },
   {
     "draftPriority": 46,
     "name": "Nick Feldman",
+    "team": "Ohio State",
     "weightClass": 285,
-    "seed": 5
+    "seed": 5,
+    "floRank": 5
   },
   {
     "draftPriority": 47,
     "name": "Mikey Caliendo",
+    "team": "Iowa",
     "weightClass": 165,
     "seed": 3
   },
   {
     "draftPriority": 48,
     "name": "Vince Cornella",
+    "team": "Cornell",
     "weightClass": 141,
-    "seed": 6
+    "seed": 6,
+    "floRank": 6
   },
   {
     "draftPriority": 49,
     "name": "Silas Allred",
+    "team": "Nebraska",
     "weightClass": 184,
-    "seed": 8
+    "seed": 8,
+    "floRank": 5
   },
   {
     "draftPriority": 50,
     "name": "James Conway",
+    "team": "Franklin & Marshall",
     "weightClass": 184,
-    "seed": 4
+    "seed": 4,
+    "floRank": 9
   },
   {
     "draftPriority": 51,
     "name": "Anthony Echemendia",
+    "team": "Iowa State",
     "weightClass": 141,
     "seed": 4
   },
   {
     "draftPriority": 52,
     "name": "LJ Araujo",
+    "team": "Nebraska",
     "weightClass": 165,
-    "seed": 6
+    "seed": 6,
+    "floRank": 7
   },
   {
     "draftPriority": 53,
     "name": "Cody Merrill",
+    "team": "Oklahoma State",
     "weightClass": 197,
-    "seed": 7
+    "seed": 7,
+    "floRank": 6
   },
   {
     "draftPriority": 54,
     "name": "Eddie Neitenbach",
+    "team": "Wyoming",
     "weightClass": 184,
-    "seed": 6
+    "seed": 6,
+    "floRank": 8
   },
   {
     "draftPriority": 55,
     "name": "Nasir Bailey",
+    "team": "Iowa",
     "weightClass": 141,
-    "seed": 7
+    "seed": 7,
+    "floRank": 7
   },
   {
     "draftPriority": 56,
     "name": "Cross Wasilewski",
+    "team": "Penn",
     "weightClass": 149,
-    "seed": 3
+    "seed": 3,
+    "floRank": 10
   },
   {
     "draftPriority": 57,
     "name": "Cam Steed",
+    "team": "Missouri",
     "weightClass": 174,
-    "seed": 7
+    "seed": 7,
+    "floRank": 7
   },
   {
     "draftPriority": 58,
     "name": "Drake Ayala",
+    "team": "Iowa",
     "weightClass": 133,
-    "seed": 6
+    "seed": 6,
+    "floRank": 7
   },
   {
     "draftPriority": 59,
     "name": "Nico Provo",
+    "team": "Stanford",
     "weightClass": 125,
-    "seed": 7
+    "seed": 7,
+    "floRank": 6
   },
   {
     "draftPriority": 60,
     "name": "Casey Swiderski",
+    "team": "Oklahoma State",
     "weightClass": 149,
-    "seed": 8
+    "seed": 8,
+    "floRank": 6
   },
   {
     "draftPriority": 61,
     "name": "Ethan Stiles",
+    "team": "Ohio State",
     "weightClass": 149,
-    "seed": 7
+    "seed": 7,
+    "floRank": 7
   },
   {
     "draftPriority": 62,
     "name": "Ben Kueter",
+    "team": "Iowa",
     "weightClass": 285,
-    "seed": 8
+    "seed": 8,
+    "floRank": 6
   },
   {
     "draftPriority": 63,
     "name": "Brock Mantanona",
+    "team": "Michigan",
     "weightClass": 184,
     "seed": 5
   },
   {
     "draftPriority": 64,
     "name": "Kannon Webster",
+    "team": "Illinois",
     "weightClass": 157,
-    "seed": 7
+    "seed": 7,
+    "floRank": 7
   },
   {
     "draftPriority": 65,
     "name": "Aden Valencia",
+    "team": "Stanford",
     "weightClass": 149,
-    "seed": 10
+    "seed": 10,
+    "floRank": 5
   },
   {
     "draftPriority": 66,
     "name": "Jore Volk",
+    "team": "Minnesota",
     "weightClass": 125,
-    "seed": 6
+    "seed": 6,
+    "floRank": 8
   },
   {
     "draftPriority": 67,
     "name": "Justin Rademacher",
+    "team": "Oregon State",
     "weightClass": 197,
-    "seed": 6
+    "seed": 6,
+    "floRank": 9
   },
   {
     "draftPriority": 68,
     "name": "Konner Doucet",
+    "team": "Oklahoma State",
     "weightClass": 285,
-    "seed": 7
+    "seed": 7,
+    "floRank": 8
   },
   {
     "draftPriority": 69,
     "name": "Alex Facundo",
+    "team": "Oklahoma State",
     "weightClass": 174,
-    "seed": 8
+    "seed": 8,
+    "floRank": 8
   },
   {
     "draftPriority": 70,
     "name": "Angelo Posada",
+    "team": "Stanford",
     "weightClass": 197,
-    "seed": 9
+    "seed": 9,
+    "floRank": 7
   },
   {
     "draftPriority": 71,
     "name": "Lucas Byrd",
+    "team": "Illinois",
     "weightClass": 133,
-    "seed": 7
+    "seed": 7,
+    "floRank": 8
   },
   {
     "draftPriority": 72,
     "name": "Cole Mirasola",
+    "team": "Penn State",
     "weightClass": 285,
-    "seed": 9
+    "seed": 9,
+    "floRank": 7
   },
   {
     "draftPriority": 73,
     "name": "Joey Olivieri",
+    "team": "Rutgers",
     "weightClass": 141,
-    "seed": 9
+    "seed": 9,
+    "floRank": 8
   },
   {
     "draftPriority": 74,
     "name": "Brandon Cannon",
+    "team": "Ohio State",
     "weightClass": 157,
-    "seed": 8
+    "seed": 8,
+    "floRank": 8
   },
   {
     "draftPriority": 75,
     "name": "Jude Swisher",
+    "team": "Penn",
     "weightClass": 157,
-    "seed": 6
+    "seed": 6,
+    "floRank": 10
   },
   {
     "draftPriority": 76,
     "name": "Matty Singleton",
+    "team": "NC State",
     "weightClass": 174,
     "seed": 6
   },
   {
     "draftPriority": 77,
     "name": "Caleb Tyus",
+    "team": "SIU Edwardsville",
     "weightClass": 149,
-    "seed": 6
+    "seed": 6,
+    "floRank": 11
   },
   {
     "draftPriority": 78,
     "name": "Nathan Taylor",
+    "team": "Lehigh",
     "weightClass": 285,
-    "seed": 6
+    "seed": 6,
+    "floRank": 11
   },
   {
     "draftPriority": 79,
     "name": "Mac Stout",
+    "team": "Pittsburgh",
     "weightClass": 197,
-    "seed": 10
+    "seed": 10,
+    "floRank": 8
   },
   {
     "draftPriority": 80,
     "name": "Dylan Fishback",
+    "team": "Ohio State",
     "weightClass": 184,
-    "seed": 12
+    "seed": 12,
+    "floRank": 7
   },
   {
     "draftPriority": 81,
     "name": "Dean Peterson",
+    "team": "Iowa",
     "weightClass": 125,
-    "seed": 8
+    "seed": 8,
+    "floRank": 9
   },
   {
     "draftPriority": 82,
     "name": "Andrew Sparks",
+    "team": "Minnesota",
     "weightClass": 165,
-    "seed": 13
+    "seed": 13,
+    "floRank": 6
   },
   {
     "draftPriority": 83,
     "name": "Ryder Downey",
+    "team": "Northern Iowa",
     "weightClass": 165,
-    "seed": 11
+    "seed": 11,
+    "floRank": 8
   },
   {
     "draftPriority": 84,
     "name": "Lachlan McNeil",
+    "team": "Michigan",
     "weightClass": 149,
-    "seed": 11
+    "seed": 11,
+    "floRank": 8
   },
   {
     "draftPriority": 85,
     "name": "Max Brignola",
+    "team": "Lehigh",
     "weightClass": 165,
-    "seed": 7
+    "seed": 7,
+    "floRank": 12
   },
   {
     "draftPriority": 86,
     "name": "Jack Consiglio",
+    "team": "Stanford",
     "weightClass": 141,
-    "seed": 10
+    "seed": 10,
+    "floRank": 10
   },
   {
     "draftPriority": 87,
     "name": "Vincent Robinson",
+    "team": "NC State",
     "weightClass": 125,
-    "seed": 12
+    "seed": 12,
+    "floRank": 7
   },
   {
     "draftPriority": 88,
     "name": "Ty Watters",
+    "team": "West Virginia",
     "weightClass": 157,
-    "seed": 11
+    "seed": 11,
+    "floRank": 9
   },
   {
     "draftPriority": 89,
     "name": "David Szuba",
+    "team": "Arizona State",
     "weightClass": 285,
-    "seed": 10
+    "seed": 10,
+    "floRank": 10
   },
   {
     "draftPriority": 90,
     "name": "Daniel Cardenas",
+    "team": "Stanford",
     "weightClass": 157,
-    "seed": 9
+    "seed": 9,
+    "floRank": 11
   },
   {
     "draftPriority": 91,
     "name": "Vance Vombaur",
+    "team": "Minnesota",
     "weightClass": 141,
     "seed": 8
   },
   {
     "draftPriority": 92,
     "name": "MJ Gaitan",
+    "team": "Iowa State",
     "weightClass": 174,
-    "seed": 11
+    "seed": 11,
+    "floRank": 10
   },
   {
     "draftPriority": 93,
     "name": "Matty Bianchi",
+    "team": "Little Rock",
     "weightClass": 165,
     "seed": 8
   },
   {
     "draftPriority": 94,
     "name": "Tyler Knox",
+    "team": "Stanford",
     "weightClass": 133,
-    "seed": 15
+    "seed": 15,
+    "floRank": 6
   },
   {
     "draftPriority": 95,
     "name": "Carter Young",
+    "team": "Maryland",
     "weightClass": 149,
-    "seed": 12
+    "seed": 12,
+    "floRank": 9
   },
   {
     "draftPriority": 96,
     "name": "Braxton Amos",
+    "team": "Wisconsin",
     "weightClass": 285,
-    "seed": 12
+    "seed": 12,
+    "floRank": 9
   },
   {
     "draftPriority": 97,
     "name": "Shane Cartagena-Walsh",
+    "team": "Rutgers",
     "weightClass": 184,
-    "seed": 11
+    "seed": 11,
+    "floRank": 11
   },
   {
     "draftPriority": 98,
     "name": "DJ Parker",
+    "team": "Oklahoma",
     "weightClass": 197,
     "seed": 8
   },
   {
     "draftPriority": 99,
     "name": "Chris Moore",
+    "team": "Illinois",
     "weightClass": 184,
-    "seed": 9
+    "seed": 9,
+    "floRank": 13
   },
   {
     "draftPriority": 100,
     "name": "Maximo Renteria",
+    "team": "Oregon State",
     "weightClass": 125,
-    "seed": 9
+    "seed": 9,
+    "floRank": 12
   },
   {
     "draftPriority": 101,
     "name": "Isaac Dean",
+    "team": "Iowa State",
     "weightClass": 184,
-    "seed": 13
+    "seed": 13,
+    "floRank": 10
   },
   {
     "draftPriority": 102,
     "name": "Jacob Van Dee",
+    "team": "Nebraska",
     "weightClass": 133,
-    "seed": 13
+    "seed": 13,
+    "floRank": 9
   },
   {
     "draftPriority": 103,
     "name": "Luke Simcox",
+    "team": "North Carolina",
     "weightClass": 141,
-    "seed": 12
+    "seed": 12,
+    "floRank": 11
   },
   {
     "draftPriority": 104,
     "name": "Carter Schubert",
+    "team": "Oklahoma",
     "weightClass": 174,
-    "seed": 12
+    "seed": 12,
+    "floRank": 11
   },
   {
     "draftPriority": 105,
     "name": "Bryce Hepner",
+    "team": "North Carolina",
     "weightClass": 165,
     "seed": 9
   },
   {
     "draftPriority": 106,
     "name": "Myles Takats",
+    "team": "Bucknell",
     "weightClass": 174,
-    "seed": 10
+    "seed": 10,
+    "floRank": 13
   },
   {
     "draftPriority": 107,
     "name": "Dominick Serrano",
+    "team": "Northern Colorado",
     "weightClass": 133,
-    "seed": 9
+    "seed": 9,
+    "floRank": 13
   },
   {
     "draftPriority": 108,
     "name": "Camden McDanel",
+    "team": "Nebraska",
     "weightClass": 197,
-    "seed": 11
+    "seed": 11,
+    "floRank": 12
   },
   {
     "draftPriority": 109,
     "name": "Beau Mantanona",
+    "team": "Michigan",
     "weightClass": 174,
     "seed": 9
   },
   {
     "draftPriority": 110,
     "name": "Stevo Poulin",
+    "team": "Iowa State",
     "weightClass": 125,
-    "seed": 13
+    "seed": 13,
+    "floRank": 10
   },
   {
     "draftPriority": 111,
     "name": "CJ Composto",
+    "team": "Penn",
     "weightClass": 141,
-    "seed": 11
+    "seed": 11,
+    "floRank": 13
   },
   {
     "draftPriority": 112,
     "name": "Tyler Ferrara",
+    "team": "Cornell",
     "weightClass": 133,
-    "seed": 11
+    "seed": 11,
+    "floRank": 12
   },
   {
     "draftPriority": 113,
     "name": "Logan Rozynski",
+    "team": "Lehigh",
     "weightClass": 157,
-    "seed": 10
+    "seed": 10,
+    "floRank": 13
   },
   {
     "draftPriority": 114,
     "name": "Bennett Berge",
+    "team": "South Dakota State",
     "weightClass": 197,
-    "seed": 13
+    "seed": 13,
+    "floRank": 11
   },
   {
     "draftPriority": 115,
     "name": "Marc-Anthony McGowan",
+    "team": "Princeton",
     "weightClass": 125,
-    "seed": 10
+    "seed": 10,
+    "floRank": 13
   },
   {
     "draftPriority": 116,
     "name": "Connor Euton",
+    "team": "Iowa State",
     "weightClass": 165,
-    "seed": 15
+    "seed": 15,
+    "floRank": 10
   },
   {
     "draftPriority": 117,
     "name": "David Evans",
+    "team": "Utah Valley",
     "weightClass": 149,
-    "seed": 9
+    "seed": 9,
+    "floRank": 15
   },
   {
     "draftPriority": 118,
     "name": "Luke Geog",
+    "team": "Ohio State",
     "weightClass": 197,
-    "seed": 12
+    "seed": 12,
+    "floRank": 13
   },
   {
     "draftPriority": 119,
     "name": "Jacob Moran",
+    "team": "Indiana",
     "weightClass": 125,
-    "seed": 14
+    "seed": 14,
+    "floRank": 11
   },
   {
     "draftPriority": 120,
     "name": "Moses Espinoza-Owens",
+    "team": "South Dakota State",
     "weightClass": 174,
-    "seed": 14
+    "seed": 14,
+    "floRank": 12
   },
   {
     "draftPriority": 121,
     "name": "Caleb Rathjen",
+    "team": "Northern Iowa",
     "weightClass": 149,
-    "seed": 14
+    "seed": 14,
+    "floRank": 12
   },
   {
     "draftPriority": 122,
     "name": "Will Denny",
+    "team": "NC State",
     "weightClass": 165,
-    "seed": 10
+    "seed": 10,
+    "floRank": 16
   },
   {
     "draftPriority": 123,
     "name": "Maximilian Leete",
+    "team": "American",
     "weightClass": 133,
     "seed": 10
   },
   {
     "draftPriority": 124,
     "name": "Zan Fugitt",
+    "team": "Wisconsin",
     "weightClass": 133,
-    "seed": 16
+    "seed": 16,
+    "floRank": 10
   },
   {
     "draftPriority": 125,
     "name": "Koy Hopke",
+    "team": "Minnesota",
     "weightClass": 285,
-    "seed": 14
+    "seed": 14,
+    "floRank": 12
   },
   {
     "draftPriority": 126,
     "name": "Ethen Miller",
+    "team": "Virginia Tech",
     "weightClass": 157,
-    "seed": 14
+    "seed": 14,
+    "floRank": 12
   },
   {
     "draftPriority": 127,
     "name": "Evan Mougalian",
+    "team": "Penn",
     "weightClass": 133,
-    "seed": 12
+    "seed": 12,
+    "floRank": 14
   },
   {
     "draftPriority": 128,
     "name": "Cesar Alvan",
+    "team": "Columbia",
     "weightClass": 165,
-    "seed": 12
+    "seed": 12,
+    "floRank": 15
   },
   {
     "draftPriority": 129,
     "name": "Carter Baer",
+    "team": "Binghamton",
     "weightClass": 174,
-    "seed": 13
+    "seed": 13,
+    "floRank": 14
   },
   {
     "draftPriority": 130,
     "name": "Joseph Zargo",
+    "team": "Wisconsin",
     "weightClass": 149,
-    "seed": 13
+    "seed": 13,
+    "floRank": 14
   },
   {
     "draftPriority": 131,
     "name": "Ryan Jack",
+    "team": "NC State",
     "weightClass": 141,
-    "seed": 16
+    "seed": 16,
+    "floRank": 12
   },
   {
     "draftPriority": 132,
     "name": "Braeden Scoles",
+    "team": "Illinois",
     "weightClass": 165,
-    "seed": 17
+    "seed": 17,
+    "floRank": 11
   },
   {
     "draftPriority": 133,
     "name": "Braeden Davis",
+    "team": "Penn State",
     "weightClass": 141,
-    "seed": 14
+    "seed": 14,
+    "floRank": 14
   },
   {
     "draftPriority": 134,
     "name": "Andrew Barbosa",
+    "team": "Rutgers",
     "weightClass": 165,
-    "seed": 14
+    "seed": 14,
+    "floRank": 14
   },
   {
     "draftPriority": 135,
     "name": "Gabe Sollars",
+    "team": "Indiana",
     "weightClass": 197,
-    "seed": 14
+    "seed": 14,
+    "floRank": 14
   },
   {
     "draftPriority": 136,
     "name": "T.K. Davis",
+    "team": "Gardner-Webb",
     "weightClass": 133,
-    "seed": 17
+    "seed": 17,
+    "floRank": 11
   },
   {
     "draftPriority": 137,
     "name": "Spencer Lanosga",
+    "team": "Navy",
     "weightClass": 285,
-    "seed": 13
+    "seed": 13,
+    "floRank": 15
   },
   {
     "draftPriority": 138,
     "name": "Paddy Gallagher",
+    "team": "Ohio State",
     "weightClass": 165,
-    "seed": 16
+    "seed": 16,
+    "floRank": 13
   },
   {
     "draftPriority": 139,
     "name": "Jacob Frost",
+    "team": "Iowa State",
     "weightClass": 149,
-    "seed": 16
+    "seed": 16,
+    "floRank": 13
   },
   {
     "draftPriority": 140,
     "name": "Koda Holeman",
+    "team": "Cal Poly",
     "weightClass": 125,
-    "seed": 15
+    "seed": 15,
+    "floRank": 14
   },
   {
     "draftPriority": 141,
     "name": "Vinny Zerban",
+    "team": "Iowa State",
     "weightClass": 157,
     "seed": 12
   },
   {
     "draftPriority": 142,
     "name": "Danny Wask",
+    "team": "Navy",
     "weightClass": 174,
-    "seed": 15
+    "seed": 15,
+    "floRank": 15
   },
   {
     "draftPriority": 143,
     "name": "Sal Perrine",
+    "team": "Ohio",
     "weightClass": 184,
-    "seed": 15
+    "seed": 15,
+    "floRank": 16
   },
   {
     "draftPriority": 144,
     "name": "Christian Carroll",
+    "team": "Wyoming",
     "weightClass": 285,
-    "seed": 18
+    "seed": 18,
+    "floRank": 13
   },
   {
     "draftPriority": 145,
     "name": "Caleb Campos",
+    "team": "American",
     "weightClass": 184,
-    "seed": 10
+    "seed": 10,
+    "floRank": 21
   },
   {
     "draftPriority": 146,
     "name": "Brady Colbert",
+    "team": "Army West Point",
     "weightClass": 285,
-    "seed": 15
+    "seed": 15,
+    "floRank": 16
   },
   {
     "draftPriority": 147,
     "name": "Jaden Bullock",
+    "team": "Virginia Tech",
     "weightClass": 184,
-    "seed": 14
+    "seed": 14,
+    "floRank": 18
   },
   {
     "draftPriority": 148,
     "name": "Ethan Berginc",
+    "team": "Army West Point",
     "weightClass": 133,
-    "seed": 14
+    "seed": 14,
+    "floRank": 17
   },
   {
     "draftPriority": 149,
     "name": "Caedyn Ricciardi",
+    "team": "Navy",
     "weightClass": 141,
-    "seed": 17
+    "seed": 17,
+    "floRank": 16
   },
   {
     "draftPriority": 150,
     "name": "Rylan Rogers",
+    "team": "Lehigh",
     "weightClass": 184,
-    "seed": 16
+    "seed": 16,
+    "floRank": 17
   },
   {
     "draftPriority": 151,
     "name": "Ezekiel Witt",
+    "team": "North Dakota State",
     "weightClass": 125,
-    "seed": 16
+    "seed": 16,
+    "floRank": 16
   },
   {
     "draftPriority": 152,
     "name": "Derek Raike",
+    "team": "Ohio",
     "weightClass": 157,
-    "seed": 13
+    "seed": 13,
+    "floRank": 19
   },
   {
     "draftPriority": 153,
     "name": "Zack Ryder",
+    "team": "Oklahoma State",
     "weightClass": 184,
-    "seed": 22
+    "seed": 22,
+    "floRank": 12
   },
   {
     "draftPriority": 154,
     "name": "Brian Soldano",
+    "team": "Oklahoma",
     "weightClass": 184,
-    "seed": 20
+    "seed": 20,
+    "floRank": 14
   },
   {
     "draftPriority": 155,
     "name": "Remy Cotton",
+    "team": "Rutgers",
     "weightClass": 197,
-    "seed": 15
+    "seed": 15,
+    "floRank": 18
   },
   {
     "draftPriority": 156,
     "name": "Ryder Block",
+    "team": "Iowa",
     "weightClass": 149,
-    "seed": 15
+    "seed": 15,
+    "floRank": 18
   },
   {
     "draftPriority": 157,
     "name": "Tyler Klinsky",
+    "team": "Rider",
     "weightClass": 125,
-    "seed": 11
+    "seed": 11,
+    "floRank": 21
   },
   {
     "draftPriority": 158,
     "name": "Jared Simma",
+    "team": "Northern Iowa",
     "weightClass": 174,
-    "seed": 17
+    "seed": 17,
+    "floRank": 17
   },
   {
     "draftPriority": 159,
     "name": "Devon Dawson",
+    "team": "Northern Illinois",
     "weightClass": 285,
-    "seed": 11
+    "seed": 11,
+    "floRank": 22
   },
   {
     "draftPriority": 160,
     "name": "Kysen Terukina",
+    "team": "North Carolina",
     "weightClass": 125,
-    "seed": 19
+    "seed": 19,
+    "floRank": 15
   },
   {
     "draftPriority": 161,
     "name": "Julian Tagg",
+    "team": "South Dakota State",
     "weightClass": 141,
-    "seed": 20
+    "seed": 20,
+    "floRank": 15
   },
   {
     "draftPriority": 162,
     "name": "Cael Swensen",
+    "team": "South Dakota State",
     "weightClass": 157,
-    "seed": 16
+    "seed": 16,
+    "floRank": 18
   },
   {
     "draftPriority": 163,
     "name": "Jett Strickenberger",
+    "team": "West Virginia",
     "weightClass": 125,
-    "seed": 17
+    "seed": 17,
+    "floRank": 17
   },
   {
     "draftPriority": 164,
     "name": "Zayne Lehman",
+    "team": "Ohio",
     "weightClass": 197,
-    "seed": 19
+    "seed": 19,
+    "floRank": 16
   },
   {
     "draftPriority": 165,
     "name": "Brock Herman",
+    "team": "Little Rock",
     "weightClass": 149,
-    "seed": 19
+    "seed": 19,
+    "floRank": 16
   },
   {
     "draftPriority": 166,
     "name": "Kai Owen",
+    "team": "Columbia",
     "weightClass": 157,
-    "seed": 19
+    "seed": 19,
+    "floRank": 16
   },
   {
     "draftPriority": 167,
     "name": "Jimmy Mullen",
+    "team": "Virginia Tech",
     "weightClass": 285,
-    "seed": 16
+    "seed": 16,
+    "floRank": 19
   },
   {
     "draftPriority": 168,
     "name": "Cameron Catrabone",
+    "team": "Michigan",
     "weightClass": 157,
     "seed": 15
   },
   {
     "draftPriority": 169,
     "name": "Charlie Millard",
+    "team": "Minnesota",
     "weightClass": 157,
-    "seed": 21
+    "seed": 21,
+    "floRank": 15
   },
   {
     "draftPriority": 170,
     "name": "Elijah Griffin",
+    "team": "Rider",
     "weightClass": 141,
-    "seed": 15
+    "seed": 15,
+    "floRank": 21
   },
   {
     "draftPriority": 171,
     "name": "Spencer Moore",
+    "team": "Illinois",
     "weightClass": 125,
-    "seed": 18
+    "seed": 18,
+    "floRank": 18
   },
   {
     "draftPriority": 172,
     "name": "Ty Whalen",
+    "team": "Princeton",
     "weightClass": 165,
-    "seed": 20
+    "seed": 20,
+    "floRank": 17
   },
   {
     "draftPriority": 173,
     "name": "Jake Dailey",
+    "team": "North Carolina",
     "weightClass": 184,
-    "seed": 18
+    "seed": 18,
+    "floRank": 19
   },
   {
     "draftPriority": 174,
     "name": "Ian Bush",
+    "team": "West Virginia",
     "weightClass": 184,
-    "seed": 17
+    "seed": 17,
+    "floRank": 20
   },
   {
     "draftPriority": 175,
     "name": "Wyatt Ingham",
+    "team": "Wisconsin",
     "weightClass": 197,
-    "seed": 20
+    "seed": 20,
+    "floRank": 17
   },
   {
     "draftPriority": 176,
     "name": "Zach Redding",
+    "team": "NC State",
     "weightClass": 133,
-    "seed": 22
+    "seed": 22,
+    "floRank": 15
   },
   {
     "draftPriority": 177,
     "name": "Colin Kelly",
+    "team": "Illinois",
     "weightClass": 174,
-    "seed": 18
+    "seed": 18,
+    "floRank": 19
   },
   {
     "draftPriority": 178,
     "name": "Dayton Pitzer",
+    "team": "Pittsburgh",
     "weightClass": 285,
-    "seed": 20
+    "seed": 20,
+    "floRank": 17
   },
   {
     "draftPriority": 179,
     "name": "Andrew Reall",
+    "team": "Brown",
     "weightClass": 197,
-    "seed": 18
+    "seed": 18,
+    "floRank": 19
   },
   {
     "draftPriority": 180,
     "name": "Jimmy Harrington",
+    "team": "Harvard",
     "weightClass": 157,
-    "seed": 20
+    "seed": 20,
+    "floRank": 17
   },
   {
     "draftPriority": 181,
     "name": "Branson John",
+    "team": "Maryland",
     "weightClass": 197,
     "seed": 16
   },
   {
     "draftPriority": 182,
     "name": "Gunner Andrick",
+    "team": "West Virginia",
     "weightClass": 133,
-    "seed": 18
+    "seed": 18,
+    "floRank": 19
   },
   {
     "draftPriority": 183,
     "name": "Julian Farber",
+    "team": "Northern Iowa",
     "weightClass": 133,
-    "seed": 20
+    "seed": 20,
+    "floRank": 18
   },
   {
     "draftPriority": 184,
     "name": "Lucas Kapusta",
+    "team": "Lock Haven",
     "weightClass": 149,
-    "seed": 17
+    "seed": 17,
+    "floRank": 21
   },
   {
     "draftPriority": 185,
     "name": "Luca Augustine",
+    "team": "Pittsburgh",
     "weightClass": 174,
-    "seed": 23
+    "seed": 23,
+    "floRank": 16
   },
   {
     "draftPriority": 186,
     "name": "DJ McGee",
+    "team": "George Mason",
     "weightClass": 157,
-    "seed": 18
+    "seed": 18,
+    "floRank": 20
   },
   {
     "draftPriority": 187,
     "name": "Luke Mechler",
+    "team": "Wisconsin",
     "weightClass": 157,
-    "seed": 17
+    "seed": 17,
+    "floRank": 21
   },
   {
     "draftPriority": 188,
     "name": "Lenny Pinto",
+    "team": "Rutgers",
     "weightClass": 174,
-    "seed": 21
+    "seed": 21,
+    "floRank": 18
   },
   {
     "draftPriority": 189,
     "name": "Juan Mora",
+    "team": "Oklahoma",
     "weightClass": 285,
-    "seed": 21
+    "seed": 21,
+    "floRank": 18
   },
   {
     "draftPriority": 190,
     "name": "Markel Baker",
+    "team": "Northern Illinois",
     "weightClass": 133,
-    "seed": 8
+    "seed": 8,
+    "floRank": 29
   },
   {
     "draftPriority": 191,
     "name": "Luke Luffman",
+    "team": "Illinois",
     "weightClass": 285,
-    "seed": 26
+    "seed": 26,
+    "floRank": 14
   },
   {
     "draftPriority": 192,
     "name": "Nate Schon",
+    "team": "Drexel",
     "weightClass": 285,
-    "seed": 19
+    "seed": 19,
+    "floRank": 20
   },
   {
     "draftPriority": 193,
     "name": "Matthew Olguin",
+    "team": "Oregon State",
     "weightClass": 165,
-    "seed": 22
+    "seed": 22,
+    "floRank": 18
   },
   {
     "draftPriority": 194,
     "name": "Max Petersen",
+    "team": "North Dakota State",
     "weightClass": 149,
-    "seed": 23
+    "seed": 23,
+    "floRank": 17
   },
   {
     "draftPriority": 195,
     "name": "Noah Mulvaney",
+    "team": "Bucknell",
     "weightClass": 165,
-    "seed": 19
+    "seed": 19,
+    "floRank": 21
   },
   {
     "draftPriority": 196,
     "name": "Chance Lamer",
+    "team": "Nebraska",
     "weightClass": 149,
-    "seed": 20
+    "seed": 20,
+    "floRank": 20
   },
   {
     "draftPriority": 197,
     "name": "Nash Singleton",
+    "team": "Oregon State",
     "weightClass": 141,
-    "seed": 24
+    "seed": 24,
+    "floRank": 17
   },
   {
     "draftPriority": 198,
     "name": "Dillon Bechtold",
+    "team": "Bucknell",
     "weightClass": 197,
-    "seed": 17
+    "seed": 17,
+    "floRank": 23
   },
   {
     "draftPriority": 199,
     "name": "Wyatt Henson",
+    "team": "Lock Haven",
     "weightClass": 141,
-    "seed": 13
+    "seed": 13,
+    "floRank": 27
   },
   {
     "draftPriority": 200,
     "name": "Diego Sotelo",
+    "team": "Michigan",
     "weightClass": 125,
-    "seed": 20
+    "seed": 20,
+    "floRank": 20
   },
   {
     "draftPriority": 201,
     "name": "Gunner Filipowicz",
+    "team": "Army West Point",
     "weightClass": 165,
-    "seed": 18
+    "seed": 18,
+    "floRank": 23
   },
   {
     "draftPriority": 202,
     "name": "Vincent Mueller",
+    "team": "Columbia",
     "weightClass": 285,
-    "seed": 17
+    "seed": 17,
+    "floRank": 24
   },
   {
     "draftPriority": 203,
     "name": "Brody Baumann",
+    "team": "Purdue",
     "weightClass": 174,
-    "seed": 22
+    "seed": 22,
+    "floRank": 20
   },
   {
     "draftPriority": 204,
     "name": "Nicolar Rivera",
+    "team": "Wisconsin",
     "weightClass": 125,
-    "seed": 23
+    "seed": 23,
+    "floRank": 19
   },
   {
     "draftPriority": 205,
     "name": "Tom Crook",
+    "team": "Virginia Tech",
     "weightClass": 141,
-    "seed": 25
+    "seed": 25,
+    "floRank": 18
   },
   {
     "draftPriority": 206,
     "name": "Tyler Wells",
+    "team": "Oklahoma",
     "weightClass": 141,
-    "seed": 21
+    "seed": 21,
+    "floRank": 22
   },
   {
     "draftPriority": 207,
     "name": "Rune Lawrence",
+    "team": "West Virginia",
     "weightClass": 197,
-    "seed": 21
+    "seed": 21,
+    "floRank": 22
   },
   {
     "draftPriority": 208,
     "name": "Conrad Hendriksen",
+    "team": "Oklahoma",
     "weightClass": 125,
-    "seed": 21
+    "seed": 21,
+    "floRank": 22
   },
   {
     "draftPriority": 209,
     "name": "Blake Boarman",
+    "team": "Purdue",
     "weightClass": 133,
-    "seed": 24
+    "seed": 24,
+    "floRank": 20
   },
   {
     "draftPriority": 210,
     "name": "Gabe Willochell",
+    "team": "Wyoming",
     "weightClass": 149,
-    "seed": 21
+    "seed": 21,
+    "floRank": 23
   },
   {
     "draftPriority": 211,
     "name": "Sean Spidle",
+    "team": "Northwestern",
     "weightClass": 133,
-    "seed": 21
+    "seed": 21,
+    "floRank": 23
   },
   {
     "draftPriority": 212,
     "name": "Eugene Harney",
+    "team": "Morgan State",
     "weightClass": 149,
-    "seed": 18
+    "seed": 18,
+    "floRank": 26
   },
   {
     "draftPriority": 213,
     "name": "Evan Bates",
+    "team": "Missouri",
     "weightClass": 197,
-    "seed": 25
+    "seed": 25,
+    "floRank": 20
   },
   {
     "draftPriority": 214,
     "name": "Gage Walker",
+    "team": "Missouri",
     "weightClass": 133,
-    "seed": 19
+    "seed": 19,
+    "floRank": 25
   },
   {
     "draftPriority": 215,
     "name": "Daschle Lamer",
+    "team": "Oregon State",
     "weightClass": 174,
     "seed": 20
   },
   {
     "draftPriority": 216,
     "name": "Trevor Tinker",
+    "team": "Cal Poly",
     "weightClass": 285,
-    "seed": 22
+    "seed": 22,
+    "floRank": 23
   },
   {
     "draftPriority": 217,
     "name": "Gable Porter",
+    "team": "Virginia",
     "weightClass": 141,
-    "seed": 27
+    "seed": 27,
+    "floRank": 19
   },
   {
     "draftPriority": 218,
     "name": "Colton Washleski",
+    "team": "Virginia",
     "weightClass": 157,
-    "seed": 22
+    "seed": 22,
+    "floRank": 23
   },
   {
     "draftPriority": 219,
     "name": "EJ Parco",
+    "team": "Stanford",
     "weightClass": 165,
-    "seed": 27
+    "seed": 27,
+    "floRank": 19
   },
   {
     "draftPriority": 220,
     "name": "Logan Messer",
+    "team": "George Mason",
     "weightClass": 174,
-    "seed": 19
+    "seed": 19,
+    "floRank": 26
   },
   {
     "draftPriority": 221,
     "name": "Dylan Chappell",
+    "team": "Bucknell",
     "weightClass": 141,
-    "seed": 23
+    "seed": 23,
+    "floRank": 23
   },
   {
     "draftPriority": 222,
     "name": "Tomas Brooker",
+    "team": "Appalachian State",
     "weightClass": 184,
-    "seed": 21
+    "seed": 21,
+    "floRank": 25
   },
   {
     "draftPriority": 223,
     "name": "Jared McGill",
+    "team": "Edinboro",
     "weightClass": 184,
-    "seed": 19
+    "seed": 19,
+    "floRank": 27
   },
   {
     "draftPriority": 224,
     "name": "Carter Nogle",
+    "team": "Air Force",
     "weightClass": 141,
-    "seed": 18
+    "seed": 18,
+    "floRank": 28
   },
   {
     "draftPriority": 225,
     "name": "Kade Brown",
+    "team": "Pittsburgh",
     "weightClass": 149,
-    "seed": 28
+    "seed": 28,
+    "floRank": 19
   },
   {
     "draftPriority": 226,
     "name": "Sergio Desiante",
+    "team": "Virginia Tech",
     "weightClass": 174,
-    "seed": 25
+    "seed": 25,
+    "floRank": 22
   },
   {
     "draftPriority": 227,
     "name": "Sam Goin",
+    "team": "Indiana",
     "weightClass": 184,
-    "seed": 33
+    "seed": 33,
+    "floRank": 15
   },
   {
     "draftPriority": 228,
     "name": "Nick Fine",
+    "team": "Columbia",
     "weightClass": 174,
-    "seed": 16
+    "seed": 16,
+    "floRank": 30
   },
   {
     "draftPriority": 229,
     "name": "Brock Woodcock",
+    "team": "SIU Edwardsville",
     "weightClass": 165,
     "seed": 21
   },
   {
     "draftPriority": 230,
     "name": "Hunter Catka",
+    "team": "Rutgers",
     "weightClass": 285,
-    "seed": 27
+    "seed": 27,
+    "floRank": 21
   },
   {
     "draftPriority": 231,
     "name": "Jonathan Ley",
+    "team": "Navy",
     "weightClass": 157,
-    "seed": 26
+    "seed": 26,
+    "floRank": 22
   },
   {
     "draftPriority": 232,
     "name": "Lorenzo Frezza",
+    "team": "Columbia",
     "weightClass": 141,
-    "seed": 22
+    "seed": 22,
+    "floRank": 26
   },
   {
     "draftPriority": 233,
     "name": "Haiden Drury",
+    "team": "Utah Valley",
     "weightClass": 141,
-    "seed": 19
+    "seed": 19,
+    "floRank": 29
   },
   {
     "draftPriority": 234,
     "name": "Chase Kranitz",
+    "team": "Pittsburgh",
     "weightClass": 184,
-    "seed": 26
+    "seed": 26,
+    "floRank": 23
   },
   {
     "draftPriority": 235,
     "name": "Derek Gilcher",
+    "team": "Indiana",
     "weightClass": 174,
-    "seed": 26
+    "seed": 26,
+    "floRank": 23
   },
   {
     "draftPriority": 236,
     "name": "Sean Seefeldt",
+    "team": "Penn",
     "weightClass": 165,
-    "seed": 24
+    "seed": 24,
+    "floRank": 25
   },
   {
     "draftPriority": 237,
     "name": "Cooper Flynn",
+    "team": "Chattanooga",
     "weightClass": 125,
-    "seed": 26
+    "seed": 26,
+    "floRank": 23
   },
   {
     "draftPriority": 238,
     "name": "Eligh Rivera",
+    "team": "Princeton",
     "weightClass": 149,
     "seed": 22
   },
   {
     "draftPriority": 239,
     "name": "Abraham Wojcikiewicz",
+    "team": "Stanford",
     "weightClass": 184,
-    "seed": 28
+    "seed": 28,
+    "floRank": 22
   },
   {
     "draftPriority": 240,
     "name": "Colton Hawks",
+    "team": "Arizona State",
     "weightClass": 197,
-    "seed": 29
+    "seed": 29,
+    "floRank": 21
   },
   {
     "draftPriority": 241,
     "name": "Cody Goebel",
+    "team": "Wisconsin",
     "weightClass": 165,
-    "seed": 28
+    "seed": 28,
+    "floRank": 22
   },
   {
     "draftPriority": 242,
     "name": "Braden Basile",
+    "team": "Army West Point",
     "weightClass": 141,
-    "seed": 26
+    "seed": 26,
+    "floRank": 24
   },
   {
     "draftPriority": 243,
     "name": "Tyler Lillard",
+    "team": "Indiana",
     "weightClass": 165,
-    "seed": 26
+    "seed": 26,
+    "floRank": 24
   },
   {
     "draftPriority": 244,
     "name": "Brock Zurawski",
+    "team": "Rider",
     "weightClass": 197,
-    "seed": 24
+    "seed": 24,
+    "floRank": 26
   },
   {
     "draftPriority": 245,
     "name": "Alex Semenenko",
+    "team": "Brown",
     "weightClass": 285,
-    "seed": 25
+    "seed": 25,
+    "floRank": 25
   },
   {
     "draftPriority": 246,
     "name": "Kael Lauridsen",
+    "team": "Nebraska",
     "weightClass": 125,
-    "seed": 25
+    "seed": 25,
+    "floRank": 25
   },
   {
     "draftPriority": 247,
     "name": "Devin Wasley",
+    "team": "North Dakota State",
     "weightClass": 197,
-    "seed": 22
+    "seed": 22,
+    "floRank": 28
   },
   {
     "draftPriority": 248,
     "name": "Kaden Cassidy",
+    "team": "George Mason",
     "weightClass": 149,
-    "seed": 29
+    "seed": 29,
+    "floRank": 22
   },
   {
     "draftPriority": 249,
     "name": "Braxton Brown",
+    "team": "Maryland",
     "weightClass": 133,
-    "seed": 23
+    "seed": 23,
+    "floRank": 27
   },
   {
     "draftPriority": 250,
     "name": "Dylan Evans",
+    "team": "Pittsburgh",
     "weightClass": 157,
-    "seed": 27
+    "seed": 27,
+    "floRank": 24
   },
   {
     "draftPriority": 251,
     "name": "Mac Church",
+    "team": "Virginia Tech",
     "weightClass": 165,
-    "seed": 25
+    "seed": 25,
+    "floRank": 26
   },
   {
     "draftPriority": 252,
     "name": "Ben Vanadia",
+    "team": "Purdue",
     "weightClass": 197,
-    "seed": 26
+    "seed": 26,
+    "floRank": 25
   },
   {
     "draftPriority": 253,
     "name": "Anderson Heap",
+    "team": "Davidson",
     "weightClass": 149,
-    "seed": 26
+    "seed": 26,
+    "floRank": 25
   },
   {
     "draftPriority": 254,
     "name": "Brady Roark",
+    "team": "South Dakota State",
     "weightClass": 125,
-    "seed": 27
+    "seed": 27,
+    "floRank": 24
   },
   {
     "draftPriority": 255,
     "name": "Ceasar Garza",
+    "team": "Cal Poly",
     "weightClass": 184,
-    "seed": 23
+    "seed": 23,
+    "floRank": 28
   },
   {
     "draftPriority": 256,
     "name": "Garrett Thompson",
+    "team": "Ohio",
     "weightClass": 174,
-    "seed": 24
+    "seed": 24,
+    "floRank": 27
   },
   {
     "draftPriority": 257,
     "name": "Chris Earnest",
+    "team": "Kent State",
     "weightClass": 165,
-    "seed": 23
+    "seed": 23,
+    "floRank": 28
   },
   {
     "draftPriority": 258,
     "name": "Mikey Squires",
+    "team": "Binghamton",
     "weightClass": 197,
     "seed": 23
   },
   {
     "draftPriority": 259,
     "name": "Stephan Monchery",
+    "team": "Appalachian State",
     "weightClass": 285,
     "seed": 23
   },
   {
     "draftPriority": 260,
     "name": "Ayden Smith",
+    "team": "Rutgers",
     "weightClass": 125,
-    "seed": 24
+    "seed": 24,
+    "floRank": 27
   },
   {
     "draftPriority": 261,
     "name": "Kaleb Burgess",
+    "team": "Buffalo",
     "weightClass": 157,
-    "seed": 23
+    "seed": 23,
+    "floRank": 28
   },
   {
     "draftPriority": 262,
     "name": "Garrett Grice",
+    "team": "Iowa State",
     "weightClass": 133,
-    "seed": 28
+    "seed": 28,
+    "floRank": 24
   },
   {
     "draftPriority": 263,
     "name": "Davis Motyka",
+    "team": "Penn",
     "weightClass": 125,
-    "seed": 22
+    "seed": 22,
+    "floRank": 29
   },
   {
     "draftPriority": 264,
     "name": "Dylan Shawver",
+    "team": "Rutgers",
     "weightClass": 133,
-    "seed": 26
+    "seed": 26,
+    "floRank": 26
   },
   {
     "draftPriority": 265,
     "name": "Michael Gioffre",
+    "team": "Illinois",
     "weightClass": 149,
-    "seed": 25
+    "seed": 25,
+    "floRank": 27
   },
   {
     "draftPriority": 266,
     "name": "Nick Fox",
+    "team": "Northern Iowa",
     "weightClass": 184,
-    "seed": 29
+    "seed": 29,
+    "floRank": 24
   },
   {
     "draftPriority": 267,
     "name": "Pierson Manville",
+    "team": "Arizona State",
     "weightClass": 141,
-    "seed": 28
+    "seed": 28,
+    "floRank": 25
   },
   {
     "draftPriority": 268,
     "name": "Gavin Drexler",
+    "team": "North Dakota State",
     "weightClass": 157,
-    "seed": 28
+    "seed": 28,
+    "floRank": 25
   },
   {
     "draftPriority": 269,
     "name": "Joe Curtis",
+    "team": "Columbia",
     "weightClass": 184,
     "seed": 24
   },
   {
     "draftPriority": 270,
     "name": "Andrew Clark",
+    "team": "Rutgers",
     "weightClass": 149,
-    "seed": 24
+    "seed": 24,
+    "floRank": 29
   },
   {
     "draftPriority": 271,
     "name": "Jaivon Jones",
+    "team": "Little Rock",
     "weightClass": 157,
     "seed": 24
   },
   {
     "draftPriority": 272,
     "name": "Connor Barket",
+    "team": "Duke",
     "weightClass": 285,
-    "seed": 24
+    "seed": 24,
+    "floRank": 30
   },
   {
     "draftPriority": 273,
     "name": "Kael Wisler",
+    "team": "Michigan State",
     "weightClass": 197,
-    "seed": 28
+    "seed": 28,
+    "floRank": 27
   },
   {
     "draftPriority": 274,
     "name": "Collin Carrigan",
+    "team": "North Carolina",
     "weightClass": 174,
-    "seed": 27
+    "seed": 27,
+    "floRank": 28
   },
   {
     "draftPriority": 275,
     "name": "Malachi DuVall",
+    "team": "George Mason",
     "weightClass": 184,
     "seed": 25
   },
   {
     "draftPriority": 276,
     "name": "Mason Shrader",
+    "team": "Central Michigan",
     "weightClass": 157,
     "seed": 25
   },
   {
     "draftPriority": 277,
     "name": "Will Betancourt",
+    "team": "Rider",
     "weightClass": 133,
-    "seed": 25
+    "seed": 25,
+    "floRank": 30
   },
   {
     "draftPriority": 278,
     "name": "Jack Forbes",
+    "team": "Utah Valley",
     "weightClass": 285,
-    "seed": 30
+    "seed": 30,
+    "floRank": 26
   },
   {
     "draftPriority": 279,
     "name": "Bryce Lowery",
+    "team": "Indiana",
     "weightClass": 157,
-    "seed": 29
+    "seed": 29,
+    "floRank": 27
   },
   {
     "draftPriority": 280,
     "name": "Gabe Arnold",
+    "team": "Iowa",
     "weightClass": 197,
-    "seed": 27
+    "seed": 27,
+    "floRank": 29
   },
   {
     "draftPriority": 281,
     "name": "Tyler Chappell",
+    "team": "Pittsburgh",
     "weightClass": 125,
-    "seed": 29
+    "seed": 29,
+    "floRank": 28
   },
   {
     "draftPriority": 282,
     "name": "Luke Willochell",
+    "team": "Wyoming",
     "weightClass": 133,
-    "seed": 29
+    "seed": 29,
+    "floRank": 28
   },
   {
     "draftPriority": 283,
     "name": "Mack Mauger",
+    "team": "Missouri",
     "weightClass": 125,
-    "seed": 32
+    "seed": 32,
+    "floRank": 26
   },
   {
     "draftPriority": 284,
     "name": "Avery Bassett",
+    "team": "Lock Haven",
     "weightClass": 174,
-    "seed": 29
+    "seed": 29,
+    "floRank": 29
   },
   {
     "draftPriority": 285,
     "name": "Andrew Binni",
+    "team": "Navy",
     "weightClass": 125,
-    "seed": 28
+    "seed": 28,
+    "floRank": 30
   },
   {
     "draftPriority": 286,
     "name": "Jordan Titus",
+    "team": "West Virginia",
     "weightClass": 141,
-    "seed": 29
+    "seed": 29,
+    "floRank": 30
   },
   {
     "draftPriority": 287,
     "name": "Aidan Brenot",
+    "team": "North Dakota State",
     "weightClass": 184,
     "seed": 27
   },
   {
     "draftPriority": 288,
     "name": "Andre Gonzales",
+    "team": "Cal Poly",
     "weightClass": 149,
     "seed": 27
   },
   {
     "draftPriority": 289,
     "name": "Marcel Lopez",
+    "team": "SIU Edwardsville",
     "weightClass": 133,
     "seed": 27
   },
   {
     "draftPriority": 290,
     "name": "Tyler Bienus",
+    "team": "Bucknell",
     "weightClass": 184,
-    "seed": 30
+    "seed": 30,
+    "floRank": 30
   },
   {
     "draftPriority": 291,
     "name": "Brenan Morgan",
+    "team": "Virginia",
     "weightClass": 285,
-    "seed": 31
+    "seed": 31,
+    "floRank": 29
   },
   {
     "draftPriority": 292,
     "name": "Kael Bennie",
+    "team": "Utah Valley",
     "weightClass": 197,
-    "seed": 31
+    "seed": 31,
+    "floRank": 30
   },
   {
     "draftPriority": 293,
     "name": "Holden Garcia",
+    "team": "Princeton",
     "weightClass": 174,
     "seed": 28
   },
   {
     "draftPriority": 294,
     "name": "Jarrett Stoner",
+    "team": "Missouri",
     "weightClass": 285,
     "seed": 28
   },
   {
     "draftPriority": 295,
     "name": "Cody Walsh",
+    "team": "Drexel",
     "weightClass": 165,
-    "seed": 32
+    "seed": 32,
+    "floRank": 30
   },
   {
     "draftPriority": 296,
     "name": "Ryan Burgos",
+    "team": "Edinboro",
     "weightClass": 165,
     "seed": 29
   },
   {
     "draftPriority": 297,
     "name": "Luke Rasmussen",
+    "team": "South Dakota State",
     "weightClass": 285,
     "seed": 29
   },
   {
     "draftPriority": 298,
     "name": "Dario Lemus",
+    "team": "Maryland",
     "weightClass": 141,
     "seed": 30
   },
   {
     "draftPriority": 299,
     "name": "Thomas Snipes",
+    "team": "The Citadel",
     "weightClass": 165,
     "seed": 30
   },
   {
     "draftPriority": 300,
     "name": "Riley Davis",
+    "team": "Wyoming",
     "weightClass": 174,
     "seed": 30
   },
   {
     "draftPriority": 301,
     "name": "Dylan Layton",
+    "team": "Rider",
     "weightClass": 149,
     "seed": 30
   },
   {
     "draftPriority": 302,
     "name": "Kade Rule",
+    "team": "Chattanooga",
     "weightClass": 197,
     "seed": 30
   },
   {
     "draftPriority": 303,
     "name": "Laird Root",
+    "team": "North Carolina",
     "weightClass": 157,
     "seed": 30
   },
   {
     "draftPriority": 304,
     "name": "Sulayman Bah",
+    "team": "Columbia",
     "weightClass": 125,
     "seed": 30
   },
   {
     "draftPriority": 305,
     "name": "Gabe Whisenhunt",
+    "team": "Oregon State",
     "weightClass": 133,
     "seed": 30
   },
   {
     "draftPriority": 306,
     "name": "Billy DeKraker",
+    "team": "Northwestern",
     "weightClass": 141,
     "seed": 31
   },
   {
     "draftPriority": 307,
     "name": "Mahonri Rushton",
+    "team": "Northern Colorado",
     "weightClass": 184,
     "seed": 31
   },
   {
     "draftPriority": 308,
     "name": "Jared Keslar",
+    "team": "Pittsburgh",
     "weightClass": 165,
     "seed": 31
   },
   {
     "draftPriority": 309,
     "name": "Cael Valencia",
+    "team": "Arizona State",
     "weightClass": 174,
     "seed": 31
   },
   {
     "draftPriority": 310,
     "name": "Gable Strickland",
+    "team": "Lock Haven",
     "weightClass": 133,
     "seed": 31
   },
   {
     "draftPriority": 311,
     "name": "Ryan Michaels",
+    "team": "Edinboro",
     "weightClass": 149,
     "seed": 31
   },
   {
     "draftPriority": 312,
     "name": "Garrett McChesney",
+    "team": "Edinboro",
     "weightClass": 157,
     "seed": 31
   },
   {
     "draftPriority": 313,
     "name": "Desmond Pleasant",
+    "team": "Drexel",
     "weightClass": 125,
     "seed": 31
   },
   {
     "draftPriority": 314,
     "name": "Matthew Martino",
+    "team": "Princeton",
     "weightClass": 141,
     "seed": 32
   },
   {
     "draftPriority": 315,
     "name": "Luke Condon",
+    "team": "Wisconsin",
     "weightClass": 174,
     "seed": 32
   },
   {
     "draftPriority": 316,
     "name": "Caleb Uhlenhopp",
+    "team": "Utah Valley",
     "weightClass": 184,
     "seed": 32
   },
   {
     "draftPriority": 317,
     "name": "Andrew Austin",
+    "team": "Central Michigan",
     "weightClass": 133,
     "seed": 32
   },
   {
     "draftPriority": 318,
     "name": "Clayton Jones",
+    "team": "Michigan State",
     "weightClass": 149,
     "seed": 32
   },
   {
     "draftPriority": 319,
     "name": "Jeb Prechtel",
+    "team": "Bellarmine",
     "weightClass": 157,
     "seed": 32
   },
   {
     "draftPriority": 320,
     "name": "Blake Schaffer",
+    "team": "Kent State",
     "weightClass": 197,
     "seed": 32
   },
   {
     "draftPriority": 321,
     "name": "Emmanuel Ulrich",
+    "team": "American",
     "weightClass": 285,
     "seed": 32
   },
   {
     "draftPriority": 322,
     "name": "Jace Schafer",
+    "team": "Bloomsburg",
     "weightClass": 125,
     "seed": 33
   },
   {
     "draftPriority": 323,
     "name": "Carter Schmidt",
+    "team": "Oklahoma",
     "weightClass": 133,
     "seed": 33
   },
   {
     "draftPriority": 324,
     "name": "Aldo Hernandez",
+    "team": "Appalachian State",
     "weightClass": 141,
     "seed": 33
   },
   {
     "draftPriority": 325,
     "name": "Austin McBurney",
+    "team": "Brown",
     "weightClass": 149,
     "seed": 33
   },
   {
     "draftPriority": 326,
     "name": "Yannis Charles",
+    "team": "Morgan State",
     "weightClass": 157,
     "seed": 33
   },
   {
     "draftPriority": 327,
     "name": "Ryan Vigil",
+    "team": "VMI",
     "weightClass": 165,
     "seed": 33
   },
   {
     "draftPriority": 328,
     "name": "Grant O`Dell",
+    "team": "Bellarmine",
     "weightClass": 174,
     "seed": 33
   },
   {
     "draftPriority": 329,
     "name": "Karson Tompkins",
+    "team": "Air Force",
     "weightClass": 197,
     "seed": 33
   },
   {
     "draftPriority": 330,
     "name": "Mason Rebuck",
+    "team": "Bloomsburg",
     "weightClass": 285,
     "seed": 33
   }
