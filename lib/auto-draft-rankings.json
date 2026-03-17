@@ -1,0 +1,1982 @@
+[
+  {
+    "draftPriority": 1,
+    "name": "Mitchell Mesenbrink",
+    "weightClass": 165,
+    "seed": 1
+  },
+  {
+    "draftPriority": 2,
+    "name": "Jesse Mendez",
+    "weightClass": 141,
+    "seed": 1
+  },
+  {
+    "draftPriority": 3,
+    "name": "Levi Haines",
+    "weightClass": 174,
+    "seed": 1
+  },
+  {
+    "draftPriority": 4,
+    "name": "Shayne Van Ness",
+    "weightClass": 149,
+    "seed": 1
+  },
+  {
+    "draftPriority": 5,
+    "name": "Josh Barr",
+    "weightClass": 197,
+    "seed": 1
+  },
+  {
+    "draftPriority": 6,
+    "name": "Rocky Elam",
+    "weightClass": 197,
+    "seed": 2
+  },
+  {
+    "draftPriority": 7,
+    "name": "Yonger Bastida",
+    "weightClass": 285,
+    "seed": 1
+  },
+  {
+    "draftPriority": 8,
+    "name": "Sergio Vega",
+    "weightClass": 141,
+    "seed": 2
+  },
+  {
+    "draftPriority": 9,
+    "name": "Rocco Welsh",
+    "weightClass": 184,
+    "seed": 1
+  },
+  {
+    "draftPriority": 10,
+    "name": "Brock Hardy",
+    "weightClass": 141,
+    "seed": 3
+  },
+  {
+    "draftPriority": 11,
+    "name": "Aeoden Sinclair",
+    "weightClass": 184,
+    "seed": 2
+  },
+  {
+    "draftPriority": 12,
+    "name": "Angelo Ferrari",
+    "weightClass": 184,
+    "seed": 7
+  },
+  {
+    "draftPriority": 13,
+    "name": "Luke Lilledahl",
+    "weightClass": 125,
+    "seed": 1
+  },
+  {
+    "draftPriority": 14,
+    "name": "Max McEnelly",
+    "weightClass": 184,
+    "seed": 3
+  },
+  {
+    "draftPriority": 15,
+    "name": "PJ Duke",
+    "weightClass": 157,
+    "seed": 1
+  },
+  {
+    "draftPriority": 16,
+    "name": "Isaac Trumble",
+    "weightClass": 285,
+    "seed": 2
+  },
+  {
+    "draftPriority": 17,
+    "name": "Antrell Taylor",
+    "weightClass": 157,
+    "seed": 2
+  },
+  {
+    "draftPriority": 18,
+    "name": "Ben Davino",
+    "weightClass": 133,
+    "seed": 2
+  },
+  {
+    "draftPriority": 19,
+    "name": "Marcus Blaze",
+    "weightClass": 133,
+    "seed": 3
+  },
+  {
+    "draftPriority": 20,
+    "name": "Simon Ruiz",
+    "weightClass": 174,
+    "seed": 2
+  },
+  {
+    "draftPriority": 21,
+    "name": "Jaxon Joy",
+    "weightClass": 149,
+    "seed": 2
+  },
+  {
+    "draftPriority": 22,
+    "name": "Joey Blaze",
+    "weightClass": 165,
+    "seed": 2
+  },
+  {
+    "draftPriority": 23,
+    "name": "Jax Forrest",
+    "weightClass": 133,
+    "seed": 1
+  },
+  {
+    "draftPriority": 24,
+    "name": "Eddie Ventresca",
+    "weightClass": 125,
+    "seed": 2
+  },
+  {
+    "draftPriority": 25,
+    "name": "Christopher Minto",
+    "weightClass": 174,
+    "seed": 3
+  },
+  {
+    "draftPriority": 26,
+    "name": "Taye Ghadiali",
+    "weightClass": 285,
+    "seed": 3
+  },
+  {
+    "draftPriority": 27,
+    "name": "Stephen Little",
+    "weightClass": 197,
+    "seed": 3
+  },
+  {
+    "draftPriority": 28,
+    "name": "Collin Gaj",
+    "weightClass": 149,
+    "seed": 4
+  },
+  {
+    "draftPriority": 29,
+    "name": "Nicco Ruiz",
+    "weightClass": 165,
+    "seed": 4
+  },
+  {
+    "draftPriority": 30,
+    "name": "Kaleb Larkin",
+    "weightClass": 157,
+    "seed": 4
+  },
+  {
+    "draftPriority": 31,
+    "name": "Carson Kharchla",
+    "weightClass": 174,
+    "seed": 4
+  },
+  {
+    "draftPriority": 32,
+    "name": "Joey Novak",
+    "weightClass": 197,
+    "seed": 5
+  },
+  {
+    "draftPriority": 33,
+    "name": "Sheldon Seymour",
+    "weightClass": 125,
+    "seed": 4
+  },
+  {
+    "draftPriority": 34,
+    "name": "AJ Ferrari",
+    "weightClass": 285,
+    "seed": 4
+  },
+  {
+    "draftPriority": 35,
+    "name": "Sonny Sasso",
+    "weightClass": 197,
+    "seed": 4
+  },
+  {
+    "draftPriority": 36,
+    "name": "Koy Buesgens",
+    "weightClass": 149,
+    "seed": 5
+  },
+  {
+    "draftPriority": 37,
+    "name": "Nic Bouzakis",
+    "weightClass": 125,
+    "seed": 3
+  },
+  {
+    "draftPriority": 38,
+    "name": "Luke Stanich",
+    "weightClass": 141,
+    "seed": 5
+  },
+  {
+    "draftPriority": 39,
+    "name": "LaDarion Lockett",
+    "weightClass": 165,
+    "seed": 5
+  },
+  {
+    "draftPriority": 40,
+    "name": "Landon Robideau",
+    "weightClass": 157,
+    "seed": 5
+  },
+  {
+    "draftPriority": 41,
+    "name": "Patrick Kennedy",
+    "weightClass": 174,
+    "seed": 5
+  },
+  {
+    "draftPriority": 42,
+    "name": "Kyler Larkin",
+    "weightClass": 133,
+    "seed": 5
+  },
+  {
+    "draftPriority": 43,
+    "name": "Meyer Shapiro",
+    "weightClass": 157,
+    "seed": 3
+  },
+  {
+    "draftPriority": 44,
+    "name": "Aaron Seidel",
+    "weightClass": 133,
+    "seed": 4
+  },
+  {
+    "draftPriority": 45,
+    "name": "Troy Spratley",
+    "weightClass": 125,
+    "seed": 5
+  },
+  {
+    "draftPriority": 46,
+    "name": "Nick Feldman",
+    "weightClass": 285,
+    "seed": 5
+  },
+  {
+    "draftPriority": 47,
+    "name": "Mikey Caliendo",
+    "weightClass": 165,
+    "seed": 3
+  },
+  {
+    "draftPriority": 48,
+    "name": "Vince Cornella",
+    "weightClass": 141,
+    "seed": 6
+  },
+  {
+    "draftPriority": 49,
+    "name": "Silas Allred",
+    "weightClass": 184,
+    "seed": 8
+  },
+  {
+    "draftPriority": 50,
+    "name": "James Conway",
+    "weightClass": 184,
+    "seed": 4
+  },
+  {
+    "draftPriority": 51,
+    "name": "Anthony Echemendia",
+    "weightClass": 141,
+    "seed": 4
+  },
+  {
+    "draftPriority": 52,
+    "name": "LJ Araujo",
+    "weightClass": 165,
+    "seed": 6
+  },
+  {
+    "draftPriority": 53,
+    "name": "Cody Merrill",
+    "weightClass": 197,
+    "seed": 7
+  },
+  {
+    "draftPriority": 54,
+    "name": "Eddie Neitenbach",
+    "weightClass": 184,
+    "seed": 6
+  },
+  {
+    "draftPriority": 55,
+    "name": "Nasir Bailey",
+    "weightClass": 141,
+    "seed": 7
+  },
+  {
+    "draftPriority": 56,
+    "name": "Cross Wasilewski",
+    "weightClass": 149,
+    "seed": 3
+  },
+  {
+    "draftPriority": 57,
+    "name": "Cam Steed",
+    "weightClass": 174,
+    "seed": 7
+  },
+  {
+    "draftPriority": 58,
+    "name": "Drake Ayala",
+    "weightClass": 133,
+    "seed": 6
+  },
+  {
+    "draftPriority": 59,
+    "name": "Nico Provo",
+    "weightClass": 125,
+    "seed": 7
+  },
+  {
+    "draftPriority": 60,
+    "name": "Casey Swiderski",
+    "weightClass": 149,
+    "seed": 8
+  },
+  {
+    "draftPriority": 61,
+    "name": "Ethan Stiles",
+    "weightClass": 149,
+    "seed": 7
+  },
+  {
+    "draftPriority": 62,
+    "name": "Ben Kueter",
+    "weightClass": 285,
+    "seed": 8
+  },
+  {
+    "draftPriority": 63,
+    "name": "Brock Mantanona",
+    "weightClass": 184,
+    "seed": 5
+  },
+  {
+    "draftPriority": 64,
+    "name": "Kannon Webster",
+    "weightClass": 157,
+    "seed": 7
+  },
+  {
+    "draftPriority": 65,
+    "name": "Aden Valencia",
+    "weightClass": 149,
+    "seed": 10
+  },
+  {
+    "draftPriority": 66,
+    "name": "Jore Volk",
+    "weightClass": 125,
+    "seed": 6
+  },
+  {
+    "draftPriority": 67,
+    "name": "Justin Rademacher",
+    "weightClass": 197,
+    "seed": 6
+  },
+  {
+    "draftPriority": 68,
+    "name": "Konner Doucet",
+    "weightClass": 285,
+    "seed": 7
+  },
+  {
+    "draftPriority": 69,
+    "name": "Alex Facundo",
+    "weightClass": 174,
+    "seed": 8
+  },
+  {
+    "draftPriority": 70,
+    "name": "Angelo Posada",
+    "weightClass": 197,
+    "seed": 9
+  },
+  {
+    "draftPriority": 71,
+    "name": "Lucas Byrd",
+    "weightClass": 133,
+    "seed": 7
+  },
+  {
+    "draftPriority": 72,
+    "name": "Cole Mirasola",
+    "weightClass": 285,
+    "seed": 9
+  },
+  {
+    "draftPriority": 73,
+    "name": "Joey Olivieri",
+    "weightClass": 141,
+    "seed": 9
+  },
+  {
+    "draftPriority": 74,
+    "name": "Brandon Cannon",
+    "weightClass": 157,
+    "seed": 8
+  },
+  {
+    "draftPriority": 75,
+    "name": "Jude Swisher",
+    "weightClass": 157,
+    "seed": 6
+  },
+  {
+    "draftPriority": 76,
+    "name": "Matty Singleton",
+    "weightClass": 174,
+    "seed": 6
+  },
+  {
+    "draftPriority": 77,
+    "name": "Caleb Tyus",
+    "weightClass": 149,
+    "seed": 6
+  },
+  {
+    "draftPriority": 78,
+    "name": "Nathan Taylor",
+    "weightClass": 285,
+    "seed": 6
+  },
+  {
+    "draftPriority": 79,
+    "name": "Mac Stout",
+    "weightClass": 197,
+    "seed": 10
+  },
+  {
+    "draftPriority": 80,
+    "name": "Dylan Fishback",
+    "weightClass": 184,
+    "seed": 12
+  },
+  {
+    "draftPriority": 81,
+    "name": "Dean Peterson",
+    "weightClass": 125,
+    "seed": 8
+  },
+  {
+    "draftPriority": 82,
+    "name": "Andrew Sparks",
+    "weightClass": 165,
+    "seed": 13
+  },
+  {
+    "draftPriority": 83,
+    "name": "Ryder Downey",
+    "weightClass": 165,
+    "seed": 11
+  },
+  {
+    "draftPriority": 84,
+    "name": "Lachlan McNeil",
+    "weightClass": 149,
+    "seed": 11
+  },
+  {
+    "draftPriority": 85,
+    "name": "Max Brignola",
+    "weightClass": 165,
+    "seed": 7
+  },
+  {
+    "draftPriority": 86,
+    "name": "Jack Consiglio",
+    "weightClass": 141,
+    "seed": 10
+  },
+  {
+    "draftPriority": 87,
+    "name": "Vincent Robinson",
+    "weightClass": 125,
+    "seed": 12
+  },
+  {
+    "draftPriority": 88,
+    "name": "Ty Watters",
+    "weightClass": 157,
+    "seed": 11
+  },
+  {
+    "draftPriority": 89,
+    "name": "David Szuba",
+    "weightClass": 285,
+    "seed": 10
+  },
+  {
+    "draftPriority": 90,
+    "name": "Daniel Cardenas",
+    "weightClass": 157,
+    "seed": 9
+  },
+  {
+    "draftPriority": 91,
+    "name": "Vance Vombaur",
+    "weightClass": 141,
+    "seed": 8
+  },
+  {
+    "draftPriority": 92,
+    "name": "MJ Gaitan",
+    "weightClass": 174,
+    "seed": 11
+  },
+  {
+    "draftPriority": 93,
+    "name": "Matty Bianchi",
+    "weightClass": 165,
+    "seed": 8
+  },
+  {
+    "draftPriority": 94,
+    "name": "Tyler Knox",
+    "weightClass": 133,
+    "seed": 15
+  },
+  {
+    "draftPriority": 95,
+    "name": "Carter Young",
+    "weightClass": 149,
+    "seed": 12
+  },
+  {
+    "draftPriority": 96,
+    "name": "Braxton Amos",
+    "weightClass": 285,
+    "seed": 12
+  },
+  {
+    "draftPriority": 97,
+    "name": "Shane Cartagena-Walsh",
+    "weightClass": 184,
+    "seed": 11
+  },
+  {
+    "draftPriority": 98,
+    "name": "DJ Parker",
+    "weightClass": 197,
+    "seed": 8
+  },
+  {
+    "draftPriority": 99,
+    "name": "Chris Moore",
+    "weightClass": 184,
+    "seed": 9
+  },
+  {
+    "draftPriority": 100,
+    "name": "Maximo Renteria",
+    "weightClass": 125,
+    "seed": 9
+  },
+  {
+    "draftPriority": 101,
+    "name": "Isaac Dean",
+    "weightClass": 184,
+    "seed": 13
+  },
+  {
+    "draftPriority": 102,
+    "name": "Jacob Van Dee",
+    "weightClass": 133,
+    "seed": 13
+  },
+  {
+    "draftPriority": 103,
+    "name": "Luke Simcox",
+    "weightClass": 141,
+    "seed": 12
+  },
+  {
+    "draftPriority": 104,
+    "name": "Carter Schubert",
+    "weightClass": 174,
+    "seed": 12
+  },
+  {
+    "draftPriority": 105,
+    "name": "Bryce Hepner",
+    "weightClass": 165,
+    "seed": 9
+  },
+  {
+    "draftPriority": 106,
+    "name": "Myles Takats",
+    "weightClass": 174,
+    "seed": 10
+  },
+  {
+    "draftPriority": 107,
+    "name": "Dominick Serrano",
+    "weightClass": 133,
+    "seed": 9
+  },
+  {
+    "draftPriority": 108,
+    "name": "Camden McDanel",
+    "weightClass": 197,
+    "seed": 11
+  },
+  {
+    "draftPriority": 109,
+    "name": "Beau Mantanona",
+    "weightClass": 174,
+    "seed": 9
+  },
+  {
+    "draftPriority": 110,
+    "name": "Stevo Poulin",
+    "weightClass": 125,
+    "seed": 13
+  },
+  {
+    "draftPriority": 111,
+    "name": "CJ Composto",
+    "weightClass": 141,
+    "seed": 11
+  },
+  {
+    "draftPriority": 112,
+    "name": "Tyler Ferrara",
+    "weightClass": 133,
+    "seed": 11
+  },
+  {
+    "draftPriority": 113,
+    "name": "Logan Rozynski",
+    "weightClass": 157,
+    "seed": 10
+  },
+  {
+    "draftPriority": 114,
+    "name": "Bennett Berge",
+    "weightClass": 197,
+    "seed": 13
+  },
+  {
+    "draftPriority": 115,
+    "name": "Marc-Anthony McGowan",
+    "weightClass": 125,
+    "seed": 10
+  },
+  {
+    "draftPriority": 116,
+    "name": "Connor Euton",
+    "weightClass": 165,
+    "seed": 15
+  },
+  {
+    "draftPriority": 117,
+    "name": "David Evans",
+    "weightClass": 149,
+    "seed": 9
+  },
+  {
+    "draftPriority": 118,
+    "name": "Luke Geog",
+    "weightClass": 197,
+    "seed": 12
+  },
+  {
+    "draftPriority": 119,
+    "name": "Jacob Moran",
+    "weightClass": 125,
+    "seed": 14
+  },
+  {
+    "draftPriority": 120,
+    "name": "Moses Espinoza-Owens",
+    "weightClass": 174,
+    "seed": 14
+  },
+  {
+    "draftPriority": 121,
+    "name": "Caleb Rathjen",
+    "weightClass": 149,
+    "seed": 14
+  },
+  {
+    "draftPriority": 122,
+    "name": "Will Denny",
+    "weightClass": 165,
+    "seed": 10
+  },
+  {
+    "draftPriority": 123,
+    "name": "Maximilian Leete",
+    "weightClass": 133,
+    "seed": 10
+  },
+  {
+    "draftPriority": 124,
+    "name": "Zan Fugitt",
+    "weightClass": 133,
+    "seed": 16
+  },
+  {
+    "draftPriority": 125,
+    "name": "Koy Hopke",
+    "weightClass": 285,
+    "seed": 14
+  },
+  {
+    "draftPriority": 126,
+    "name": "Ethen Miller",
+    "weightClass": 157,
+    "seed": 14
+  },
+  {
+    "draftPriority": 127,
+    "name": "Evan Mougalian",
+    "weightClass": 133,
+    "seed": 12
+  },
+  {
+    "draftPriority": 128,
+    "name": "Cesar Alvan",
+    "weightClass": 165,
+    "seed": 12
+  },
+  {
+    "draftPriority": 129,
+    "name": "Carter Baer",
+    "weightClass": 174,
+    "seed": 13
+  },
+  {
+    "draftPriority": 130,
+    "name": "Joseph Zargo",
+    "weightClass": 149,
+    "seed": 13
+  },
+  {
+    "draftPriority": 131,
+    "name": "Ryan Jack",
+    "weightClass": 141,
+    "seed": 16
+  },
+  {
+    "draftPriority": 132,
+    "name": "Braeden Scoles",
+    "weightClass": 165,
+    "seed": 17
+  },
+  {
+    "draftPriority": 133,
+    "name": "Braeden Davis",
+    "weightClass": 141,
+    "seed": 14
+  },
+  {
+    "draftPriority": 134,
+    "name": "Andrew Barbosa",
+    "weightClass": 165,
+    "seed": 14
+  },
+  {
+    "draftPriority": 135,
+    "name": "Gabe Sollars",
+    "weightClass": 197,
+    "seed": 14
+  },
+  {
+    "draftPriority": 136,
+    "name": "T.K. Davis",
+    "weightClass": 133,
+    "seed": 17
+  },
+  {
+    "draftPriority": 137,
+    "name": "Spencer Lanosga",
+    "weightClass": 285,
+    "seed": 13
+  },
+  {
+    "draftPriority": 138,
+    "name": "Paddy Gallagher",
+    "weightClass": 165,
+    "seed": 16
+  },
+  {
+    "draftPriority": 139,
+    "name": "Jacob Frost",
+    "weightClass": 149,
+    "seed": 16
+  },
+  {
+    "draftPriority": 140,
+    "name": "Koda Holeman",
+    "weightClass": 125,
+    "seed": 15
+  },
+  {
+    "draftPriority": 141,
+    "name": "Vinny Zerban",
+    "weightClass": 157,
+    "seed": 12
+  },
+  {
+    "draftPriority": 142,
+    "name": "Danny Wask",
+    "weightClass": 174,
+    "seed": 15
+  },
+  {
+    "draftPriority": 143,
+    "name": "Sal Perrine",
+    "weightClass": 184,
+    "seed": 15
+  },
+  {
+    "draftPriority": 144,
+    "name": "Christian Carroll",
+    "weightClass": 285,
+    "seed": 18
+  },
+  {
+    "draftPriority": 145,
+    "name": "Caleb Campos",
+    "weightClass": 184,
+    "seed": 10
+  },
+  {
+    "draftPriority": 146,
+    "name": "Brady Colbert",
+    "weightClass": 285,
+    "seed": 15
+  },
+  {
+    "draftPriority": 147,
+    "name": "Jaden Bullock",
+    "weightClass": 184,
+    "seed": 14
+  },
+  {
+    "draftPriority": 148,
+    "name": "Ethan Berginc",
+    "weightClass": 133,
+    "seed": 14
+  },
+  {
+    "draftPriority": 149,
+    "name": "Caedyn Ricciardi",
+    "weightClass": 141,
+    "seed": 17
+  },
+  {
+    "draftPriority": 150,
+    "name": "Rylan Rogers",
+    "weightClass": 184,
+    "seed": 16
+  },
+  {
+    "draftPriority": 151,
+    "name": "Ezekiel Witt",
+    "weightClass": 125,
+    "seed": 16
+  },
+  {
+    "draftPriority": 152,
+    "name": "Derek Raike",
+    "weightClass": 157,
+    "seed": 13
+  },
+  {
+    "draftPriority": 153,
+    "name": "Zack Ryder",
+    "weightClass": 184,
+    "seed": 22
+  },
+  {
+    "draftPriority": 154,
+    "name": "Brian Soldano",
+    "weightClass": 184,
+    "seed": 20
+  },
+  {
+    "draftPriority": 155,
+    "name": "Remy Cotton",
+    "weightClass": 197,
+    "seed": 15
+  },
+  {
+    "draftPriority": 156,
+    "name": "Ryder Block",
+    "weightClass": 149,
+    "seed": 15
+  },
+  {
+    "draftPriority": 157,
+    "name": "Tyler Klinsky",
+    "weightClass": 125,
+    "seed": 11
+  },
+  {
+    "draftPriority": 158,
+    "name": "Jared Simma",
+    "weightClass": 174,
+    "seed": 17
+  },
+  {
+    "draftPriority": 159,
+    "name": "Devon Dawson",
+    "weightClass": 285,
+    "seed": 11
+  },
+  {
+    "draftPriority": 160,
+    "name": "Kysen Terukina",
+    "weightClass": 125,
+    "seed": 19
+  },
+  {
+    "draftPriority": 161,
+    "name": "Julian Tagg",
+    "weightClass": 141,
+    "seed": 20
+  },
+  {
+    "draftPriority": 162,
+    "name": "Cael Swensen",
+    "weightClass": 157,
+    "seed": 16
+  },
+  {
+    "draftPriority": 163,
+    "name": "Jett Strickenberger",
+    "weightClass": 125,
+    "seed": 17
+  },
+  {
+    "draftPriority": 164,
+    "name": "Zayne Lehman",
+    "weightClass": 197,
+    "seed": 19
+  },
+  {
+    "draftPriority": 165,
+    "name": "Brock Herman",
+    "weightClass": 149,
+    "seed": 19
+  },
+  {
+    "draftPriority": 166,
+    "name": "Kai Owen",
+    "weightClass": 157,
+    "seed": 19
+  },
+  {
+    "draftPriority": 167,
+    "name": "Jimmy Mullen",
+    "weightClass": 285,
+    "seed": 16
+  },
+  {
+    "draftPriority": 168,
+    "name": "Cameron Catrabone",
+    "weightClass": 157,
+    "seed": 15
+  },
+  {
+    "draftPriority": 169,
+    "name": "Charlie Millard",
+    "weightClass": 157,
+    "seed": 21
+  },
+  {
+    "draftPriority": 170,
+    "name": "Elijah Griffin",
+    "weightClass": 141,
+    "seed": 15
+  },
+  {
+    "draftPriority": 171,
+    "name": "Spencer Moore",
+    "weightClass": 125,
+    "seed": 18
+  },
+  {
+    "draftPriority": 172,
+    "name": "Ty Whalen",
+    "weightClass": 165,
+    "seed": 20
+  },
+  {
+    "draftPriority": 173,
+    "name": "Jake Dailey",
+    "weightClass": 184,
+    "seed": 18
+  },
+  {
+    "draftPriority": 174,
+    "name": "Ian Bush",
+    "weightClass": 184,
+    "seed": 17
+  },
+  {
+    "draftPriority": 175,
+    "name": "Wyatt Ingham",
+    "weightClass": 197,
+    "seed": 20
+  },
+  {
+    "draftPriority": 176,
+    "name": "Zach Redding",
+    "weightClass": 133,
+    "seed": 22
+  },
+  {
+    "draftPriority": 177,
+    "name": "Colin Kelly",
+    "weightClass": 174,
+    "seed": 18
+  },
+  {
+    "draftPriority": 178,
+    "name": "Dayton Pitzer",
+    "weightClass": 285,
+    "seed": 20
+  },
+  {
+    "draftPriority": 179,
+    "name": "Andrew Reall",
+    "weightClass": 197,
+    "seed": 18
+  },
+  {
+    "draftPriority": 180,
+    "name": "Jimmy Harrington",
+    "weightClass": 157,
+    "seed": 20
+  },
+  {
+    "draftPriority": 181,
+    "name": "Branson John",
+    "weightClass": 197,
+    "seed": 16
+  },
+  {
+    "draftPriority": 182,
+    "name": "Gunner Andrick",
+    "weightClass": 133,
+    "seed": 18
+  },
+  {
+    "draftPriority": 183,
+    "name": "Julian Farber",
+    "weightClass": 133,
+    "seed": 20
+  },
+  {
+    "draftPriority": 184,
+    "name": "Lucas Kapusta",
+    "weightClass": 149,
+    "seed": 17
+  },
+  {
+    "draftPriority": 185,
+    "name": "Luca Augustine",
+    "weightClass": 174,
+    "seed": 23
+  },
+  {
+    "draftPriority": 186,
+    "name": "DJ McGee",
+    "weightClass": 157,
+    "seed": 18
+  },
+  {
+    "draftPriority": 187,
+    "name": "Luke Mechler",
+    "weightClass": 157,
+    "seed": 17
+  },
+  {
+    "draftPriority": 188,
+    "name": "Lenny Pinto",
+    "weightClass": 174,
+    "seed": 21
+  },
+  {
+    "draftPriority": 189,
+    "name": "Juan Mora",
+    "weightClass": 285,
+    "seed": 21
+  },
+  {
+    "draftPriority": 190,
+    "name": "Markel Baker",
+    "weightClass": 133,
+    "seed": 8
+  },
+  {
+    "draftPriority": 191,
+    "name": "Luke Luffman",
+    "weightClass": 285,
+    "seed": 26
+  },
+  {
+    "draftPriority": 192,
+    "name": "Nate Schon",
+    "weightClass": 285,
+    "seed": 19
+  },
+  {
+    "draftPriority": 193,
+    "name": "Matthew Olguin",
+    "weightClass": 165,
+    "seed": 22
+  },
+  {
+    "draftPriority": 194,
+    "name": "Max Petersen",
+    "weightClass": 149,
+    "seed": 23
+  },
+  {
+    "draftPriority": 195,
+    "name": "Noah Mulvaney",
+    "weightClass": 165,
+    "seed": 19
+  },
+  {
+    "draftPriority": 196,
+    "name": "Chance Lamer",
+    "weightClass": 149,
+    "seed": 20
+  },
+  {
+    "draftPriority": 197,
+    "name": "Nash Singleton",
+    "weightClass": 141,
+    "seed": 24
+  },
+  {
+    "draftPriority": 198,
+    "name": "Dillon Bechtold",
+    "weightClass": 197,
+    "seed": 17
+  },
+  {
+    "draftPriority": 199,
+    "name": "Wyatt Henson",
+    "weightClass": 141,
+    "seed": 13
+  },
+  {
+    "draftPriority": 200,
+    "name": "Diego Sotelo",
+    "weightClass": 125,
+    "seed": 20
+  },
+  {
+    "draftPriority": 201,
+    "name": "Gunner Filipowicz",
+    "weightClass": 165,
+    "seed": 18
+  },
+  {
+    "draftPriority": 202,
+    "name": "Vincent Mueller",
+    "weightClass": 285,
+    "seed": 17
+  },
+  {
+    "draftPriority": 203,
+    "name": "Brody Baumann",
+    "weightClass": 174,
+    "seed": 22
+  },
+  {
+    "draftPriority": 204,
+    "name": "Nicolar Rivera",
+    "weightClass": 125,
+    "seed": 23
+  },
+  {
+    "draftPriority": 205,
+    "name": "Tom Crook",
+    "weightClass": 141,
+    "seed": 25
+  },
+  {
+    "draftPriority": 206,
+    "name": "Tyler Wells",
+    "weightClass": 141,
+    "seed": 21
+  },
+  {
+    "draftPriority": 207,
+    "name": "Rune Lawrence",
+    "weightClass": 197,
+    "seed": 21
+  },
+  {
+    "draftPriority": 208,
+    "name": "Conrad Hendriksen",
+    "weightClass": 125,
+    "seed": 21
+  },
+  {
+    "draftPriority": 209,
+    "name": "Blake Boarman",
+    "weightClass": 133,
+    "seed": 24
+  },
+  {
+    "draftPriority": 210,
+    "name": "Gabe Willochell",
+    "weightClass": 149,
+    "seed": 21
+  },
+  {
+    "draftPriority": 211,
+    "name": "Sean Spidle",
+    "weightClass": 133,
+    "seed": 21
+  },
+  {
+    "draftPriority": 212,
+    "name": "Eugene Harney",
+    "weightClass": 149,
+    "seed": 18
+  },
+  {
+    "draftPriority": 213,
+    "name": "Evan Bates",
+    "weightClass": 197,
+    "seed": 25
+  },
+  {
+    "draftPriority": 214,
+    "name": "Gage Walker",
+    "weightClass": 133,
+    "seed": 19
+  },
+  {
+    "draftPriority": 215,
+    "name": "Daschle Lamer",
+    "weightClass": 174,
+    "seed": 20
+  },
+  {
+    "draftPriority": 216,
+    "name": "Trevor Tinker",
+    "weightClass": 285,
+    "seed": 22
+  },
+  {
+    "draftPriority": 217,
+    "name": "Gable Porter",
+    "weightClass": 141,
+    "seed": 27
+  },
+  {
+    "draftPriority": 218,
+    "name": "Colton Washleski",
+    "weightClass": 157,
+    "seed": 22
+  },
+  {
+    "draftPriority": 219,
+    "name": "EJ Parco",
+    "weightClass": 165,
+    "seed": 27
+  },
+  {
+    "draftPriority": 220,
+    "name": "Logan Messer",
+    "weightClass": 174,
+    "seed": 19
+  },
+  {
+    "draftPriority": 221,
+    "name": "Dylan Chappell",
+    "weightClass": 141,
+    "seed": 23
+  },
+  {
+    "draftPriority": 222,
+    "name": "Tomas Brooker",
+    "weightClass": 184,
+    "seed": 21
+  },
+  {
+    "draftPriority": 223,
+    "name": "Jared McGill",
+    "weightClass": 184,
+    "seed": 19
+  },
+  {
+    "draftPriority": 224,
+    "name": "Carter Nogle",
+    "weightClass": 141,
+    "seed": 18
+  },
+  {
+    "draftPriority": 225,
+    "name": "Kade Brown",
+    "weightClass": 149,
+    "seed": 28
+  },
+  {
+    "draftPriority": 226,
+    "name": "Sergio Desiante",
+    "weightClass": 174,
+    "seed": 25
+  },
+  {
+    "draftPriority": 227,
+    "name": "Sam Goin",
+    "weightClass": 184,
+    "seed": 33
+  },
+  {
+    "draftPriority": 228,
+    "name": "Nick Fine",
+    "weightClass": 174,
+    "seed": 16
+  },
+  {
+    "draftPriority": 229,
+    "name": "Brock Woodcock",
+    "weightClass": 165,
+    "seed": 21
+  },
+  {
+    "draftPriority": 230,
+    "name": "Hunter Catka",
+    "weightClass": 285,
+    "seed": 27
+  },
+  {
+    "draftPriority": 231,
+    "name": "Jonathan Ley",
+    "weightClass": 157,
+    "seed": 26
+  },
+  {
+    "draftPriority": 232,
+    "name": "Lorenzo Frezza",
+    "weightClass": 141,
+    "seed": 22
+  },
+  {
+    "draftPriority": 233,
+    "name": "Haiden Drury",
+    "weightClass": 141,
+    "seed": 19
+  },
+  {
+    "draftPriority": 234,
+    "name": "Chase Kranitz",
+    "weightClass": 184,
+    "seed": 26
+  },
+  {
+    "draftPriority": 235,
+    "name": "Derek Gilcher",
+    "weightClass": 174,
+    "seed": 26
+  },
+  {
+    "draftPriority": 236,
+    "name": "Sean Seefeldt",
+    "weightClass": 165,
+    "seed": 24
+  },
+  {
+    "draftPriority": 237,
+    "name": "Cooper Flynn",
+    "weightClass": 125,
+    "seed": 26
+  },
+  {
+    "draftPriority": 238,
+    "name": "Eligh Rivera",
+    "weightClass": 149,
+    "seed": 22
+  },
+  {
+    "draftPriority": 239,
+    "name": "Abraham Wojcikiewicz",
+    "weightClass": 184,
+    "seed": 28
+  },
+  {
+    "draftPriority": 240,
+    "name": "Colton Hawks",
+    "weightClass": 197,
+    "seed": 29
+  },
+  {
+    "draftPriority": 241,
+    "name": "Cody Goebel",
+    "weightClass": 165,
+    "seed": 28
+  },
+  {
+    "draftPriority": 242,
+    "name": "Braden Basile",
+    "weightClass": 141,
+    "seed": 26
+  },
+  {
+    "draftPriority": 243,
+    "name": "Tyler Lillard",
+    "weightClass": 165,
+    "seed": 26
+  },
+  {
+    "draftPriority": 244,
+    "name": "Brock Zurawski",
+    "weightClass": 197,
+    "seed": 24
+  },
+  {
+    "draftPriority": 245,
+    "name": "Alex Semenenko",
+    "weightClass": 285,
+    "seed": 25
+  },
+  {
+    "draftPriority": 246,
+    "name": "Kael Lauridsen",
+    "weightClass": 125,
+    "seed": 25
+  },
+  {
+    "draftPriority": 247,
+    "name": "Devin Wasley",
+    "weightClass": 197,
+    "seed": 22
+  },
+  {
+    "draftPriority": 248,
+    "name": "Kaden Cassidy",
+    "weightClass": 149,
+    "seed": 29
+  },
+  {
+    "draftPriority": 249,
+    "name": "Braxton Brown",
+    "weightClass": 133,
+    "seed": 23
+  },
+  {
+    "draftPriority": 250,
+    "name": "Dylan Evans",
+    "weightClass": 157,
+    "seed": 27
+  },
+  {
+    "draftPriority": 251,
+    "name": "Mac Church",
+    "weightClass": 165,
+    "seed": 25
+  },
+  {
+    "draftPriority": 252,
+    "name": "Ben Vanadia",
+    "weightClass": 197,
+    "seed": 26
+  },
+  {
+    "draftPriority": 253,
+    "name": "Anderson Heap",
+    "weightClass": 149,
+    "seed": 26
+  },
+  {
+    "draftPriority": 254,
+    "name": "Brady Roark",
+    "weightClass": 125,
+    "seed": 27
+  },
+  {
+    "draftPriority": 255,
+    "name": "Ceasar Garza",
+    "weightClass": 184,
+    "seed": 23
+  },
+  {
+    "draftPriority": 256,
+    "name": "Garrett Thompson",
+    "weightClass": 174,
+    "seed": 24
+  },
+  {
+    "draftPriority": 257,
+    "name": "Chris Earnest",
+    "weightClass": 165,
+    "seed": 23
+  },
+  {
+    "draftPriority": 258,
+    "name": "Mikey Squires",
+    "weightClass": 197,
+    "seed": 23
+  },
+  {
+    "draftPriority": 259,
+    "name": "Stephan Monchery",
+    "weightClass": 285,
+    "seed": 23
+  },
+  {
+    "draftPriority": 260,
+    "name": "Ayden Smith",
+    "weightClass": 125,
+    "seed": 24
+  },
+  {
+    "draftPriority": 261,
+    "name": "Kaleb Burgess",
+    "weightClass": 157,
+    "seed": 23
+  },
+  {
+    "draftPriority": 262,
+    "name": "Garrett Grice",
+    "weightClass": 133,
+    "seed": 28
+  },
+  {
+    "draftPriority": 263,
+    "name": "Davis Motyka",
+    "weightClass": 125,
+    "seed": 22
+  },
+  {
+    "draftPriority": 264,
+    "name": "Dylan Shawver",
+    "weightClass": 133,
+    "seed": 26
+  },
+  {
+    "draftPriority": 265,
+    "name": "Michael Gioffre",
+    "weightClass": 149,
+    "seed": 25
+  },
+  {
+    "draftPriority": 266,
+    "name": "Nick Fox",
+    "weightClass": 184,
+    "seed": 29
+  },
+  {
+    "draftPriority": 267,
+    "name": "Pierson Manville",
+    "weightClass": 141,
+    "seed": 28
+  },
+  {
+    "draftPriority": 268,
+    "name": "Gavin Drexler",
+    "weightClass": 157,
+    "seed": 28
+  },
+  {
+    "draftPriority": 269,
+    "name": "Joe Curtis",
+    "weightClass": 184,
+    "seed": 24
+  },
+  {
+    "draftPriority": 270,
+    "name": "Andrew Clark",
+    "weightClass": 149,
+    "seed": 24
+  },
+  {
+    "draftPriority": 271,
+    "name": "Jaivon Jones",
+    "weightClass": 157,
+    "seed": 24
+  },
+  {
+    "draftPriority": 272,
+    "name": "Connor Barket",
+    "weightClass": 285,
+    "seed": 24
+  },
+  {
+    "draftPriority": 273,
+    "name": "Kael Wisler",
+    "weightClass": 197,
+    "seed": 28
+  },
+  {
+    "draftPriority": 274,
+    "name": "Collin Carrigan",
+    "weightClass": 174,
+    "seed": 27
+  },
+  {
+    "draftPriority": 275,
+    "name": "Malachi DuVall",
+    "weightClass": 184,
+    "seed": 25
+  },
+  {
+    "draftPriority": 276,
+    "name": "Mason Shrader",
+    "weightClass": 157,
+    "seed": 25
+  },
+  {
+    "draftPriority": 277,
+    "name": "Will Betancourt",
+    "weightClass": 133,
+    "seed": 25
+  },
+  {
+    "draftPriority": 278,
+    "name": "Jack Forbes",
+    "weightClass": 285,
+    "seed": 30
+  },
+  {
+    "draftPriority": 279,
+    "name": "Bryce Lowery",
+    "weightClass": 157,
+    "seed": 29
+  },
+  {
+    "draftPriority": 280,
+    "name": "Gabe Arnold",
+    "weightClass": 197,
+    "seed": 27
+  },
+  {
+    "draftPriority": 281,
+    "name": "Tyler Chappell",
+    "weightClass": 125,
+    "seed": 29
+  },
+  {
+    "draftPriority": 282,
+    "name": "Luke Willochell",
+    "weightClass": 133,
+    "seed": 29
+  },
+  {
+    "draftPriority": 283,
+    "name": "Mack Mauger",
+    "weightClass": 125,
+    "seed": 32
+  },
+  {
+    "draftPriority": 284,
+    "name": "Avery Bassett",
+    "weightClass": 174,
+    "seed": 29
+  },
+  {
+    "draftPriority": 285,
+    "name": "Andrew Binni",
+    "weightClass": 125,
+    "seed": 28
+  },
+  {
+    "draftPriority": 286,
+    "name": "Jordan Titus",
+    "weightClass": 141,
+    "seed": 29
+  },
+  {
+    "draftPriority": 287,
+    "name": "Aidan Brenot",
+    "weightClass": 184,
+    "seed": 27
+  },
+  {
+    "draftPriority": 288,
+    "name": "Andre Gonzales",
+    "weightClass": 149,
+    "seed": 27
+  },
+  {
+    "draftPriority": 289,
+    "name": "Marcel Lopez",
+    "weightClass": 133,
+    "seed": 27
+  },
+  {
+    "draftPriority": 290,
+    "name": "Tyler Bienus",
+    "weightClass": 184,
+    "seed": 30
+  },
+  {
+    "draftPriority": 291,
+    "name": "Brenan Morgan",
+    "weightClass": 285,
+    "seed": 31
+  },
+  {
+    "draftPriority": 292,
+    "name": "Kael Bennie",
+    "weightClass": 197,
+    "seed": 31
+  },
+  {
+    "draftPriority": 293,
+    "name": "Holden Garcia",
+    "weightClass": 174,
+    "seed": 28
+  },
+  {
+    "draftPriority": 294,
+    "name": "Jarrett Stoner",
+    "weightClass": 285,
+    "seed": 28
+  },
+  {
+    "draftPriority": 295,
+    "name": "Cody Walsh",
+    "weightClass": 165,
+    "seed": 32
+  },
+  {
+    "draftPriority": 296,
+    "name": "Ryan Burgos",
+    "weightClass": 165,
+    "seed": 29
+  },
+  {
+    "draftPriority": 297,
+    "name": "Luke Rasmussen",
+    "weightClass": 285,
+    "seed": 29
+  },
+  {
+    "draftPriority": 298,
+    "name": "Dario Lemus",
+    "weightClass": 141,
+    "seed": 30
+  },
+  {
+    "draftPriority": 299,
+    "name": "Thomas Snipes",
+    "weightClass": 165,
+    "seed": 30
+  },
+  {
+    "draftPriority": 300,
+    "name": "Riley Davis",
+    "weightClass": 174,
+    "seed": 30
+  },
+  {
+    "draftPriority": 301,
+    "name": "Dylan Layton",
+    "weightClass": 149,
+    "seed": 30
+  },
+  {
+    "draftPriority": 302,
+    "name": "Kade Rule",
+    "weightClass": 197,
+    "seed": 30
+  },
+  {
+    "draftPriority": 303,
+    "name": "Laird Root",
+    "weightClass": 157,
+    "seed": 30
+  },
+  {
+    "draftPriority": 304,
+    "name": "Sulayman Bah",
+    "weightClass": 125,
+    "seed": 30
+  },
+  {
+    "draftPriority": 305,
+    "name": "Gabe Whisenhunt",
+    "weightClass": 133,
+    "seed": 30
+  },
+  {
+    "draftPriority": 306,
+    "name": "Billy DeKraker",
+    "weightClass": 141,
+    "seed": 31
+  },
+  {
+    "draftPriority": 307,
+    "name": "Mahonri Rushton",
+    "weightClass": 184,
+    "seed": 31
+  },
+  {
+    "draftPriority": 308,
+    "name": "Jared Keslar",
+    "weightClass": 165,
+    "seed": 31
+  },
+  {
+    "draftPriority": 309,
+    "name": "Cael Valencia",
+    "weightClass": 174,
+    "seed": 31
+  },
+  {
+    "draftPriority": 310,
+    "name": "Gable Strickland",
+    "weightClass": 133,
+    "seed": 31
+  },
+  {
+    "draftPriority": 311,
+    "name": "Ryan Michaels",
+    "weightClass": 149,
+    "seed": 31
+  },
+  {
+    "draftPriority": 312,
+    "name": "Garrett McChesney",
+    "weightClass": 157,
+    "seed": 31
+  },
+  {
+    "draftPriority": 313,
+    "name": "Desmond Pleasant",
+    "weightClass": 125,
+    "seed": 31
+  },
+  {
+    "draftPriority": 314,
+    "name": "Matthew Martino",
+    "weightClass": 141,
+    "seed": 32
+  },
+  {
+    "draftPriority": 315,
+    "name": "Luke Condon",
+    "weightClass": 174,
+    "seed": 32
+  },
+  {
+    "draftPriority": 316,
+    "name": "Caleb Uhlenhopp",
+    "weightClass": 184,
+    "seed": 32
+  },
+  {
+    "draftPriority": 317,
+    "name": "Andrew Austin",
+    "weightClass": 133,
+    "seed": 32
+  },
+  {
+    "draftPriority": 318,
+    "name": "Clayton Jones",
+    "weightClass": 149,
+    "seed": 32
+  },
+  {
+    "draftPriority": 319,
+    "name": "Jeb Prechtel",
+    "weightClass": 157,
+    "seed": 32
+  },
+  {
+    "draftPriority": 320,
+    "name": "Blake Schaffer",
+    "weightClass": 197,
+    "seed": 32
+  },
+  {
+    "draftPriority": 321,
+    "name": "Emmanuel Ulrich",
+    "weightClass": 285,
+    "seed": 32
+  },
+  {
+    "draftPriority": 322,
+    "name": "Jace Schafer",
+    "weightClass": 125,
+    "seed": 33
+  },
+  {
+    "draftPriority": 323,
+    "name": "Carter Schmidt",
+    "weightClass": 133,
+    "seed": 33
+  },
+  {
+    "draftPriority": 324,
+    "name": "Aldo Hernandez",
+    "weightClass": 141,
+    "seed": 33
+  },
+  {
+    "draftPriority": 325,
+    "name": "Austin McBurney",
+    "weightClass": 149,
+    "seed": 33
+  },
+  {
+    "draftPriority": 326,
+    "name": "Yannis Charles",
+    "weightClass": 157,
+    "seed": 33
+  },
+  {
+    "draftPriority": 327,
+    "name": "Ryan Vigil",
+    "weightClass": 165,
+    "seed": 33
+  },
+  {
+    "draftPriority": 328,
+    "name": "Grant O`Dell",
+    "weightClass": 174,
+    "seed": 33
+  },
+  {
+    "draftPriority": 329,
+    "name": "Karson Tompkins",
+    "weightClass": 197,
+    "seed": 33
+  },
+  {
+    "draftPriority": 330,
+    "name": "Mason Rebuck",
+    "weightClass": 285,
+    "seed": 33
+  }
+]
