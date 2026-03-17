@@ -12,6 +12,11 @@ import {
   reassignPick,
 } from "../../../../../actions/draft";
 import type { ConnectionStatus } from "../../../../../hooks/use-draft-events";
+import {
+  useAutoDraft,
+  type UseAutoDraftReturn,
+} from "../../../../../hooks/use-auto-draft";
+import type { DraftMode } from "../../../../../lib/auto-draft";
 
 const WEIGHT_CLASSES = [125, 133, 141, 149, 157, 165, 174, 184, 197, 285];
 
@@ -609,9 +614,114 @@ function ReassignControl({
   );
 }
 
+// --- Auto Draft Controls ---
+
+function AutoDraftControls({ auto }: { auto: UseAutoDraftReturn }) {
+  return (
+    <div className="border border-border rounded-lg bg-background">
+      <div className="p-4 border-b border-border">
+        <h2 className="text-sm font-medium text-foreground">Auto-Draft</h2>
+      </div>
+      <div className="p-4 space-y-3">
+        {/* Draft mode selector */}
+        <div>
+          <label
+            htmlFor="draft-mode"
+            className="block text-xs text-muted-foreground mb-1"
+          >
+            Draft mode
+          </label>
+          <select
+            id="draft-mode"
+            value={auto.draftMode}
+            onChange={(e) => auto.setDraftMode(e.target.value as DraftMode)}
+            className="w-full px-3 py-1.5 border border-border rounded-md bg-background text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-accent"
+          >
+            <option value="smart">Smart (Flo Rankings)</option>
+            <option value="by-seed">By Seed</option>
+          </select>
+        </div>
+
+        {/* Pick delay slider */}
+        <div>
+          <label
+            htmlFor="pick-delay"
+            className="block text-xs text-muted-foreground mb-1"
+          >
+            Delay between picks: {(auto.pickDelay / 1000).toFixed(1)}s
+          </label>
+          <input
+            id="pick-delay"
+            type="range"
+            min={1000}
+            max={5000}
+            step={500}
+            value={auto.pickDelay}
+            onChange={(e) => auto.setPickDelay(Number(e.target.value))}
+            className="w-full accent-accent"
+          />
+        </div>
+
+        {/* Single auto-pick */}
+        <button
+          onClick={auto.autoPickCurrent}
+          disabled={auto.isPicking}
+          className="w-full px-4 py-2 bg-accent text-accent-foreground rounded-md text-sm font-medium hover:opacity-90 disabled:opacity-50 transition-opacity"
+        >
+          {auto.isPicking ? "Picking..." : "Auto Pick Current"}
+        </button>
+
+        {/* Full auto-draft controls */}
+        {auto.runStatus === "idle" || auto.runStatus === "paused" ? (
+          <button
+            onClick={auto.startFullAutoDraft}
+            disabled={auto.isPicking}
+            className="w-full px-4 py-2 border border-accent text-accent rounded-md text-sm font-medium hover:bg-accent/10 disabled:opacity-50 transition-colors"
+          >
+            {auto.runStatus === "paused"
+              ? "Resume Auto-Draft"
+              : "Start Auto-Draft"}
+          </button>
+        ) : (
+          <div className="flex gap-2">
+            <button
+              onClick={auto.pauseFullAutoDraft}
+              className="flex-1 px-4 py-2 border border-border text-foreground rounded-md text-sm font-medium hover:bg-muted transition-colors"
+            >
+              Pause
+            </button>
+            <button
+              onClick={auto.cancelFullAutoDraft}
+              className="flex-1 px-4 py-2 border border-destructive text-destructive rounded-md text-sm font-medium hover:bg-destructive/10 transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+        )}
+
+        {auto.runStatus === "running" && (
+          <p className="text-xs text-success animate-pulse">
+            Auto-draft running...
+          </p>
+        )}
+
+        {auto.lastError && (
+          <p className="text-xs text-destructive">{auto.lastError}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // --- Players Overview ---
 
-function PlayersOverview({ state }: { state: DraftState }) {
+function PlayersOverview({
+  state,
+  auto,
+}: {
+  state: DraftState;
+  auto?: UseAutoDraftReturn;
+}) {
   // Group picks by player
   const picksByPlayer = useMemo(() => {
     const map = new Map<string, DraftStatePick[]>();
@@ -649,6 +759,23 @@ function PlayersOverview({ state }: { state: DraftState }) {
           return (
             <div key={player.id} className="p-4">
               <div className="flex items-center gap-2 mb-2">
+                {auto && state.session.status === "active" && (
+                  <button
+                    onClick={() => auto.toggleAutoPlayer(player.id)}
+                    className={`text-xs px-1.5 py-0.5 rounded transition-colors ${
+                      auto.autoPlayers.has(player.id)
+                        ? "bg-accent/20 text-accent"
+                        : "bg-muted text-muted-foreground hover:text-foreground"
+                    }`}
+                    title={
+                      auto.autoPlayers.has(player.id)
+                        ? "Disable auto-draft"
+                        : "Enable auto-draft"
+                    }
+                  >
+                    🤖
+                  </button>
+                )}
                 <span
                   className={`text-sm font-medium ${isCurrentTurn ? "text-success" : "text-foreground"}`}
                 >
@@ -702,6 +829,7 @@ function PlayersOverview({ state }: { state: DraftState }) {
 
 export function AdminDraftClient({ sessionId }: { sessionId: string }) {
   const { state, connectionStatus } = useDraftEvents(sessionId);
+  const auto = useAutoDraft(sessionId, state);
 
   if (!state) {
     return (
@@ -743,6 +871,9 @@ export function AdminDraftClient({ sessionId }: { sessionId: string }) {
           {/* Left column */}
           <div className="space-y-6">
             <CurrentTurn state={state} />
+            {state.session.status === "active" && (
+              <AutoDraftControls auto={auto} />
+            )}
             <ProxyPick state={state} sessionId={sessionId} />
             <ReassignControl state={state} sessionId={sessionId} />
           </div>
@@ -750,7 +881,7 @@ export function AdminDraftClient({ sessionId }: { sessionId: string }) {
           {/* Right column */}
           <div className="space-y-6">
             <PickHistory state={state} sessionId={sessionId} />
-            <PlayersOverview state={state} />
+            <PlayersOverview state={state} auto={auto} />
           </div>
         </div>
       </div>
