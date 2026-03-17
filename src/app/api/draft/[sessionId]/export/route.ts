@@ -13,11 +13,13 @@ import * as XLSX from "xlsx";
 
 interface ExportRow {
   "Player Name": string;
+  "Weight Class": number;
   "Wrestler Seed": number;
   "Wrestler Name": string;
   Team: string;
   Record: string;
-  "Weight Class": number;
+  Round: number;
+  "Overall Pick": number;
 }
 
 async function getExportData(sessionId: string): Promise<ExportRow[]> {
@@ -29,6 +31,8 @@ async function getExportData(sessionId: string): Promise<ExportRow[]> {
       team: wrestlers.team,
       record: wrestlers.record,
       weightClass: picks.weightClass,
+      round: picks.round,
+      pickNumber: picks.pickNumber,
     })
     .from(picks)
     .innerJoin(players, eq(picks.playerId, players.id))
@@ -42,11 +46,13 @@ async function getExportData(sessionId: string): Promise<ExportRow[]> {
 
   return rows.map((r) => ({
     "Player Name": r.playerName,
+    "Weight Class": r.weightClass,
     "Wrestler Seed": r.wrestlerSeed,
     "Wrestler Name": r.wrestlerName,
     Team: r.team,
     Record: r.record,
-    "Weight Class": r.weightClass,
+    Round: r.round,
+    "Overall Pick": r.pickNumber,
   }));
 }
 
