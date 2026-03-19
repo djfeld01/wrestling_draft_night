@@ -6,6 +6,7 @@ import {
   boolean,
   timestamp,
   pgEnum,
+  real,
 } from "drizzle-orm/pg-core";
 
 export const sessionStatusEnum = pgEnum("session_status", [
@@ -50,7 +51,7 @@ export const wrestlers = pgTable("wrestlers", {
   weightClass: integer("weight_class").notNull(),
   grade: varchar("grade", { length: 20 }),
   scoring: varchar("scoring", { length: 20 }),
-  tournamentPoints: integer("tournament_points").default(0).notNull(),
+  tournamentPoints: real("tournament_points").default(0).notNull(),
 });
 
 export const sessionWrestlers = pgTable("session_wrestlers", {
