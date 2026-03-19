@@ -50,6 +50,7 @@ export const wrestlers = pgTable("wrestlers", {
   weightClass: integer("weight_class").notNull(),
   grade: varchar("grade", { length: 20 }),
   scoring: varchar("scoring", { length: 20 }),
+  tournamentPoints: integer("tournament_points").default(0).notNull(),
 });
 
 export const sessionWrestlers = pgTable("session_wrestlers", {
@@ -87,4 +88,12 @@ export const teamMembers = pgTable("team_members", {
     .notNull(),
   email: varchar("email", { length: 255 }).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const scoreUploads = pgTable("score_uploads", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  uploadedAt: timestamp("uploaded_at").defaultNow().notNull(),
+  organizerEmail: varchar("organizer_email", { length: 255 }).notNull(),
+  wrestlersUpdated: integer("wrestlers_updated").notNull(),
+  summary: varchar("summary", { length: 1000 }).notNull(),
 });

@@ -48,7 +48,15 @@ export default async function AdminSessionsPage() {
           <h1 className="text-xl font-semibold text-foreground">
             My Draft Sessions
           </h1>
-          <span className="text-xs text-muted-foreground">{userEmail}</span>
+          <div className="flex items-center gap-3">
+            <a
+              href="/admin/scores"
+              className="text-xs text-accent hover:underline"
+            >
+              Manage Scores
+            </a>
+            <span className="text-xs text-muted-foreground">{userEmail}</span>
+          </div>
         </div>
 
         <CreateSessionForm organizerEmail={userEmail} />

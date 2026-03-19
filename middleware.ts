@@ -9,6 +9,7 @@ const publicPaths = [
   "/api/auth",
   "/api/seed",
   "/rankings",
+  "/scoreboard",
 ];
 
 function isPublicPath(pathname: string): boolean {

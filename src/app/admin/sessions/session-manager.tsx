@@ -543,6 +543,12 @@ export function SessionCard({
             >
               Display View ↗
             </a>
+            <a
+              href={`/scoreboard/${session.id}`}
+              className="inline-block px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted transition-colors"
+            >
+              Scoreboard
+            </a>
           </div>
         )}
 
@@ -553,6 +559,12 @@ export function SessionCard({
               className="inline-block px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted transition-colors"
             >
               View Draft
+            </a>
+            <a
+              href={`/scoreboard/${session.id}`}
+              className="inline-block px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted transition-colors"
+            >
+              Scoreboard
             </a>
             <a
               href={`/draft/${session.id}/display`}
