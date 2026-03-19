@@ -127,3 +127,76 @@ export async function getTeamMembers(
 
   return members;
 }
+
+/**
+ * Add a team member email to a player (organizer action, works in any session status).
+ * This allows the organizer to add emails post-draft so those users can view the team.
+ */
+export async function addTeamMemberEmail(
+  playerId: string,
+  email: string,
+): Promise<JoinTeamResult> {
+  if (!email || email.trim().length === 0) {
+    return { success: false, error: "Email is required." };
+  }
+
+  const normalizedEmail = email.trim().toLowerCase();
+
+  // Find the player
+  const [player] = await db
+    .select()
+    .from(players)
+    .where(eq(players.id, playerId));
+
+  if (!player) {
+    return { success: false, error: "Player not found." };
+  }
+
+  // Check if this email is already the primary player email
+  if (player.email === normalizedEmail) {
+    return { success: false, error: "This is already the team owner's email." };
+  }
+
+  // Check if already a team member
+  const existing = await db
+    .select()
+    .from(teamMembers)
+    .where(
+      and(
+        eq(teamMembers.playerId, playerId),
+        eq(teamMembers.email, normalizedEmail),
+      ),
+    );
+
+  if (existing.length > 0) {
+    return { success: false, error: "This email is already on the team." };
+  }
+
+  await db.insert(teamMembers).values({
+    playerId,
+    email: normalizedEmail,
+  });
+
+  return { success: true };
+}
+
+/**
+ * Remove a team member by email.
+ */
+export async function removeTeamMember(
+  playerId: string,
+  email: string,
+): Promise<JoinTeamResult> {
+  const normalizedEmail = email.trim().toLowerCase();
+
+  await db
+    .delete(teamMembers)
+    .where(
+      and(
+        eq(teamMembers.playerId, playerId),
+        eq(teamMembers.email, normalizedEmail),
+      ),
+    );
+
+  return { success: true };
+}

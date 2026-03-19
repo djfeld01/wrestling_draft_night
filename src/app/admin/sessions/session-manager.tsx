@@ -12,6 +12,11 @@ import {
   removePlayer,
 } from "../../../../actions/session";
 import { JoinQRCode } from "../../../components/JoinQRCode";
+import {
+  addTeamMemberEmail,
+  removeTeamMember,
+  getTeamMembers,
+} from "../../../../actions/team";
 
 type Session = {
   id: string;
@@ -219,6 +224,11 @@ function PlayerRow({
           </span>
         )}
       </td>
+      {!isSetup && (
+        <td className="py-2 px-3">
+          <TeamEmailManager playerId={player.id} playerName={player.name} />
+        </td>
+      )}
       {isSetup && (
         <td className="py-2 px-3">
           <button
@@ -318,6 +328,100 @@ function CopyJoinLink({ sessionId }: { sessionId: string }) {
       >
         {copied ? "Copied" : "Copy"}
       </button>
+    </div>
+  );
+}
+
+function TeamEmailManager({
+  playerId,
+  playerName,
+}: {
+  playerId: string;
+  playerName: string;
+}) {
+  const [email, setEmail] = useState("");
+  const [members, setMembers] = useState<{ email: string }[]>([]);
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState("");
+  const [isPending, startTransition] = useTransition();
+  const [isOpen, setIsOpen] = useState(false);
+
+  function handleOpen() {
+    if (!isOpen && !loaded) {
+      startTransition(async () => {
+        const result = await getTeamMembers(playerId);
+        setMembers(result);
+        setLoaded(true);
+      });
+    }
+    setIsOpen(!isOpen);
+  }
+
+  function handleAdd() {
+    if (!email.trim()) return;
+    setError("");
+    startTransition(async () => {
+      const result = await addTeamMemberEmail(playerId, email);
+      if (!result.success) {
+        setError(result.error);
+      } else {
+        setEmail("");
+        const updated = await getTeamMembers(playerId);
+        setMembers(updated);
+      }
+    });
+  }
+
+  function handleRemove(memberEmail: string) {
+    startTransition(async () => {
+      await removeTeamMember(playerId, memberEmail);
+      const updated = await getTeamMembers(playerId);
+      setMembers(updated);
+    });
+  }
+
+  return (
+    <div>
+      <button
+        onClick={handleOpen}
+        className="text-xs text-accent hover:underline"
+      >
+        {isOpen ? "Hide emails" : "Add email"}
+      </button>
+      {isOpen && (
+        <div className="mt-2 space-y-2">
+          {members.map((m) => (
+            <div key={m.email} className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">{m.email}</span>
+              <button
+                onClick={() => handleRemove(m.email)}
+                disabled={isPending}
+                className="text-[10px] text-destructive hover:underline disabled:opacity-50"
+              >
+                ×
+              </button>
+            </div>
+          ))}
+          <div className="flex gap-1">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleAdd()}
+              placeholder="email@example.com"
+              className="flex-1 px-2 py-0.5 border border-border rounded text-xs bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent"
+            />
+            <button
+              onClick={handleAdd}
+              disabled={isPending || !email.trim()}
+              className="px-2 py-0.5 bg-accent text-accent-foreground rounded text-xs font-medium hover:opacity-90 disabled:opacity-50"
+            >
+              Add
+            </button>
+          </div>
+          {error && <p className="text-xs text-destructive">{error}</p>}
+        </div>
+      )}
     </div>
   );
 }
@@ -448,6 +552,11 @@ export function SessionCard({
               <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3">
                 Email
               </th>
+              {!isSetup && (
+                <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3">
+                  Team
+                </th>
+              )}
               {isSetup && (
                 <th className="text-left text-xs font-medium text-muted-foreground py-1.5 px-3 w-20"></th>
               )}
