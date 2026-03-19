@@ -3,6 +3,9 @@
 import { useState } from "react";
 import type { ScoreboardEntry } from "../../../../actions/scores";
 
+type SortKey = "points" | "weightClass" | "name" | "overallPick" | "seed";
+type SortDir = "asc" | "desc";
+
 function RankBadge({ rank }: { rank: number }) {
   const styles =
     rank === 1
@@ -21,8 +24,39 @@ function RankBadge({ rank }: { rank: number }) {
   );
 }
 
+function SortHeader({
+  label,
+  sortKey,
+  currentKey,
+  currentDir,
+  onSort,
+  align,
+}: {
+  label: string;
+  sortKey: SortKey;
+  currentKey: SortKey;
+  currentDir: SortDir;
+  onSort: (key: SortKey) => void;
+  align?: "right";
+}) {
+  const isActive = currentKey === sortKey;
+  return (
+    <th
+      className={`text-xs font-medium text-muted-foreground py-1.5 cursor-pointer select-none hover:text-foreground transition-colors ${align === "right" ? "text-right" : "text-left"}`}
+      onClick={() => onSort(sortKey)}
+    >
+      {label}
+      {isActive && (
+        <span className="ml-0.5">{currentDir === "asc" ? "↑" : "↓"}</span>
+      )}
+    </th>
+  );
+}
+
 export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [sortKey, setSortKey] = useState<SortKey>("points");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
 
   function toggle(playerId: string) {
     setExpanded((prev) => {
@@ -31,6 +65,38 @@ export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
       else next.add(playerId);
       return next;
     });
+  }
+
+  function handleSort(key: SortKey) {
+    if (key === sortKey) {
+      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setSortKey(key);
+      setSortDir(key === "name" ? "asc" : "asc");
+    }
+  }
+
+  function sortWrestlers(
+    wrestlers: ScoreboardEntry["wrestlers"],
+  ): ScoreboardEntry["wrestlers"] {
+    const sorted = [...wrestlers];
+    const dir = sortDir === "asc" ? 1 : -1;
+    sorted.sort((a, b) => {
+      switch (sortKey) {
+        case "name":
+          return dir * a.name.localeCompare(b.name);
+        case "weightClass":
+          return dir * (a.weightClass - b.weightClass);
+        case "seed":
+          return dir * (a.seed - b.seed);
+        case "overallPick":
+          return dir * (a.overallPick - b.overallPick);
+        case "points":
+        default:
+          return dir * (a.points - b.points);
+      }
+    });
+    return sorted;
   }
 
   if (entries.length === 0) {
@@ -70,28 +136,49 @@ export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border">
-                      <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
-                        Wrestler
-                      </th>
+                      <SortHeader
+                        label="Wrestler"
+                        sortKey="name"
+                        currentKey={sortKey}
+                        currentDir={sortDir}
+                        onSort={handleSort}
+                      />
                       <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
                         School
                       </th>
-                      <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
-                        Wt
-                      </th>
-                      <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
-                        Seed
-                      </th>
-                      <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
-                        Pick
-                      </th>
-                      <th className="text-right text-xs font-medium text-muted-foreground py-1.5">
-                        Pts
-                      </th>
+                      <SortHeader
+                        label="Wt"
+                        sortKey="weightClass"
+                        currentKey={sortKey}
+                        currentDir={sortDir}
+                        onSort={handleSort}
+                      />
+                      <SortHeader
+                        label="Seed"
+                        sortKey="seed"
+                        currentKey={sortKey}
+                        currentDir={sortDir}
+                        onSort={handleSort}
+                      />
+                      <SortHeader
+                        label="Pick"
+                        sortKey="overallPick"
+                        currentKey={sortKey}
+                        currentDir={sortDir}
+                        onSort={handleSort}
+                      />
+                      <SortHeader
+                        label="Pts"
+                        sortKey="points"
+                        currentKey={sortKey}
+                        currentDir={sortDir}
+                        onSort={handleSort}
+                        align="right"
+                      />
                     </tr>
                   </thead>
                   <tbody>
-                    {entry.wrestlers.map((w) => (
+                    {sortWrestlers(entry.wrestlers).map((w) => (
                       <tr
                         key={w.wrestlerId}
                         className="border-b border-border last:border-b-0"
