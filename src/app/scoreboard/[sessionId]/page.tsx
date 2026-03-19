@@ -26,9 +26,17 @@ export default async function ScoreboardPage({
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-4 py-8">
-        <h1 className="text-xl font-semibold text-foreground mb-1">
-          {session.name}
-        </h1>
+        <div className="flex items-center justify-between mb-1">
+          <h1 className="text-xl font-semibold text-foreground">
+            {session.name}
+          </h1>
+          <a
+            href="/admin/scores"
+            className="text-xs text-accent hover:underline"
+          >
+            Manage Scores
+          </a>
+        </div>
         <p className="text-sm text-muted-foreground mb-6">Scoreboard</p>
         <ScoreboardClient entries={entries} />
       </div>

@@ -33,6 +33,9 @@ export type ScoreboardEntry = {
     name: string;
     weightClass: number;
     points: number;
+    seed: number;
+    team: string;
+    overallPick: number;
   }[];
 };
 
@@ -132,6 +135,9 @@ export async function getScoreboard(
       wrestlerName: wrestlers.name,
       weightClass: wrestlers.weightClass,
       points: wrestlers.tournamentPoints,
+      seed: wrestlers.seed,
+      team: wrestlers.team,
+      pickNumber: picks.pickNumber,
     })
     .from(picks)
     .innerJoin(players, eq(picks.playerId, players.id))
@@ -153,6 +159,9 @@ export async function getScoreboard(
         name: string;
         weightClass: number;
         points: number;
+        seed: number;
+        team: string;
+        overallPick: number;
       }[];
     }
   >();
@@ -169,6 +178,9 @@ export async function getScoreboard(
       name: row.wrestlerName,
       weightClass: row.weightClass,
       points: row.points,
+      seed: row.seed,
+      team: row.team,
+      overallPick: row.pickNumber,
     });
   }
 

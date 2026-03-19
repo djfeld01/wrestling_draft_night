@@ -164,7 +164,12 @@ function SessionRow({
   return (
     <div className="flex items-center justify-between border border-border rounded-lg px-4 py-3">
       <div>
-        <p className="text-sm font-medium text-foreground">{session.name}</p>
+        <Link
+          href={`/scoreboard/${session.id}`}
+          className="text-sm font-medium text-foreground hover:text-accent transition-colors"
+        >
+          {session.name}
+        </Link>
         <p className="text-xs text-muted-foreground">
           {session.playerCount} players
         </p>

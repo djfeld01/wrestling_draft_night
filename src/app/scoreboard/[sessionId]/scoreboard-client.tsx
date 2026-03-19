@@ -74,7 +74,16 @@ export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
                         Wrestler
                       </th>
                       <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
+                        School
+                      </th>
+                      <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
                         Wt
+                      </th>
+                      <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
+                        Seed
+                      </th>
+                      <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
+                        Pick
                       </th>
                       <th className="text-right text-xs font-medium text-muted-foreground py-1.5">
                         Pts
@@ -89,7 +98,16 @@ export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
                       >
                         <td className="py-1.5 text-foreground">{w.name}</td>
                         <td className="py-1.5 text-muted-foreground">
+                          {w.team}
+                        </td>
+                        <td className="py-1.5 text-muted-foreground">
                           {w.weightClass}
+                        </td>
+                        <td className="py-1.5 text-muted-foreground">
+                          ({w.seed})
+                        </td>
+                        <td className="py-1.5 text-muted-foreground">
+                          #{w.overallPick}
                         </td>
                         <td className="py-1.5 text-right text-foreground">
                           {w.points}
