@@ -36,6 +36,7 @@ export type ScoreboardEntry = {
     seed: number;
     team: string;
     overallPick: number;
+    round: string | null;
   }[];
 };
 
@@ -63,7 +64,7 @@ export async function uploadScores(
   }
 
   // Process each score
-  const updates: { id: string; points: number }[] = [];
+  const updates: { id: string; points: number; round?: string }[] = [];
 
   for (const score of scores) {
     const nameLower = score.wrestlerName.toLowerCase();
@@ -75,7 +76,7 @@ export async function uploadScores(
       continue;
     }
 
-    updates.push({ id: wrestlerId, points: score.points });
+    updates.push({ id: wrestlerId, points: score.points, round: score.round });
   }
 
   if (updates.length === 0) {
@@ -89,10 +90,13 @@ export async function uploadScores(
 
   // Update all matched wrestlers
   for (const u of updates) {
-    await db
-      .update(wrestlers)
-      .set({ tournamentPoints: u.points })
-      .where(eq(wrestlers.id, u.id));
+    const setData: { tournamentPoints: number; tournamentRound?: string } = {
+      tournamentPoints: u.points,
+    };
+    if (u.round !== undefined) {
+      setData.tournamentRound = u.round;
+    }
+    await db.update(wrestlers).set(setData).where(eq(wrestlers.id, u.id));
   }
 
   updated = updates.length;
@@ -138,6 +142,7 @@ export async function getScoreboard(
       seed: wrestlers.seed,
       team: wrestlers.team,
       pickNumber: picks.pickNumber,
+      round: wrestlers.tournamentRound,
     })
     .from(picks)
     .innerJoin(players, eq(picks.playerId, players.id))
@@ -162,6 +167,7 @@ export async function getScoreboard(
         seed: number;
         team: string;
         overallPick: number;
+        round: string | null;
       }[];
     }
   >();
@@ -181,6 +187,7 @@ export async function getScoreboard(
       seed: row.seed,
       team: row.team,
       overallPick: row.pickNumber,
+      round: row.round,
     });
   }
 

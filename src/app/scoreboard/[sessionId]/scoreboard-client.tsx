@@ -3,7 +3,13 @@
 import { useState } from "react";
 import type { ScoreboardEntry } from "../../../../actions/scores";
 
-type SortKey = "points" | "weightClass" | "name" | "overallPick" | "seed";
+type SortKey =
+  | "points"
+  | "weightClass"
+  | "name"
+  | "overallPick"
+  | "seed"
+  | "round";
 type SortDir = "asc" | "desc";
 
 function RankBadge({ rank }: { rank: number }) {
@@ -91,6 +97,8 @@ export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
           return dir * (a.seed - b.seed);
         case "overallPick":
           return dir * (a.overallPick - b.overallPick);
+        case "round":
+          return dir * (a.round ?? "").localeCompare(b.round ?? "");
         case "points":
         default:
           return dir * (a.points - b.points);
@@ -168,6 +176,13 @@ export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
                         onSort={handleSort}
                       />
                       <SortHeader
+                        label="Round"
+                        sortKey="round"
+                        currentKey={sortKey}
+                        currentDir={sortDir}
+                        onSort={handleSort}
+                      />
+                      <SortHeader
                         label="Pts"
                         sortKey="points"
                         currentKey={sortKey}
@@ -195,6 +210,9 @@ export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
                         </td>
                         <td className="py-1.5 text-muted-foreground">
                           #{w.overallPick}
+                        </td>
+                        <td className="py-1.5 text-muted-foreground">
+                          {w.round || "—"}
                         </td>
                         <td className="py-1.5 text-right text-foreground">
                           {w.points}

@@ -3,6 +3,7 @@ import Papa from "papaparse";
 export interface ParsedScore {
   wrestlerName: string;
   points: number;
+  round?: string;
 }
 
 export interface ScoreParseResult {
@@ -13,6 +14,7 @@ export interface ScoreParseResult {
 
 const NAME_COLUMNS = ["name", "wrestler", "wrestler_name"];
 const POINTS_COLUMNS = ["points", "score", "tournament_points"];
+const ROUND_COLUMNS = ["round", "tournament_round", "status"];
 
 export function parseScoreCSV(csvText: string): ScoreParseResult {
   const warnings: string[] = [];
@@ -34,13 +36,14 @@ export function parseScoreCSV(csvText: string): ScoreParseResult {
   const headers = parsed.meta.fields;
   const headerLower = headers.map((h) => h.toLowerCase().trim());
 
-  // Find wrestler name column
   const nameIdx = headerLower.findIndex((h) => NAME_COLUMNS.includes(h));
   const nameCol = nameIdx >= 0 ? headers[nameIdx] : null;
 
-  // Find points column
   const pointsIdx = headerLower.findIndex((h) => POINTS_COLUMNS.includes(h));
   const pointsCol = pointsIdx >= 0 ? headers[pointsIdx] : null;
+
+  const roundIdx = headerLower.findIndex((h) => ROUND_COLUMNS.includes(h));
+  const roundCol = roundIdx >= 0 ? headers[roundIdx] : null;
 
   if (!nameCol || !pointsCol) {
     const missing: string[] = [];
@@ -57,7 +60,7 @@ export function parseScoreCSV(csvText: string): ScoreParseResult {
 
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
-    const rowNum = i + 2; // 1-indexed + header row
+    const rowNum = i + 2;
 
     const name = row[nameCol]?.trim();
     if (!name) {
@@ -73,7 +76,9 @@ export function parseScoreCSV(csvText: string): ScoreParseResult {
       continue;
     }
 
-    scores.push({ wrestlerName: name, points: Number(rawPoints) });
+    const round = roundCol ? row[roundCol]?.trim() || undefined : undefined;
+
+    scores.push({ wrestlerName: name, points: Number(rawPoints), round });
   }
 
   return { scores, warnings };

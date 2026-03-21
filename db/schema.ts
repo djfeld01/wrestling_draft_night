@@ -52,6 +52,7 @@ export const wrestlers = pgTable("wrestlers", {
   grade: varchar("grade", { length: 20 }),
   scoring: varchar("scoring", { length: 20 }),
   tournamentPoints: real("tournament_points").default(0).notNull(),
+  tournamentRound: varchar("tournament_round", { length: 50 }),
 });
 
 export const sessionWrestlers = pgTable("session_wrestlers", {
