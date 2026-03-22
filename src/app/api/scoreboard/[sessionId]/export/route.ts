@@ -46,7 +46,11 @@ async function getScoreboardExportData(
     )
     .innerJoin(wrestlers, eq(sessionWrestlers.wrestlerId, wrestlers.id))
     .where(eq(picks.sessionId, sessionId))
-    .orderBy(asc(wrestlers.weightClass), asc(wrestlers.seed));
+    .orderBy(
+      asc(players.name),
+      asc(wrestlers.weightClass),
+      asc(wrestlers.seed),
+    );
 
   const rows: ExportRow[] = draftedRows.map((r) => ({
     "Wrestler Name": r.wrestlerName,
@@ -106,9 +110,12 @@ async function getScoreboardExportData(
       }
     }
 
-    // Re-sort by weight class then seed
+    // Re-sort by player team, then weight class, then seed
     rows.sort(
-      (a, b) => a["Weight Class"] - b["Weight Class"] || a.Seed - b.Seed,
+      (a, b) =>
+        a["Drafted By"].localeCompare(b["Drafted By"]) ||
+        a["Weight Class"] - b["Weight Class"] ||
+        a.Seed - b.Seed,
     );
   }
 
