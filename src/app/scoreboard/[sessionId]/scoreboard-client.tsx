@@ -59,7 +59,13 @@ function SortHeader({
   );
 }
 
-export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
+export function ScoreboardClient({
+  entries,
+  sessionId,
+}: {
+  entries: ScoreboardEntry[];
+  sessionId: string;
+}) {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [sortKey, setSortKey] = useState<SortKey>("points");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
@@ -116,116 +122,148 @@ export function ScoreboardClient({ entries }: { entries: ScoreboardEntry[] }) {
   }
 
   return (
-    <div className="border border-border rounded-lg bg-background overflow-hidden">
-      {entries.map((entry) => {
-        const isExpanded = expanded.has(entry.playerId);
-        return (
-          <div
-            key={entry.playerId}
-            className="border-b border-border last:border-b-0"
-          >
-            <button
-              onClick={() => toggle(entry.playerId)}
-              className="w-full flex items-center gap-3 p-4 hover:bg-muted/50 transition-colors text-left"
+    <>
+      <div className="border border-border rounded-lg bg-background overflow-hidden">
+        {entries.map((entry) => {
+          const isExpanded = expanded.has(entry.playerId);
+          return (
+            <div
+              key={entry.playerId}
+              className="border-b border-border last:border-b-0"
             >
-              <RankBadge rank={entry.rank} />
-              <span className="flex-1 text-sm font-medium text-foreground">
-                {entry.playerName}
-              </span>
-              <span className="text-sm font-semibold text-foreground">
-                {entry.totalPoints} pts
-              </span>
-              <span className="text-xs text-muted-foreground">
-                {isExpanded ? "▲" : "▼"}
-              </span>
-            </button>
-            {isExpanded && (
-              <div className="px-4 pb-4">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <SortHeader
-                        label="Wrestler"
-                        sortKey="name"
-                        currentKey={sortKey}
-                        currentDir={sortDir}
-                        onSort={handleSort}
-                      />
-                      <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
-                        School
-                      </th>
-                      <SortHeader
-                        label="Wt"
-                        sortKey="weightClass"
-                        currentKey={sortKey}
-                        currentDir={sortDir}
-                        onSort={handleSort}
-                      />
-                      <SortHeader
-                        label="Seed"
-                        sortKey="seed"
-                        currentKey={sortKey}
-                        currentDir={sortDir}
-                        onSort={handleSort}
-                      />
-                      <SortHeader
-                        label="Pick"
-                        sortKey="overallPick"
-                        currentKey={sortKey}
-                        currentDir={sortDir}
-                        onSort={handleSort}
-                      />
-                      <SortHeader
-                        label="Round"
-                        sortKey="round"
-                        currentKey={sortKey}
-                        currentDir={sortDir}
-                        onSort={handleSort}
-                      />
-                      <SortHeader
-                        label="Pts"
-                        sortKey="points"
-                        currentKey={sortKey}
-                        currentDir={sortDir}
-                        onSort={handleSort}
-                        align="right"
-                      />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {sortWrestlers(entry.wrestlers).map((w) => (
-                      <tr
-                        key={w.wrestlerId}
-                        className="border-b border-border last:border-b-0"
-                      >
-                        <td className="py-1.5 text-foreground">{w.name}</td>
-                        <td className="py-1.5 text-muted-foreground">
-                          {w.team}
-                        </td>
-                        <td className="py-1.5 text-muted-foreground">
-                          {w.weightClass}
-                        </td>
-                        <td className="py-1.5 text-muted-foreground">
-                          ({w.seed})
-                        </td>
-                        <td className="py-1.5 text-muted-foreground">
-                          #{w.overallPick}
-                        </td>
-                        <td className="py-1.5 text-muted-foreground">
-                          {w.round || "—"}
-                        </td>
-                        <td className="py-1.5 text-right text-foreground">
-                          {w.points}
-                        </td>
+              <button
+                onClick={() => toggle(entry.playerId)}
+                className="w-full flex items-center gap-3 p-4 hover:bg-muted/50 transition-colors text-left"
+              >
+                <RankBadge rank={entry.rank} />
+                <span className="flex-1 text-sm font-medium text-foreground">
+                  {entry.playerName}
+                </span>
+                <span className="text-sm font-semibold text-foreground">
+                  {entry.totalPoints} pts
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  {isExpanded ? "▲" : "▼"}
+                </span>
+              </button>
+              {isExpanded && (
+                <div className="px-4 pb-4">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <SortHeader
+                          label="Wrestler"
+                          sortKey="name"
+                          currentKey={sortKey}
+                          currentDir={sortDir}
+                          onSort={handleSort}
+                        />
+                        <th className="text-left text-xs font-medium text-muted-foreground py-1.5">
+                          School
+                        </th>
+                        <SortHeader
+                          label="Wt"
+                          sortKey="weightClass"
+                          currentKey={sortKey}
+                          currentDir={sortDir}
+                          onSort={handleSort}
+                        />
+                        <SortHeader
+                          label="Seed"
+                          sortKey="seed"
+                          currentKey={sortKey}
+                          currentDir={sortDir}
+                          onSort={handleSort}
+                        />
+                        <SortHeader
+                          label="Pick"
+                          sortKey="overallPick"
+                          currentKey={sortKey}
+                          currentDir={sortDir}
+                          onSort={handleSort}
+                        />
+                        <SortHeader
+                          label="Round"
+                          sortKey="round"
+                          currentKey={sortKey}
+                          currentDir={sortDir}
+                          onSort={handleSort}
+                        />
+                        <SortHeader
+                          label="Pts"
+                          sortKey="points"
+                          currentKey={sortKey}
+                          currentDir={sortDir}
+                          onSort={handleSort}
+                          align="right"
+                        />
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
+                    </thead>
+                    <tbody>
+                      {sortWrestlers(entry.wrestlers).map((w) => (
+                        <tr
+                          key={w.wrestlerId}
+                          className="border-b border-border last:border-b-0"
+                        >
+                          <td className="py-1.5 text-foreground">{w.name}</td>
+                          <td className="py-1.5 text-muted-foreground">
+                            {w.team}
+                          </td>
+                          <td className="py-1.5 text-muted-foreground">
+                            {w.weightClass}
+                          </td>
+                          <td className="py-1.5 text-muted-foreground">
+                            ({w.seed})
+                          </td>
+                          <td className="py-1.5 text-muted-foreground">
+                            #{w.overallPick}
+                          </td>
+                          <td className="py-1.5 text-muted-foreground">
+                            {w.round || "—"}
+                          </td>
+                          <td className="py-1.5 text-right text-foreground">
+                            {w.points}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <a
+          href={`/api/scoreboard/${sessionId}/export?format=csv`}
+          download
+          className="px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted transition-colors"
+        >
+          Export CSV
+        </a>
+        <a
+          href={`/api/scoreboard/${sessionId}/export?format=xlsx`}
+          download
+          className="px-3 py-1.5 border border-border rounded-md text-sm text-foreground hover:bg-muted transition-colors"
+        >
+          Export XLSX
+        </a>
+        <a
+          href={`/api/scoreboard/${sessionId}/export?format=csv&undrafted=true`}
+          download
+          className="px-3 py-1.5 border border-border rounded-md text-sm text-muted-foreground hover:bg-muted transition-colors"
+        >
+          CSV + Undrafted
+        </a>
+        <a
+          href={`/api/scoreboard/${sessionId}/export?format=xlsx&undrafted=true`}
+          download
+          className="px-3 py-1.5 border border-border rounded-md text-sm text-muted-foreground hover:bg-muted transition-colors"
+        >
+          XLSX + Undrafted
+        </a>
+      </div>
+    </>
   );
 }

@@ -38,7 +38,7 @@ export default async function ScoreboardPage({
           </a>
         </div>
         <p className="text-sm text-muted-foreground mb-6">Scoreboard</p>
-        <ScoreboardClient entries={entries} />
+        <ScoreboardClient entries={entries} sessionId={sessionId} />
       </div>
     </div>
   );
